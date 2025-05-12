@@ -1,0 +1,48 @@
+2025-05-10 20:00:12 error: uncaughtException: Cannot find module 'bignumber.js'
+Require stack:
+- C:\solana-memecoin-exchange\backend\src\services\wallet.service.js
+- C:\solana-memecoin-exchange\backend\src\controllers\auth.controller.js
+- C:\solana-memecoin-exchange\backend\src\routes\auth.routes.js
+- C:\solana-memecoin-exchange\backend\src\routes\index.js
+- C:\solana-memecoin-exchange\backend\src\app.js
+Error: Cannot find module 'bignumber.js'
+Require stack:
+- C:\solana-memecoin-exchange\backend\src\services\wallet.service.js
+- C:\solana-memecoin-exchange\backend\src\controllers\auth.controller.js
+- C:\solana-memecoin-exchange\backend\src\routes\auth.routes.js
+- C:\solana-memecoin-exchange\backend\src\routes\index.js
+- C:\solana-memecoin-exchange\backend\src\app.js
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1405:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1061:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1066:22)
+    at Function._load (node:internal/modules/cjs/loader:1215:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1491:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (C:\solana-memecoin-exchange\backend\src\services\wallet.service.js:7:19)
+    at Module._compile (node:internal/modules/cjs/loader:1734:14) {"error":{"code":"MODULE_NOT_FOUND","requireStack":["C:\\solana-memecoin-exchange\\backend\\src\\services\\wallet.service.js","C:\\solana-memecoin-exchange\\backend\\src\\controllers\\auth.controller.js","C:\\solana-memecoin-exchange\\backend\\src\\routes\\auth.routes.js","C:\\solana-memecoin-exchange\\backend\\src\\routes\\index.js","C:\\solana-memecoin-exchange\\backend\\src\\app.js"]},"stack":"Error: Cannot find module 'bignumber.js'\nRequire stack:\n- C:\\solana-memecoin-exchange\\backend\\src\\services\\wallet.service.js\n- C:\\solana-memecoin-exchange\\backend\\src\\controllers\\auth.controller.js\n- C:\\solana-memecoin-exchange\\backend\\src\\routes\\auth.routes.js\n- C:\\solana-memecoin-exchange\\backend\\src\\routes\\index.js\n- C:\\solana-memecoin-exchange\\backend\\src\\app.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1405:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1061:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1066:22)\n    at Function._load (node:internal/modules/cjs/loader:1215:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1491:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\solana-memecoin-exchange\\backend\\src\\services\\wallet.service.js:7:19)\n    at Module._compile (node:internal/modules/cjs/loader:1734:14)","exception":true,"date":"Sat May 10 2025 20:00:12 GMT-0700 (Mountain Standard Time)","process":{"pid":19416,"uid":null,"gid":null,"cwd":"C:\\solana-memecoin-exchange\\backend","execPath":"C:\\Program Files\\nodejs\\node.exe","version":"v23.10.0","argv":["C:\\Program Files\\nodejs\\node.exe","C:\\solana-memecoin-exchange\\backend\\src\\app.js"],"memoryUsage":{"rss":114946048,"heapTotal":66404352,"heapUsed":47781848,"external":20800992,"arrayBuffers":18301763}},"os":{"loadavg":[0,0,0],"uptime":139200.484},"trace":[{"column":15,"file":"node:internal/modules/cjs/loader","function":"Function._resolveFilename","line":1405,"method":"_resolveFilename","native":false},{"column":19,"file":"node:internal/modules/cjs/loader","function":"defaultResolveImpl","line":1061,"method":null,"native":false},{"column":22,"file":"node:internal/modules/cjs/loader","function":"resolveForCJSWithHooks","line":1066,"method":null,"native":false},{"column":37,"file":"node:internal/modules/cjs/loader","function":"Function._load","line":1215,"method":"_load","native":false},{"column":14,"file":"node:diagnostics_channel","function":"TracingChannel.traceSync","line":322,"method":"traceSync","native":false},{"column":24,"file":"node:internal/modules/cjs/loader","function":"wrapModuleLoad","line":235,"method":null,"native":false},{"column":12,"file":"node:internal/modules/cjs/loader","function":"Module.require","line":1491,"method":"require","native":false},{"column":16,"file":"node:internal/modules/helpers","function":"require","line":135,"method":null,"native":false},{"column":19,"file":"C:\\solana-memecoin-exchange\\backend\\src\\services\\wallet.service.js","function":null,"line":7,"method":null,"native":false},{"column":14,"file":"node:internal/modules/cjs/loader","function":"Module._compile","line":1734,"method":"_compile","native":false}]}
+2025-05-11 01:04:50 error: uncaughtException: Cannot find module 'bignumber.js'
+Require stack:
+- C:\solana-memecoin-exchange\backend\src\services\wallet.service.js
+- C:\solana-memecoin-exchange\backend\src\controllers\auth.controller.js
+- C:\solana-memecoin-exchange\backend\src\routes\auth.routes.js
+- C:\solana-memecoin-exchange\backend\src\routes\index.js
+- C:\solana-memecoin-exchange\backend\src\app.js
+Error: Cannot find module 'bignumber.js'
+Require stack:
+- C:\solana-memecoin-exchange\backend\src\services\wallet.service.js
+- C:\solana-memecoin-exchange\backend\src\controllers\auth.controller.js
+- C:\solana-memecoin-exchange\backend\src\routes\auth.routes.js
+- C:\solana-memecoin-exchange\backend\src\routes\index.js
+- C:\solana-memecoin-exchange\backend\src\app.js
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1405:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1061:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1066:22)
+    at Function._load (node:internal/modules/cjs/loader:1215:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1491:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (C:\solana-memecoin-exchange\backend\src\services\wallet.service.js:7:19)
+    at Module._compile (node:internal/modules/cjs/loader:1734:14) {"error":{"code":"MODULE_NOT_FOUND","requireStack":["C:\\solana-memecoin-exchange\\backend\\src\\services\\wallet.service.js","C:\\solana-memecoin-exchange\\backend\\src\\controllers\\auth.controller.js","C:\\solana-memecoin-exchange\\backend\\src\\routes\\auth.routes.js","C:\\solana-memecoin-exchange\\backend\\src\\routes\\index.js","C:\\solana-memecoin-exchange\\backend\\src\\app.js"]},"stack":"Error: Cannot find module 'bignumber.js'\nRequire stack:\n- C:\\solana-memecoin-exchange\\backend\\src\\services\\wallet.service.js\n- C:\\solana-memecoin-exchange\\backend\\src\\controllers\\auth.controller.js\n- C:\\solana-memecoin-exchange\\backend\\src\\routes\\auth.routes.js\n- C:\\solana-memecoin-exchange\\backend\\src\\routes\\index.js\n- C:\\solana-memecoin-exchange\\backend\\src\\app.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1405:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1061:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1066:22)\n    at Function._load (node:internal/modules/cjs/loader:1215:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1491:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\solana-memecoin-exchange\\backend\\src\\services\\wallet.service.js:7:19)\n    at Module._compile (node:internal/modules/cjs/loader:1734:14)","exception":true,"date":"Sun May 11 2025 01:04:50 GMT-0700 (Mountain Standard Time)","process":{"pid":21844,"uid":null,"gid":null,"cwd":"C:\\solana-memecoin-exchange\\backend","execPath":"C:\\Program Files\\nodejs\\node.exe","version":"v23.10.0","argv":["C:\\Program Files\\nodejs\\node.exe","C:\\solana-memecoin-exchange\\backend\\src\\app.js"],"memoryUsage":{"rss":114348032,"heapTotal":66404352,"heapUsed":47485448,"external":20800992,"arrayBuffers":18301763}},"os":{"loadavg":[0,0,0],"uptime":157478.39},"trace":[{"column":15,"file":"node:internal/modules/cjs/loader","function":"Function._resolveFilename","line":1405,"method":"_resolveFilename","native":false},{"column":19,"file":"node:internal/modules/cjs/loader","function":"defaultResolveImpl","line":1061,"method":null,"native":false},{"column":22,"file":"node:internal/modules/cjs/loader","function":"resolveForCJSWithHooks","line":1066,"method":null,"native":false},{"column":37,"file":"node:internal/modules/cjs/loader","function":"Function._load","line":1215,"method":"_load","native":false},{"column":14,"file":"node:diagnostics_channel","function":"TracingChannel.traceSync","line":322,"method":"traceSync","native":false},{"column":24,"file":"node:internal/modules/cjs/loader","function":"wrapModuleLoad","line":235,"method":null,"native":false},{"column":12,"file":"node:internal/modules/cjs/loader","function":"Module.require","line":1491,"method":"require","native":false},{"column":16,"file":"node:internal/modules/helpers","function":"require","line":135,"method":null,"native":false},{"column":19,"file":"C:\\solana-memecoin-exchange\\backend\\src\\services\\wallet.service.js","function":null,"line":7,"method":null,"native":false},{"column":14,"file":"node:internal/modules/cjs/loader","function":"Module._compile","line":1734,"method":"_compile","native":false}]}
