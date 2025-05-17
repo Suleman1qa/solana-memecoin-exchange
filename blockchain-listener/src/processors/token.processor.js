@@ -1,9 +1,9 @@
-const { Connection, PublicKey } = require('@solana/web3.js');
-const { Token } = require('@solana/spl-token');
-const axios = require('axios');
-const mongoose = require('mongoose');
-const config = require('../config');
-const logger = require('../utils/logger');
+import { Connection, PublicKey } from '@solana/web3.js';
+import { Token } from '@solana/spl-token';
+import axios from 'axios';
+import mongoose from 'mongoose';
+import config from '../config.js';
+import logger from '../utils/logger.js';
 
 // Initialize Solana connection
 const connection = new Connection(
@@ -103,144 +103,148 @@ const TokenSchema = new mongoose.Schema({
 
 const Token = mongoose.model('Token', TokenSchema);
 
-// Check if token exists in database
-exports.checkTokenExists = async (address) => {
-  const token = await Token.findOne({ address });
-  return !!token;
-};
+class TokenProcessor {
+  // Check if token exists in database
+  async checkTokenExists(address) {
+    const token = await Token.findOne({ address });
+    return !!token;
+  }
 
-// Get token information from Solana
-exports.getTokenInfo = async (address) => {
-  try {
-    const publicKey = new PublicKey(address);
-    const tokenInfo = await connection.getTokenSupply(publicKey);
-    
-    if (!tokenInfo || !tokenInfo.value) {
+  // Get token information from Solana
+  async getTokenInfo(address) {
+    try {
+      const publicKey = new PublicKey(address);
+      const tokenInfo = await connection.getTokenSupply(publicKey);
+      
+      if (!tokenInfo || !tokenInfo.value) {
+        return null;
+      }
+      
+      // Get token account to try to find metadata
+      const largestAccounts = await connection.getTokenLargestAccounts(publicKey);
+      let ownerAddress = '';
+      
+      if (largestAccounts && largestAccounts.value && largestAccounts.value.length > 0) {
+        try {
+          const accountInfo = await connection.getAccountInfo(largestAccounts.value[0].address);
+          if (accountInfo && accountInfo.owner) {
+            ownerAddress = accountInfo.owner.toString();
+          }
+        } catch (error) {
+          logger.error(`Error getting token account info for ${address}:`, error);
+        }
+      }
+      
+      // Generate token data
+      const symbol = `${address.substring(0, 4).toUpperCase()}`;
+      const name = `${symbol} Token`;
+      
+      return {
+        address,
+        decimals: tokenInfo.value.decimals,
+        totalSupply: tokenInfo.value.amount,
+        symbol,
+        name,
+        creatorAddress: ownerAddress
+      };
+    } catch (error) {
+      logger.error(`Error getting token info for ${address}:`, error);
       return null;
     }
-    
-    // Get token account to try to find metadata
-    const largestAccounts = await connection.getTokenLargestAccounts(publicKey);
-    let ownerAddress = '';
-    
-    if (largestAccounts && largestAccounts.value && largestAccounts.value.length > 0) {
-      try {
-        const accountInfo = await connection.getAccountInfo(largestAccounts.value[0].address);
-        if (accountInfo && accountInfo.owner) {
-          ownerAddress = accountInfo.owner.toString();
-        }
-      } catch (error) {
-        logger.error(`Error getting token account info for ${address}:`, error);
+  }
+
+  // Process a new token
+  async processNewToken(address, decimals, tokenInfo) {
+    try {
+      // Check if it's likely a memecoin
+      const isMemecoin = await this.checkIfMemecoin(address, tokenInfo);
+      
+      if (!isMemecoin) {
+        logger.info(`Token ${address} does not appear to be a memecoin. Skipping.`);
+        return;
       }
+      
+      // Create token in database
+      const token = new Token({
+        address: tokenInfo.address,
+        name: tokenInfo.name,
+        symbol: tokenInfo.symbol,
+        decimals: tokenInfo.decimals,
+        totalSupply: tokenInfo.totalSupply,
+        category: 'MEMECOIN',
+        status: 'NEW',
+        priceUSD: '0.00000001', // Initial price
+        priceSOL: '0.0000000002', // Initial price
+        creatorAddress: tokenInfo.creatorAddress,
+        launchDate: new Date()
+      });
+      
+      await token.save();
+      
+      logger.info(`Saved new memecoin: ${tokenInfo.symbol} (${address})`);
+      
+      // Try to get additional info
+      setTimeout(async () => {
+        await this.enrichTokenInfo(address);
+      }, 5000);
+      
+    } catch (error) {
+      logger.error(`Error processing new token ${address}:`, error);
+    }
+  }
+
+  // Check if token is likely a memecoin
+  async checkIfMemecoin(address, tokenInfo) {
+    // This is a simplified check. In a real app, you would implement more sophisticated criteria
+    
+    // Check if total supply is very large (common for memecoins)
+    const totalSupply = parseFloat(tokenInfo.totalSupply);
+    if (totalSupply > 1000000000) {
+      return true;
     }
     
-    // Generate token data
-    const symbol = `${address.substring(0, 4).toUpperCase()}`;
-    const name = `${symbol} Token`;
-    
-    return {
-      address,
-      decimals: tokenInfo.value.decimals,
-      totalSupply: tokenInfo.value.amount,
-      symbol,
-      name,
-      creatorAddress: ownerAddress
-    };
-  } catch (error) {
-    logger.error(`Error getting token info for ${address}:`, error);
-    return null;
-  }
-};
-
-// Process a new token
-exports.processNewToken = async (address, decimals, tokenInfo) => {
-  try {
-    // Check if it's likely a memecoin
-    const isMemecoin = await this.checkIfMemecoin(address, tokenInfo);
-    
-    if (!isMemecoin) {
-      logger.info(`Token ${address} does not appear to be a memecoin. Skipping.`);
-      return;
+    // Check if token has liquidity on DEXes (simplified)
+    const hasLiquidity = await this.checkForLiquidity(address);
+    if (hasLiquidity) {
+      return true;
     }
     
-    // Create token in database
-    const token = new Token({
-      address: tokenInfo.address,
-      name: tokenInfo.name,
-      symbol: tokenInfo.symbol,
-      decimals: tokenInfo.decimals,
-      totalSupply: tokenInfo.totalSupply,
-      category: 'MEMECOIN',
-      status: 'NEW',
-      priceUSD: '0.00000001', // Initial price
-      priceSOL: '0.0000000002', // Initial price
-      creatorAddress: tokenInfo.creatorAddress,
-      launchDate: new Date()
-    });
-    
-    await token.save();
-    
-    logger.info(`Saved new memecoin: ${tokenInfo.symbol} (${address})`);
-    
-    // Try to get additional info
-    setTimeout(async () => {
-      await this.enrichTokenInfo(address);
-    }, 5000);
-    
-  } catch (error) {
-    logger.error(`Error processing new token ${address}:`, error);
-  }
-};
-
-// Check if token is likely a memecoin
-exports.checkIfMemecoin = async (address, tokenInfo) => {
-  // This is a simplified check. In a real app, you would implement more sophisticated criteria
-  
-  // Check if total supply is very large (common for memecoins)
-  const totalSupply = parseFloat(tokenInfo.totalSupply);
-  if (totalSupply > 1000000000) {
+    // Default to true for demo purposes
     return true;
   }
-  
-  // Check if token has liquidity on DEXes (simplified)
-  const hasLiquidity = await this.checkForLiquidity(address);
-  if (hasLiquidity) {
+
+  // Check for liquidity on DEXes
+  async checkForLiquidity(address) {
+    // This would check if the token has liquidity on Raydium, Orca, etc.
+    // Simplified implementation for demo
     return true;
   }
-  
-  // Default to true for demo purposes
-  return true;
-};
 
-// Check for liquidity on DEXes
-exports.checkForLiquidity = async (address) => {
-  // This would check if the token has liquidity on Raydium, Orca, etc.
-  // Simplified implementation for demo
-  return true;
-};
-
-// Enrich token with additional information
-exports.enrichTokenInfo = async (address) => {
-  try {
-    const token = await Token.findOne({ address });
-    if (!token) {
-      return;
+  // Enrich token with additional information
+  async enrichTokenInfo(address) {
+    try {
+      const token = await Token.findOne({ address });
+      if (!token) {
+        return;
+      }
+      
+      // Try to get token metadata from Solana
+      // This is simplified; a real implementation would use the Metaplex protocol
+      
+      // Generate some mock data for demo purposes
+      token.website = Math.random() > 0.3 ? `https://${token.symbol.toLowerCase()}.io` : '';
+      token.twitter = Math.random() > 0.3 ? `https://twitter.com/${token.symbol.toLowerCase()}` : '';
+      token.telegram = Math.random() > 0.3 ? `https://t.me/${token.symbol.toLowerCase()}` : '';
+      token.discord = Math.random() > 0.4 ? `https://discord.gg/${token.symbol.toLowerCase()}` : '';
+      token.description = `${token.name} is a community-driven memecoin on the Solana blockchain.`;
+      
+      await token.save();
+      
+      logger.info(`Enriched token info for ${token.symbol} (${address})`);
+    } catch (error) {
+      logger.error(`Error enriching token info for ${address}:`, error);
     }
-    
-    // Try to get token metadata from Solana
-    // This is simplified; a real implementation would use the Metaplex protocol
-    
-    // Generate some mock data for demo purposes
-    token.website = Math.random() > 0.3 ? `https://${token.symbol.toLowerCase()}.io` : '';
-    token.twitter = Math.random() > 0.3 ? `https://twitter.com/${token.symbol.toLowerCase()}` : '';
-    token.telegram = Math.random() > 0.3 ? `https://t.me/${token.symbol.toLowerCase()}` : '';
-    token.discord = Math.random() > 0.4 ? `https://discord.gg/${token.symbol.toLowerCase()}` : '';
-    token.description = `${token.name} is a community-driven memecoin on the Solana blockchain.`;
-    
-    await token.save();
-    
-    logger.info(`Enriched token info for ${token.symbol} (${address})`);
-  } catch (error) {
-    logger.error(`Error enriching token info for ${address}:`, error);
   }
-};
+}
+
+export default TokenProcessor;

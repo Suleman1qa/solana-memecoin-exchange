@@ -1,6 +1,10 @@
 // Services index file
 
-module.exports = {
+import tokenService from './token.service.js';
+
+const services = {
   // Export services here, e.g.,
-  // tokenService: require('./token.service'),
+  tokenService,
 };
+
+export default services;
