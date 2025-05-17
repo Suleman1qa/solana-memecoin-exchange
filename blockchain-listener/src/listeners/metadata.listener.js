@@ -1,6 +1,6 @@
-const { PublicKey } = require('@solana/web3.js');
-const logger = require('../utils/logger');
-const { METADATA_PROGRAM_ID } = require('../utils/constants');
+import { PublicKey } from '@solana/web3.js';
+import logger from '../utils/logger.js';
+import { METADATA_PROGRAM_ID } from '../utils/constants.js';
 
 class MetadataListener {
   constructor(connection, tokenProcessor) {
@@ -94,4 +94,4 @@ class MetadataListener {
   }
 }
 
-module.exports = MetadataListener;
+export default MetadataListener;

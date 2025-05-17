@@ -1,6 +1,6 @@
-const axios = require('axios');
-const config = require('../config');
-const logger = require('./logger');
+import axios from 'axios';
+import config from '../config.js';
+import logger from './logger.js';
 
 // Create axios instance with default config
 const httpClient = axios.create({
@@ -49,4 +49,4 @@ httpClient.interceptors.response.use(
   }
 );
 
-module.exports = httpClient;
+export default httpClient;

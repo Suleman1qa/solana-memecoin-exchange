@@ -1,6 +1,6 @@
-const winston = require('winston');
-const path = require('path');
-const config = require('../config');
+import winston from 'winston';
+import path from 'path';
+import config from '../config';
 
 const logFormat = winston.format.printf(({ level, message, timestamp, ...meta }) => {
   return `${timestamp} ${level}: ${message} ${Object.keys(meta).length ? JSON.stringify(meta) : ''}`;
@@ -36,4 +36,4 @@ const logger = winston.createLogger({
   ]
 });
 
-module.exports = logger;
+export default logger;

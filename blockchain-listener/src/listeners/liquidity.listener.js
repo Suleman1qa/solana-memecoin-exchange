@@ -1,10 +1,10 @@
-const { PublicKey } = require('@solana/web3.js');
-const logger = require('../utils/logger');
-const config = require('../config');
-const { 
+import { PublicKey } from '@solana/web3.js';
+import logger from '../utils/logger.js';
+import config from '../config.js';
+import { 
   RAYDIUM_LIQUIDITY_PROGRAM_ID,
   ORCA_SWAP_PROGRAM_ID
-} = require('../utils/constants');
+} from '../utils/constants.js';
 
 class LiquidityListener {
   constructor(connection, tokenProcessor) {
@@ -149,4 +149,4 @@ class LiquidityListener {
   }
 }
 
-module.exports = LiquidityListener;
+export default LiquidityListener;

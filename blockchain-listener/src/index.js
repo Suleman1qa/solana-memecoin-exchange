@@ -1,13 +1,13 @@
-const { Connection } = require('@solana/web3.js');
-const mongoose = require('mongoose');
-const redis = require('redis');
-const config = require('./config');
-const logger = require('./utils/logger');
-const TokenListener = require('./listeners/token.listener');
-const MetadataListener = require('./listeners/metadata.listener');
-const LiquidityListener = require('./listeners/liquidity.listener');
-const TokenProcessor = require('./processors/token.processor');
-const HealthMonitor = require('./utils/health-monitor');
+import { Connection } from '@solana/web3.js';
+import mongoose from 'mongoose';
+import redis from 'redis';
+import config from './config/index.js';
+import logger from './utils/logger.js';
+import TokenListener from './listeners/token.listener.js';
+import MetadataListener from './listeners/metadata.listener.js';
+import LiquidityListener from './listeners/liquidity.listener.js';
+import TokenProcessor from './processors/token.processor.js';
+import HealthMonitor from './utils/health-monitor.js';
 
 // MongoDB connection
 mongoose.connect(config.mongodb.uri, config.mongodb.options)
