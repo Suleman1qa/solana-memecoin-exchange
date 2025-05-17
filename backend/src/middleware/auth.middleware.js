@@ -1,9 +1,9 @@
-const jwt = require('jsonwebtoken');
-const config = require('../config');
-const User = require('../models/user.model');
-const AppError = require('../utils/appError');
+import jwt from 'jsonwebtoken';
+import config from '../config.js';
+import User from '../models/user.model.js';
+import AppError from '../utils/appError.js';
 
-exports.protect = async (req, res, next) => {
+export const protect = async (req, res, next) => {
   try {
     // Get token from header
     let token;
@@ -38,7 +38,7 @@ exports.protect = async (req, res, next) => {
   }
 };
 
-exports.restrictTo = (...roles) => {
+export const restrictTo = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
       return next(new AppError('You do not have permission to perform this action', 403));

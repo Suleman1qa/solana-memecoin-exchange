@@ -1,7 +1,7 @@
-const redis = require('redis');
-const { promisify } = require('util');
-const config = require('../config');
-const logger = require('../utils/logger');
+import redis from 'redis';
+import { promisify } from 'util';
+import config from '../config.js';
+import logger from '../utils/logger.js';
 
 // Create Redis client
 const client = redis.createClient({
@@ -25,7 +25,7 @@ client.on('connect', () => {
 });
 
 // Get value by key
-exports.get = async (key) => {
+const get = async (key) => {
   try {
     return await getAsync(key);
   } catch (error) {
@@ -35,7 +35,7 @@ exports.get = async (key) => {
 };
 
 // Set value with expiration (in seconds)
-exports.set = async (key, value, expireSeconds = null) => {
+const set = async (key, value, expireSeconds = null) => {
   try {
     await setAsync(key, value);
     
@@ -51,7 +51,7 @@ exports.set = async (key, value, expireSeconds = null) => {
 };
 
 // Delete key
-exports.del = async (key) => {
+const del = async (key) => {
   try {
     await delAsync(key);
     return true;
@@ -62,7 +62,7 @@ exports.del = async (key) => {
 };
 
 // Store refresh token
-exports.setRefreshToken = async (userId, token, expiresIn) => {
+const setRefreshToken = async (userId, token, expiresIn) => {
   const key = `refresh_token:${userId}`;
   
   // Convert JWT expiration (e.g., '7d') to seconds for Redis
@@ -92,15 +92,26 @@ exports.setRefreshToken = async (userId, token, expiresIn) => {
     expireSeconds = expiresIn;
   }
   
-  return this.set(key, token, expireSeconds);
+  return set(key, token, expireSeconds);
 };
 
 // Get refresh token
-exports.getRefreshToken = async (userId) => {
-  return this.get(`refresh_token:${userId}`);
+const getRefreshToken = async (userId) => {
+  return get(`refresh_token:${userId}`);
 };
 
 // Remove refresh token
-exports.removeRefreshToken = async (userId) => {
-  return this.del(`refresh_token:${userId}`);
+const removeRefreshToken = async (userId) => {
+  return del(`refresh_token:${userId}`);
 };
+
+const redisService = {
+  get,
+  set,
+  del,
+  setRefreshToken,
+  getRefreshToken,
+  removeRefreshToken
+};
+
+export default redisService;

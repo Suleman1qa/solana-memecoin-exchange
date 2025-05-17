@@ -1,8 +1,8 @@
-const express = require('express');
-const { body, param } = require('express-validator');
-const walletController = require('../controllers/wallet.controller');
-const validate = require('../middleware/validate.middleware');
-const { protect } = require('../middleware/auth.middleware');
+import express from 'express';
+import { body, param } from 'express-validator';
+import * as walletController from '../controllers/wallet.controller.js';
+import validate from '../middleware/validate.middleware.js';
+import { protect } from '../middleware/auth.middleware.js';
 
 const router = express.Router();
 
@@ -82,4 +82,4 @@ router.post('/swap',
   walletController.swapTokens
 );
 
-module.exports = router;
+export default router;

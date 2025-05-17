@@ -1,11 +1,11 @@
-const Token = require('../models/token.model');
-const Order = require('../models/order.model');
-const AppError = require('../utils/appError');
-const { catchAsync } = require('../utils/catchAsync');
-const marketService = require('../services/market.service');
-const socketService = require('../services/socket.service');
+import Token from '../models/token.model.js';
+import Order from '../models/order.model.js';
+import AppError from '../utils/appError.js';
+import { catchAsync } from '../utils/catchAsync.js';
+import marketService from '../services/market.service.js';
+import socketService from '../services/socket.service.js';
 
-exports.getTradingPairs = catchAsync(async (req, res, next) => {
+export const getTradingPairs = catchAsync(async (req, res, next) => {
   const { base, quote } = req.query;
   
   // Get trading pairs
@@ -17,7 +17,7 @@ exports.getTradingPairs = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getOrderBook = catchAsync(async (req, res, next) => {
+export const getOrderBook = catchAsync(async (req, res, next) => {
   const { pairId } = req.params;
   const { depth = 50 } = req.query;
   
@@ -36,7 +36,7 @@ exports.getOrderBook = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getRecentTrades = catchAsync(async (req, res, next) => {
+export const getRecentTrades = catchAsync(async (req, res, next) => {
   const { pairId } = req.params;
   const { limit = 50 } = req.query;
   
@@ -55,7 +55,7 @@ exports.getRecentTrades = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getMarketSummary = catchAsync(async (req, res, next) => {
+export const getMarketSummary = catchAsync(async (req, res, next) => {
   // Get market summary
   const summary = await marketService.getMarketSummary();
   
@@ -65,7 +65,7 @@ exports.getMarketSummary = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.placeOrder = catchAsync(async (req, res, next) => {
+export const placeOrder = catchAsync(async (req, res, next) => {
   const { pairId, type, side, amount, price, stopPrice } = req.body;
   const userId = req.user._id;
   
@@ -104,7 +104,7 @@ exports.placeOrder = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getUserOrders = catchAsync(async (req, res, next) => {
+export const getUserOrders = catchAsync(async (req, res, next) => {
   const { status, pairId, page = 1, limit = 20 } = req.query;
   const userId = req.user._id;
   
@@ -139,7 +139,7 @@ exports.getUserOrders = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.cancelOrder = catchAsync(async (req, res, next) => {
+export const cancelOrder = catchAsync(async (req, res, next) => {
   const { orderId } = req.params;
   const userId = req.user._id;
   

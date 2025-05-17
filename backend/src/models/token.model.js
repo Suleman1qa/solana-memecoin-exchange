@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const TokenSchema = new mongoose.Schema({
   address: {
@@ -93,4 +93,6 @@ const TokenSchema = new mongoose.Schema({
 TokenSchema.index({ status: 1, category: 1 });
 TokenSchema.index({ symbol: 'text', name: 'text' });
 
-module.exports = mongoose.model('Token', TokenSchema);
+const Token = mongoose.model('Token', TokenSchema);
+
+export default Token;

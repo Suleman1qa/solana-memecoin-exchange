@@ -1,12 +1,12 @@
-const jwt = require('jsonwebtoken');
-const crypto = require('crypto');
-const User = require('../models/user.model');
-const AppError = require('../utils/appError');
-const config = require('../config');
-const { catchAsync } = require('../utils/catchAsync');
-const emailService = require('../services/email.service');
-const redisService = require('../services/redis.service');
-const walletService = require('../services/wallet.service');
+import jwt from 'jsonwebtoken';
+import crypto from 'crypto';
+import User from '../models/user.model.js';
+import AppError from '../utils/appError.js';
+import config from '../config/index.js';
+import { catchAsync } from '../utils/catchAsync.js';
+import emailService from '../services/email.service.js';
+import redisService from '../services/redis.service.js';
+import walletService from '../services/wallet.service.js';
 
 // Helper function to sign JWT token
 const signToken = (userId) => {
@@ -43,7 +43,7 @@ const createSendTokens = async (user, statusCode, res) => {
   });
 };
 
-exports.register = catchAsync(async (req, res, next) => {
+export const register = catchAsync(async (req, res, next) => {
   const { email, password, username, fullName } = req.body;
   
   // Check if user already exists
@@ -79,7 +79,7 @@ exports.register = catchAsync(async (req, res, next) => {
   await createSendTokens(newUser, 201, res);
 });
 
-exports.login = catchAsync(async (req, res, next) => {
+export const login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
   
   // Check if email and password exist
@@ -108,7 +108,7 @@ exports.login = catchAsync(async (req, res, next) => {
   await createSendTokens(user, 200, res);
 });
 
-exports.refreshToken = catchAsync(async (req, res, next) => {
+export const refreshToken = catchAsync(async (req, res, next) => {
   const { refreshToken } = req.body;
   
   // Verify refresh token
@@ -142,7 +142,7 @@ exports.refreshToken = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.forgotPassword = catchAsync(async (req, res, next) => {
+export const forgotPassword = catchAsync(async (req, res, next) => {
   const { email } = req.body;
   
   // Find user
@@ -179,7 +179,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   }
 });
 
-exports.resetPassword = catchAsync(async (req, res, next) => {
+export const resetPassword = catchAsync(async (req, res, next) => {
   const { token, password } = req.body;
   
   // Hash token
@@ -211,7 +211,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   await createSendTokens(user, 200, res);
 });
 
-exports.verifyEmail = catchAsync(async (req, res, next) => {
+export const verifyEmail = catchAsync(async (req, res, next) => {
   const { token } = req.body;
   
   // Find user with verification token
@@ -232,7 +232,7 @@ exports.verifyEmail = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.logout = catchAsync(async (req, res, next) => {
+export const logout = catchAsync(async (req, res, next) => {
   // Remove refresh token from Redis
   await redisService.removeRefreshToken(req.user._id.toString());
   
@@ -242,7 +242,7 @@ exports.logout = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.changePassword = catchAsync(async (req, res, next) => {
+export const changePassword = catchAsync(async (req, res, next) => {
   const { currentPassword, newPassword } = req.body;
   
   // Get user

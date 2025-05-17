@@ -1,8 +1,8 @@
-const express = require('express');
-const { body, query, param } = require('express-validator');
-const orderController = require('../controllers/order.controller');
-const validate = require('../middleware/validate.middleware');
-const { protect, restrictTo } = require('../middleware/auth.middleware');
+import express from 'express';
+import { body, query, param } from 'express-validator';
+import * as orderController from '../controllers/order.controller.js';
+import validate from '../middleware/validate.middleware.js';
+import { protect, restrictTo } from '../middleware/auth.middleware.js';
 
 const router = express.Router();
 
@@ -67,4 +67,4 @@ router.get('/admin/all',
   orderController.getAllOrders
 );
 
-module.exports = router;
+export default router;

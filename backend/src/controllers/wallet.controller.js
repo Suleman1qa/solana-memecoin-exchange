@@ -1,12 +1,12 @@
-const Wallet = require('../models/wallet.model');
-const Transaction = require('../models/transaction.model');
-const Token = require('../models/token.model');
-const AppError = require('../utils/appError');
-const { catchAsync } = require('../utils/catchAsync');
-const walletService = require('../services/wallet.service');
-const solanaService = require('../services/solana.service');
+import Wallet from '../models/wallet.model.js';
+import Transaction from '../models/transaction.model.js';
+import Token from '../models/token.model.js';
+import AppError from '../utils/appError.js';
+import { catchAsync } from '../utils/catchAsync.js';
+import walletService from '../services/wallet.service.js';
+import solanaService from '../services/solana.service.js';
 
-exports.getUserWallets = catchAsync(async (req, res, next) => {
+export const getUserWallets = catchAsync(async (req, res, next) => {
   const userId = req.user._id;
   
   // Find all wallets for the user
@@ -18,7 +18,7 @@ exports.getUserWallets = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.createWallet = catchAsync(async (req, res, next) => {
+export const createWallet = catchAsync(async (req, res, next) => {
   const userId = req.user._id;
   const { type = 'FUNDING', label = 'My Wallet' } = req.body;
   
@@ -31,7 +31,7 @@ exports.createWallet = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getWalletById = catchAsync(async (req, res, next) => {
+export const getWalletById = catchAsync(async (req, res, next) => {
   const { walletId } = req.params;
   const userId = req.user._id;
   
@@ -51,7 +51,7 @@ exports.getWalletById = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.updateWallet = catchAsync(async (req, res, next) => {
+export const updateWallet = catchAsync(async (req, res, next) => {
   const { walletId } = req.params;
   const { label } = req.body;
   const userId = req.user._id;
@@ -73,7 +73,7 @@ exports.updateWallet = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.transferBetweenWallets = catchAsync(async (req, res, next) => {
+export const transferBetweenWallets = catchAsync(async (req, res, next) => {
   const { walletId } = req.params;
   const { destinationWalletId, tokenAddress, amount } = req.body;
   const userId = req.user._id;
@@ -110,7 +110,7 @@ exports.transferBetweenWallets = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.depositFunds = catchAsync(async (req, res, next) => {
+export const depositFunds = catchAsync(async (req, res, next) => {
   const { walletId, tokenAddress, amount, txHash } = req.body;
   const userId = req.user._id;
   
@@ -141,7 +141,7 @@ exports.depositFunds = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.withdrawFunds = catchAsync(async (req, res, next) => {
+export const withdrawFunds = catchAsync(async (req, res, next) => {
   const { walletId, tokenAddress, amount, destinationAddress } = req.body;
   const userId = req.user._id;
   
@@ -172,7 +172,7 @@ exports.withdrawFunds = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.swapTokens = catchAsync(async (req, res, next) => {
+export const swapTokens = catchAsync(async (req, res, next) => {
   const { walletId, fromTokenAddress, toTokenAddress, amount, slippageTolerance = 1 } = req.body;
   const userId = req.user._id;
   

@@ -1,36 +1,36 @@
-const { Connection, Keypair, PublicKey, Transaction, SystemProgram } = require('@solana/web3.js');
-const { Token, TOKEN_PROGRAM_ID, ASSOCIATED_TOKEN_PROGRAM_ID } = require('@solana/spl-token');
-const bs58 = require('bs58');
-const crypto = require('crypto');
-const config = require('../config');
-const AppError = require('../utils/appError');
-const logger = require('../utils/logger');
+import { Connection, Keypair, PublicKey, Transaction, SystemProgram } from '@solana/web3.js';
+import { Token, TOKEN_PROGRAM_ID, ASSOCIATED_TOKEN_PROGRAM_ID } from '@solana/spl-token';
+import { decode, encode } from 'bs58';
+import { scryptSync, randomBytes, createCipheriv, createDecipheriv } from 'crypto';
+import { solana, jwt } from '../config';
+import AppError from '../utils/appError';
+import { warn, error as _error } from '../utils/logger';
 
 // Initialize Solana connection
 const connection = new Connection(
-  config.solana.clusterEndpoint,
-  config.solana.commitment
+  solana.clusterEndpoint,
+  solana.commitment
 );
 
 // Initialize fee payer
 let feePayer;
-if (config.solana.feePayer) {
-  const secretKey = bs58.decode(config.solana.feePayer);
+if (solana.feePayer) {
+  const secretKey = decode(solana.feePayer);
   feePayer = Keypair.fromSecretKey(secretKey);
 } else {
-  logger.warn('Solana fee payer not configured. Some operations will fail.');
+  warn('Solana fee payer not configured. Some operations will fail.');
 }
 
 // Generate a new Solana keypair
-exports.generateKeypair = async () => {
+export async function generateKeypair() {
   // Generate new keypair
   const keypair = Keypair.generate();
   
   // Encrypt private key with server-side encryption key
-  const encryptionKey = crypto.scryptSync(config.jwt.secret, 'salt', 32);
-  const iv = crypto.randomBytes(16);
+  const encryptionKey = scryptSync(jwt.secret, 'salt', 32);
+  const iv = randomBytes(16);
   
-  const cipher = crypto.createCipheriv('aes-256-cbc', encryptionKey, iv);
+  const cipher = createCipheriv('aes-256-cbc', encryptionKey, iv);
   let encryptedPrivateKey = cipher.update(
     Buffer.from(keypair.secretKey).toString('hex'),
     'utf8',
@@ -44,16 +44,16 @@ exports.generateKeypair = async () => {
     publicKey: keypair.publicKey,
     encryptedPrivateKey
   };
-};
+}
 
 // Decrypt a private key
 const decryptPrivateKey = (encryptedPrivateKey) => {
   const [ivHex, encryptedHex] = encryptedPrivateKey.split(':');
   
-  const encryptionKey = crypto.scryptSync(config.jwt.secret, 'salt', 32);
+  const encryptionKey = scryptSync(jwt.secret, 'salt', 32);
   const iv = Buffer.from(ivHex, 'hex');
   
-  const decipher = crypto.createDecipheriv('aes-256-cbc', encryptionKey, iv);
+  const decipher = createDecipheriv('aes-256-cbc', encryptionKey, iv);
   let decrypted = decipher.update(encryptedHex, 'hex', 'utf8');
   decrypted += decipher.final('utf8');
   
@@ -71,7 +71,7 @@ const getKeypairFromWallet = (wallet) => {
 };
 
 // Verify a token on Solana
-exports.verifyToken = async (tokenAddress) => {
+export async function verifyToken(tokenAddress) {
   try {
     const tokenPublicKey = new PublicKey(tokenAddress);
     const tokenInfo = await connection.getTokenSupply(tokenPublicKey);
@@ -84,10 +84,10 @@ exports.verifyToken = async (tokenAddress) => {
   } catch (error) {
     throw new AppError(`Failed to verify token: ${error.message}`, 400);
   }
-};
+}
 
 // Verify a transaction
-exports.verifyTransaction = async (txHash, walletAddress, tokenAddress, amount) => {
+export async function verifyTransaction(txHash, walletAddress, tokenAddress, amount) {
   try {
     const transaction = await connection.getTransaction(txHash, {
       commitment: 'confirmed'
@@ -103,10 +103,10 @@ exports.verifyTransaction = async (txHash, walletAddress, tokenAddress, amount) 
   } catch (error) {
     return { success: false, message: error.message };
   }
-};
+}
 
 // Send tokens
-exports.sendTokens = async (wallet, tokenAddress, destinationAddress, amount, decimals) => {
+export async function sendTokens(wallet, tokenAddress, destinationAddress, amount, decimals) {
   try {
     // Get keypair
     const keypair = getKeypairFromWallet(wallet);
@@ -175,13 +175,13 @@ exports.sendTokens = async (wallet, tokenAddress, destinationAddress, amount, de
     
     return signature;
   } catch (error) {
-    logger.error('Error sending tokens:', error);
+    _error('Error sending tokens:', error);
     throw new AppError(`Failed to send tokens: ${error.message}`, 500);
   }
-};
+}
 
 // Get swap quote
-exports.getSwapQuote = async (fromTokenAddress, toTokenAddress, amount, slippageTolerance) => {
+export async function getSwapQuote(fromTokenAddress, toTokenAddress, amount, slippageTolerance) {
   // In a real app, this would call to a DEX or aggregator like Jupiter
   // For simplicity, we're returning a mock quote
   const fromTokenPublicKey = new PublicKey(fromTokenAddress);
@@ -207,10 +207,10 @@ exports.getSwapQuote = async (fromTokenAddress, toTokenAddress, amount, slippage
     priceImpact: "0.5", // Mock value
     fee: (amount * 0.003).toFixed(fromTokenInfo.value.decimals) // 0.3% fee
   };
-};
+}
 
 // Execute swap
-exports.executeSwap = async (wallet, fromTokenAddress, toTokenAddress, amount, minAmountOut, slippageTolerance) => {
+export async function executeSwap(wallet, fromTokenAddress, toTokenAddress, amount, minAmountOut, slippageTolerance) {
   // In a real app, this would execute a swap on a DEX like Raydium, Orca, or Jupiter
   // For now, we'll just simulate it with a mock response
   
@@ -218,7 +218,7 @@ exports.executeSwap = async (wallet, fromTokenAddress, toTokenAddress, amount, m
   await new Promise(resolve => setTimeout(resolve, 2000));
   
   // Generate a mock transaction hash
-  const mockTxHash = bs58.encode(crypto.randomBytes(32));
+  const mockTxHash = encode(randomBytes(32));
   
   return mockTxHash;
-};
+}

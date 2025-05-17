@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const TradingPairSchema = new mongoose.Schema({
   baseToken: {
@@ -64,4 +64,6 @@ const TradingPairSchema = new mongoose.Schema({
   timestamps: true
 });
 
-module.exports = mongoose.model('TradingPair', TradingPairSchema);
+const TradingPair = mongoose.model('TradingPair', TradingPairSchema);
+
+export default TradingPair;

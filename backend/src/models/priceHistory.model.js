@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const PriceHistorySchema = new mongoose.Schema({
   tokenId: {
@@ -40,4 +40,6 @@ const PriceHistorySchema = new mongoose.Schema({
 // Compound index for faster queries
 PriceHistorySchema.index({ tokenId: 1, interval: 1, timestamp: 1 });
 
-module.exports = mongoose.model('PriceHistory', PriceHistorySchema);
+const PriceHistory = mongoose.model('PriceHistory', PriceHistorySchema);
+
+export default PriceHistory;

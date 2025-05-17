@@ -1,21 +1,21 @@
-const express = require('express');
-const cors = require('cors');
-const helmet = require('helmet');
-const compression = require('compression');
-const mongoose = require('mongoose');
-const http = require('http');
-const socketIo = require('socket.io');
-const path = require('path');
-const config = require('./config');
-const routes = require('./routes');
-const errorMiddleware = require('./middleware/error.middleware');
-const logger = require('./utils/logger');
-const socketService = require('./services/socket.service');
+import express from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+import compression from 'compression';
+import mongoose from 'mongoose';
+import http from 'http';
+import { Server } from 'socket.io';
+import path from 'path';
+import config from './config.js';
+import routes from './routes.js';
+import errorMiddleware from './middleware/error.middleware.js';
+import logger from './utils/logger.js';
+import socketService from './services/socket.service.js';
 
 // Initialize express app
 const app = express();
 const server = http.createServer(app);
-const io = socketIo(server, {
+const io = new Server(server, {
   cors: {
     origin: config.corsOrigins,
     methods: ['GET', 'POST'],
@@ -70,4 +70,4 @@ process.on('unhandledRejection', (err) => {
   logger.error('Unhandled Rejection:', err);
 });
 
-module.exports = { app, server };
+export { app, server };

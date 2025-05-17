@@ -1,9 +1,9 @@
-const express = require('express');
-const { query, param } = require('express-validator');
-const transactionController = require('../controllers/transaction.controller');
-const validate = require('../middleware/validate.middleware');
-const { protect, restrictTo } = require('../middleware/auth.middleware');
-const Transaction = require('../models/transaction.model');
+import express from 'express';
+import { query, param } from 'express-validator';
+import * as transactionController from '../controllers/transaction.controller.js';
+import validate from '../middleware/validate.middleware.js';
+import { protect, restrictTo } from '../middleware/auth.middleware.js';
+import Transaction from '../models/transaction.model.js';
 
 const router = express.Router();
 
@@ -57,4 +57,4 @@ router.put('/admin/:transactionId',
   transactionController.updateTransaction
 );
 
-module.exports = router;
+export default router;

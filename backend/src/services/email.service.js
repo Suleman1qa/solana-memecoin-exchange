@@ -1,6 +1,6 @@
-const nodemailer = require('nodemailer');
-const config = require('../config');
-const logger = require('../utils/logger');
+import nodemailer from 'nodemailer';
+import config from '../config.js';
+import logger from '../utils/logger.js';
 
 // Create transporter
 const transporter = nodemailer.createTransport({
@@ -38,7 +38,7 @@ const sendEmail = async (to, subject, html) => {
 };
 
 // Send verification email
-exports.sendVerificationEmail = async (to, verificationUrl) => {
+const sendVerificationEmail = async (to, verificationUrl) => {
   const subject = 'Verify Your Email - Solana Memecoin Exchange';
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -64,7 +64,7 @@ exports.sendVerificationEmail = async (to, verificationUrl) => {
 };
 
 // Send password reset email
-exports.sendPasswordResetEmail = async (to, resetUrl) => {
+const sendPasswordResetEmail = async (to, resetUrl) => {
   const subject = 'Reset Your Password - Solana Memecoin Exchange';
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -90,7 +90,7 @@ exports.sendPasswordResetEmail = async (to, resetUrl) => {
 };
 
 // Send password change notification
-exports.sendPasswordChangeNotification = async (to) => {
+const sendPasswordChangeNotification = async (to) => {
   const subject = 'Password Changed - Solana Memecoin Exchange';
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -109,7 +109,7 @@ exports.sendPasswordChangeNotification = async (to) => {
 };
 
 // Send withdrawal confirmation
-exports.sendWithdrawalConfirmation = async (to, amount, token, txHash) => {
+const sendWithdrawalConfirmation = async (to, amount, token, txHash) => {
   const subject = 'Withdrawal Confirmation - Solana Memecoin Exchange';
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -132,3 +132,12 @@ exports.sendWithdrawalConfirmation = async (to, amount, token, txHash) => {
   
   return sendEmail(to, subject, html);
 };
+
+const emailService = {
+  sendVerificationEmail,
+  sendPasswordResetEmail,
+  sendPasswordChangeNotification,
+  sendWithdrawalConfirmation
+};
+
+export default emailService;
