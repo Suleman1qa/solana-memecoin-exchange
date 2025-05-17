@@ -1,13 +1,12 @@
-const Order = require('../models/order.model');
-const TradingPair = require('../models/tradingPair.model');
-const Wallet = require('../models/wallet.model');
-const AppError = require('../utils/appError');
-const { catchAsync } = require('../utils/catchAsync');
-const socketService = require('../services/socket.service');
-const marketService = require('../services/market.service');
+import Order from '../models/order.model.js';
+import TradingPair from '../models/tradingPair.model.js';
+import Wallet from '../models/wallet.model.js';
+import AppError from '../utils/appError.js';
+import { catchAsync } from '../utils/catchAsync.js';
+import socketService from '../services/socket.service.js';
+import marketService from '../services/market.service.js';
 
-// Get user orders
-exports.getUserOrders = catchAsync(async (req, res, next) => {
+export const getUserOrders = catchAsync(async (req, res, next) => {
   const {
     status,
     pair,
@@ -48,8 +47,7 @@ exports.getUserOrders = catchAsync(async (req, res, next) => {
   });
 });
 
-// Get order by ID
-exports.getOrderById = catchAsync(async (req, res, next) => {
+export const getOrderById = catchAsync(async (req, res, next) => {
   const { orderId } = req.params;
   
   // Find order
@@ -68,8 +66,7 @@ exports.getOrderById = catchAsync(async (req, res, next) => {
   });
 });
 
-// Cancel order
-exports.cancelOrder = catchAsync(async (req, res, next) => {
+export const cancelOrder = catchAsync(async (req, res, next) => {
   const { orderId } = req.params;
   
   // Find order
@@ -99,8 +96,7 @@ exports.cancelOrder = catchAsync(async (req, res, next) => {
   });
 });
 
-// Place order
-exports.placeOrder = catchAsync(async (req, res, next) => {
+export const placeOrder = catchAsync(async (req, res, next) => {
   const { pair: pairId, type, side, amount, price, stopPrice } = req.body;
   const userId = req.user._id;
   
@@ -153,8 +149,7 @@ exports.placeOrder = catchAsync(async (req, res, next) => {
   });
 });
 
-// Get all orders (admin only)
-exports.getAllOrders = catchAsync(async (req, res, next) => {
+export const getAllOrders = catchAsync(async (req, res, next) => {
   const {
     userId,
     pair,

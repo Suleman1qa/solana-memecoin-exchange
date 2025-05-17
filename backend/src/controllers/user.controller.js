@@ -1,10 +1,9 @@
-const User = require('../models/user.model');
-const AppError = require('../utils/appError');
-const { catchAsync } = require('../utils/catchAsync');
-const { uploadToStorage } = require('../services/storage.service');
+import User from '../models/user.model.js';
+import AppError from '../utils/appError.js';
+import { catchAsync } from '../utils/catchAsync.js';
+import { uploadToStorage } from '../services/storage.service.js';
 
-// Get current user profile
-exports.getCurrentUser = catchAsync(async (req, res, next) => {
+export const getCurrentUser = catchAsync(async (req, res, next) => {
   // User is already available in req due to auth middleware
   res.status(200).json({
     success: true,
@@ -12,8 +11,7 @@ exports.getCurrentUser = catchAsync(async (req, res, next) => {
   });
 });
 
-// Update current user profile
-exports.updateCurrentUser = catchAsync(async (req, res, next) => {
+export const updateCurrentUser = catchAsync(async (req, res, next) => {
   const { username, fullName, email } = req.body;
 
   // Check if username is already taken by another user
@@ -60,8 +58,7 @@ exports.updateCurrentUser = catchAsync(async (req, res, next) => {
   });
 });
 
-// Upload profile picture
-exports.uploadProfilePicture = catchAsync(async (req, res, next) => {
+export const uploadProfilePicture = catchAsync(async (req, res, next) => {
   if (!req.files || !req.files.profilePicture) {
     return next(new AppError('Please upload a profile picture', 400));
   }
@@ -96,8 +93,7 @@ exports.uploadProfilePicture = catchAsync(async (req, res, next) => {
   });
 });
 
-// Get user by ID (admin only)
-exports.getUserById = catchAsync(async (req, res, next) => {
+export const getUserById = catchAsync(async (req, res, next) => {
   const user = await User.findById(req.params.userId).select('-password');
 
   if (!user) {
@@ -110,8 +106,7 @@ exports.getUserById = catchAsync(async (req, res, next) => {
   });
 });
 
-// Update user (admin only)
-exports.updateUser = catchAsync(async (req, res, next) => {
+export const updateUser = catchAsync(async (req, res, next) => {
   const { username, fullName, email, role } = req.body;
 
   // Check if username is already taken by another user
@@ -163,8 +158,7 @@ exports.updateUser = catchAsync(async (req, res, next) => {
   });
 });
 
-// Get all users (admin only)
-exports.getAllUsers = catchAsync(async (req, res, next) => {
+export const getAllUsers = catchAsync(async (req, res, next) => {
   const users = await User.find().select('-password');
 
   res.status(200).json({
@@ -174,8 +168,7 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
   });
 });
 
-// Delete user (admin only)
-exports.deleteUser = catchAsync(async (req, res, next) => {
+export const deleteUser = catchAsync(async (req, res, next) => {
   const user = await User.findByIdAndDelete(req.params.userId);
 
   if (!user) {

@@ -1,4 +1,4 @@
-const logger = require('../utils/logger');
+import { logger } from '../utils/logger.js';
 
 const errorMiddleware = (err, req, res, next) => {
   const statusCode = err.statusCode || 500;
@@ -19,4 +19,4 @@ const errorMiddleware = (err, req, res, next) => {
   });
 };
 
-module.exports = errorMiddleware;
+export { errorMiddleware };

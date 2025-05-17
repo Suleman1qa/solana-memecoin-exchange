@@ -1,14 +1,16 @@
-const fs = require('fs');
-const path = require('path');
-const crypto = require('crypto');
-const { promisify } = require('util');
-const cloudinary = require('cloudinary').v2;
-const AppError = require('../utils/appError');
-const config = require('../config');
+import fs from 'fs';
+import path from 'path';
+import crypto from 'crypto';
+import { promisify } from 'util';
+import cloudinary from 'cloudinary';
+import AppError from '../utils/appError.js';
+import config from '../config.js';
+
+const cloudinaryV2 = cloudinary.v2;
 
 // Configure Cloudinary (if used)
 if (config.cloudinary && config.cloudinary.cloudName) {
-  cloudinary.config({
+  cloudinaryV2.config({
     cloud_name: config.cloudinary.cloudName,
     api_key: config.cloudinary.apiKey,
     api_secret: config.cloudinary.apiSecret
@@ -60,7 +62,7 @@ const uploadToLocalStorage = async (file, uploadPath) => {
 const uploadToCloudinary = async (file, uploadPath) => {
   // Use buffer upload API
   const result = await new Promise((resolve, reject) => {
-    const uploadStream = cloudinary.uploader.upload_stream(
+    const uploadStream = cloudinaryV2.uploader.upload_stream(
       {
         folder: uploadPath,
         resource_type: 'auto',
@@ -86,7 +88,7 @@ const uploadToCloudinary = async (file, uploadPath) => {
   };
 };
 
-exports.uploadToStorage = async (file, uploadPath) => {
+const uploadToStorage = async (file, uploadPath) => {
   try {
     // If Cloudinary is configured, use it; otherwise, use local storage
     if (config.cloudinary && config.cloudinary.cloudName) {
@@ -100,7 +102,7 @@ exports.uploadToStorage = async (file, uploadPath) => {
 };
 
 // Delete file from storage
-exports.deleteFromStorage = async (fileUrl, isCloudinary = false) => {
+const deleteFromStorage = async (fileUrl, isCloudinary = false) => {
   try {
     if (isCloudinary) {
       // Extract public_id from Cloudinary URL
@@ -118,3 +120,5 @@ exports.deleteFromStorage = async (fileUrl, isCloudinary = false) => {
     throw new AppError(`File deletion failed: ${error.message}`, 500);
   }
 };
+
+export { uploadToStorage, deleteFromStorage };

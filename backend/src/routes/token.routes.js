@@ -1,8 +1,8 @@
-const express = require('express');
-const { query, param } = require('express-validator');
-const tokenController = require('../controllers/token.controller');
-const validate = require('../middleware/validate.middleware');
-const { protect, restrictTo } = require('../middleware/auth.middleware');
+import express from 'express';
+import { query, param } from 'express-validator';
+import * as tokenController from '../controllers/token.controller.js';
+import validate from '../middleware/validate.middleware.js';
+import { protect, restrictTo } from '../middleware/auth.middleware.js';
 
 const router = express.Router();
 
@@ -98,4 +98,4 @@ router.delete('/:address',
   tokenController.deleteToken
 );
 
-module.exports = router;
+export default router;

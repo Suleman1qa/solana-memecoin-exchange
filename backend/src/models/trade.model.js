@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const TradeSchema = new mongoose.Schema({
   pair: {
@@ -48,4 +48,5 @@ const TradeSchema = new mongoose.Schema({
 // Compound index for faster queries
 TradeSchema.index({ pair: 1, timestamp: -1 });
 
-module.exports = mongoose.model('Trade', TradeSchema);
+const Trade = mongoose.model('Trade', TradeSchema);
+export default Trade;

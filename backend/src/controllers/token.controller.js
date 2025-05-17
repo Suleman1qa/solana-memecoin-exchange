@@ -1,11 +1,11 @@
-const Token = require('../models/token.model');
-const PriceHistory = require('../models/priceHistory.model');
-const AppError = require('../utils/appError');
-const { catchAsync } = require('../utils/catchAsync');
-const solanaService = require('../services/solana.service');
-const marketDataService = require('../services/marketData.service');
+import Token from '../models/token.model.js';
+import PriceHistory from '../models/priceHistory.model.js';
+import AppError from '../utils/appError.js';
+import { catchAsync } from '../utils/catchAsync.js';
+import solanaService from '../services/solana.service.js';
+import marketDataService from '../services/marketData.service.js';
 
-exports.getTokens = catchAsync(async (req, res, next) => {
+export const getTokens = catchAsync(async (req, res, next) => {
   const {
     page = 1,
     limit = 20,
@@ -55,7 +55,7 @@ exports.getTokens = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getTrendingTokens = catchAsync(async (req, res, next) => {
+export const getTrendingTokens = catchAsync(async (req, res, next) => {
   const { timeframe = '24h', limit = 10 } = req.query;
   
   // Get trending tokens based on price change or volume
@@ -84,7 +84,7 @@ exports.getTrendingTokens = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getNewListings = catchAsync(async (req, res, next) => {
+export const getNewListings = catchAsync(async (req, res, next) => {
   const { limit = 10 } = req.query;
   
   const tokens = await Token.find({
@@ -100,7 +100,7 @@ exports.getNewListings = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getGraduatingTokens = catchAsync(async (req, res, next) => {
+export const getGraduatingTokens = catchAsync(async (req, res, next) => {
   const { limit = 10 } = req.query;
   
   const tokens = await Token.find({
@@ -116,7 +116,7 @@ exports.getGraduatingTokens = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getGraduatedTokens = catchAsync(async (req, res, next) => {
+export const getGraduatedTokens = catchAsync(async (req, res, next) => {
   const { limit = 10 } = req.query;
   
   const tokens = await Token.find({
@@ -132,7 +132,7 @@ exports.getGraduatedTokens = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getTokenByAddress = catchAsync(async (req, res, next) => {
+export const getTokenByAddress = catchAsync(async (req, res, next) => {
   const { address } = req.params;
   
   // Find token by address
@@ -154,7 +154,7 @@ exports.getTokenByAddress = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getTokenPriceHistory = catchAsync(async (req, res, next) => {
+export const getTokenPriceHistory = catchAsync(async (req, res, next) => {
   const { address } = req.params;
   const { interval = '1h', from, to } = req.query;
   
@@ -187,7 +187,7 @@ exports.getTokenPriceHistory = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.createToken = catchAsync(async (req, res, next) => {
+export const createToken = catchAsync(async (req, res, next) => {
   const {
     address,
     name,
@@ -241,7 +241,7 @@ exports.createToken = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.updateToken = catchAsync(async (req, res, next) => {
+export const updateToken = catchAsync(async (req, res, next) => {
   const { address } = req.params;
   const updateData = req.body;
   
@@ -268,7 +268,7 @@ exports.updateToken = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.deleteToken = catchAsync(async (req, res, next) => {
+export const deleteToken = catchAsync(async (req, res, next) => {
   const { address } = req.params;
   
   // Find and delete token

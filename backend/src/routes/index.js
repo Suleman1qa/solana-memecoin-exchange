@@ -1,12 +1,12 @@
-const express = require('express');
-const authRoutes = require('./auth.routes');
-const userRoutes = require('./user.routes');
-const tokenRoutes = require('./token.routes');
-const walletRoutes = require('./wallet.routes');
-const marketRoutes = require('./market.routes');
-const transactionRoutes = require('./transaction.routes');
-const orderRoutes = require('./order.routes');
-const { defaultLimiter } = require('../middleware/rateLimit.middleware');
+import express from 'express';
+import authRoutes from './auth.routes.js';
+import userRoutes from './user.routes.js';
+import tokenRoutes from './token.routes.js';
+import walletRoutes from './wallet.routes.js';
+import marketRoutes from './market.routes.js';
+import transactionRoutes from './transaction.routes.js';
+import orderRoutes from './order.routes.js';
+import { defaultLimiter } from '../middleware/rateLimit.middleware.js';
 
 const router = express.Router();
 
@@ -22,4 +22,4 @@ router.use('/market', marketRoutes);
 router.use('/transactions', transactionRoutes);
 router.use('/orders', orderRoutes);
 
-module.exports = router;
+export default router;

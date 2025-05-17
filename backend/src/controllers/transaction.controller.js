@@ -1,10 +1,9 @@
-const Transaction = require('../models/transaction.model');
-const Wallet = require('../models/wallet.model');
-const AppError = require('../utils/appError');
-const { catchAsync } = require('../utils/catchAsync');
+import Transaction from '../models/transaction.model.js';
+import Wallet from '../models/wallet.model.js';
+import AppError from '../utils/appError.js';
+import { catchAsync } from '../utils/catchAsync.js';
 
-// Get user transactions
-exports.getUserTransactions = catchAsync(async (req, res, next) => {
+export const getUserTransactions = catchAsync(async (req, res, next) => {
   const {
     walletId,
     type,
@@ -48,8 +47,7 @@ exports.getUserTransactions = catchAsync(async (req, res, next) => {
   });
 });
 
-// Get transaction by ID
-exports.getTransactionById = catchAsync(async (req, res, next) => {
+export const getTransactionById = catchAsync(async (req, res, next) => {
   const { transactionId } = req.params;
   
   // Find transaction
@@ -71,8 +69,7 @@ exports.getTransactionById = catchAsync(async (req, res, next) => {
   });
 });
 
-// Get all transactions (admin only)
-exports.getAllTransactions = catchAsync(async (req, res, next) => {
+export const getAllTransactions = catchAsync(async (req, res, next) => {
   const {
     userId,
     walletId,
@@ -120,8 +117,7 @@ exports.getAllTransactions = catchAsync(async (req, res, next) => {
   });
 });
 
-// Update transaction (admin only)
-exports.updateTransaction = catchAsync(async (req, res, next) => {
+export const updateTransaction = catchAsync(async (req, res, next) => {
   const { transactionId } = req.params;
   const { status, txHash } = req.body;
   
