@@ -1,6 +1,10 @@
 import winston from 'winston';
 import path from 'path';
-import config from '../config';
+import { fileURLToPath } from 'url';
+import config from '../config/index.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const logFormat = winston.format.printf(({ level, message, timestamp, ...meta }) => {
   return `${timestamp} ${level}: ${message} ${Object.keys(meta).length ? JSON.stringify(meta) : ''}`;

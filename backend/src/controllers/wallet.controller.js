@@ -4,7 +4,7 @@ import Token from '../models/token.model.js';
 import AppError from '../utils/appError.js';
 import { catchAsync } from '../utils/catchAsync.js';
 import walletService from '../services/wallet.service.js';
-import solanaService from '../services/solana.service.js';
+import * as solanaService from '../services/solana.service.js';
 
 export const getUserWallets = catchAsync(async (req, res, next) => {
   const userId = req.user._id;

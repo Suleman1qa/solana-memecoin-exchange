@@ -2,7 +2,7 @@ import Token from '../models/token.model.js';
 import PriceHistory from '../models/priceHistory.model.js';
 import AppError from '../utils/appError.js';
 import { catchAsync } from '../utils/catchAsync.js';
-import solanaService from '../services/solana.service.js';
+import * as solanaService from '../services/solana.service.js';
 import marketDataService from '../services/marketData.service.js';
 
 export const getTokens = catchAsync(async (req, res, next) => {

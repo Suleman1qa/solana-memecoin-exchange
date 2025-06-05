@@ -1,2 +1,501 @@
 2025-05-10 20:00:12 warn: Solana fee payer not configured. Some operations will fail. 
 2025-05-11 01:04:50 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 02:10:14 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 12:45:27 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 12:51:21 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 12:54:31 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 12:55:23 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 12:55:23 info: Connected to Redis 
+2025-05-22 12:57:29 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 12:58:31 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 12:59:31 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 13:03:26 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 13:04:26 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 13:17:18 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 13:20:33 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 13:20:33 info: Connected to Redis 
+2025-05-22 13:25:31 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 13:29:40 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 13:29:40 info: Connected to Redis 
+2025-05-22 13:30:10 error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/ {"reason":{"type":"ReplicaSetNoPrimary","servers":{},"stale":false,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"setName":"atlas-sgbxf8-shard-0","maxElectionId":null,"maxSetVersion":null,"commonWireVersion":0,"logicalSessionTimeoutMinutes":null},"stack":"MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at Connection.openUri (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\connection.js:825:32)\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:414:10\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:41:5\n    at new Promise (<anonymous>)\n    at promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:40:10)\n    at Mongoose._promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:1290:10)\n    at Mongoose.connect (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:413:20)\n    at file:///C:/solana-memecoin-exchange/backend/src/app.js:78:10\n    at ModuleJob.run (node:internal/modules/esm/module_job:274:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)"}
+2025-05-22 13:31:49 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 13:31:50 info: Connected to Redis 
+2025-05-22 13:32:34 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 13:32:34 info: Connected to Redis 
+2025-05-22 13:33:04 error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/ {"reason":{"type":"ReplicaSetNoPrimary","servers":{},"stale":false,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"setName":"atlas-sgbxf8-shard-0","maxElectionId":null,"maxSetVersion":null,"commonWireVersion":0,"logicalSessionTimeoutMinutes":null},"stack":"MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at Connection.openUri (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\connection.js:825:32)\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:414:10\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:41:5\n    at new Promise (<anonymous>)\n    at promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:40:10)\n    at Mongoose._promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:1290:10)\n    at Mongoose.connect (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:413:20)\n    at file:///C:/solana-memecoin-exchange/backend/src/app.js:78:10\n    at ModuleJob.run (node:internal/modules/esm/module_job:274:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)"}
+2025-05-22 13:38:00 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 13:38:00 info: Connected to Redis 
+2025-05-22 13:38:05 info: Connected to MongoDB 
+2025-05-22 13:38:05 info: Server running on port 5000 
+2025-05-22 13:40:11 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 13:40:11 info: Connected to Redis 
+2025-05-22 13:40:13 info: Connected to MongoDB 
+2025-05-22 13:40:13 info: Server running on port 5000 
+2025-05-22 13:42:31 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 13:42:31 info: Connected to Redis 
+2025-05-22 13:42:34 info: Connected to MongoDB 
+2025-05-22 13:42:34 info: Server running on port 5000 
+2025-05-22 13:44:33 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 13:44:33 info: Connected to Redis 
+2025-05-22 13:44:35 info: Connected to MongoDB 
+2025-05-22 13:44:35 info: Server running on port 5000 
+2025-05-22 13:55:41 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 13:55:41 info: Connected to Redis 
+2025-05-22 13:55:43 info: Connected to MongoDB 
+2025-05-22 13:55:43 info: Server running on port 5000 
+2025-05-22 14:40:09 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 14:40:09 info: Connected to Redis 
+2025-05-22 14:40:39 error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/ {"reason":{"type":"ReplicaSetNoPrimary","servers":{},"stale":false,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"setName":"atlas-sgbxf8-shard-0","maxElectionId":null,"maxSetVersion":null,"commonWireVersion":0,"logicalSessionTimeoutMinutes":null},"stack":"MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at Connection.openUri (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\connection.js:825:32)\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:414:10\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:41:5\n    at new Promise (<anonymous>)\n    at promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:40:10)\n    at Mongoose._promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:1290:10)\n    at Mongoose.connect (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:413:20)\n    at file:///C:/solana-memecoin-exchange/backend/src/app.js:83:10\n    at ModuleJob.run (node:internal/modules/esm/module_job:274:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)"}
+2025-05-22 14:41:02 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 14:41:02 info: Connected to Redis 
+2025-05-22 14:41:32 error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/ {"reason":{"type":"ReplicaSetNoPrimary","servers":{},"stale":false,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"setName":"atlas-sgbxf8-shard-0","maxElectionId":null,"maxSetVersion":null,"commonWireVersion":0,"logicalSessionTimeoutMinutes":null},"stack":"MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at Connection.openUri (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\connection.js:825:32)\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:414:10\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:41:5\n    at new Promise (<anonymous>)\n    at promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:40:10)\n    at Mongoose._promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:1290:10)\n    at Mongoose.connect (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:413:20)\n    at file:///C:/solana-memecoin-exchange/backend/src/app.js:83:10\n    at ModuleJob.run (node:internal/modules/esm/module_job:274:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)"}
+2025-05-22 14:45:58 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 14:45:58 info: Connected to Redis 
+2025-05-22 14:46:04 error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/ {"reason":{"type":"ReplicaSetNoPrimary","servers":{},"stale":false,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"setName":"atlas-sgbxf8-shard-0","maxElectionId":null,"maxSetVersion":null,"commonWireVersion":0,"logicalSessionTimeoutMinutes":null},"stack":"MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at Connection.openUri (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\connection.js:825:32)\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:414:10\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:41:5\n    at new Promise (<anonymous>)\n    at promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:40:10)\n    at Mongoose._promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:1290:10)\n    at Mongoose.connect (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:413:20)\n    at connectWithRetry (file:///C:/solana-memecoin-exchange/backend/src/app.js:85:22)\n    at file:///C:/solana-memecoin-exchange/backend/src/app.js:106:1\n    at ModuleJob.run (node:internal/modules/esm/module_job:274:25)"}
+2025-05-22 14:46:14 error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/ {"reason":{"type":"ReplicaSetNoPrimary","servers":{},"stale":false,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"setName":"atlas-sgbxf8-shard-0","maxElectionId":null,"maxSetVersion":null,"commonWireVersion":0,"logicalSessionTimeoutMinutes":null},"stack":"MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at Connection.openUri (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\connection.js:825:32)\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:414:10\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:41:5\n    at new Promise (<anonymous>)\n    at promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:40:10)\n    at Mongoose._promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:1290:10)\n    at Mongoose.connect (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:413:20)\n    at connectWithRetry (file:///C:/solana-memecoin-exchange/backend/src/app.js:85:22)"}
+2025-05-22 14:46:24 error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/ {"reason":{"type":"ReplicaSetNoPrimary","servers":{},"stale":false,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"setName":"atlas-sgbxf8-shard-0","maxElectionId":null,"maxSetVersion":null,"commonWireVersion":0,"logicalSessionTimeoutMinutes":null},"stack":"MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at Connection.openUri (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\connection.js:825:32)\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:414:10\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:41:5\n    at new Promise (<anonymous>)\n    at promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:40:10)\n    at Mongoose._promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:1290:10)\n    at Mongoose.connect (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:413:20)\n    at connectWithRetry (file:///C:/solana-memecoin-exchange/backend/src/app.js:85:22)"}
+2025-05-22 14:46:34 error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/ {"reason":{"type":"ReplicaSetNoPrimary","servers":{},"stale":false,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"setName":"atlas-sgbxf8-shard-0","maxElectionId":null,"maxSetVersion":null,"commonWireVersion":0,"logicalSessionTimeoutMinutes":null},"stack":"MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at Connection.openUri (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\connection.js:825:32)\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:414:10\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:41:5\n    at new Promise (<anonymous>)\n    at promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:40:10)\n    at Mongoose._promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:1290:10)\n    at Mongoose.connect (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:413:20)\n    at connectWithRetry (file:///C:/solana-memecoin-exchange/backend/src/app.js:85:22)"}
+2025-05-22 14:46:44 error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/ {"reason":{"type":"ReplicaSetNoPrimary","servers":{},"stale":false,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"setName":"atlas-sgbxf8-shard-0","maxElectionId":null,"maxSetVersion":null,"commonWireVersion":0,"logicalSessionTimeoutMinutes":null},"stack":"MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at Connection.openUri (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\connection.js:825:32)\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:414:10\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:41:5\n    at new Promise (<anonymous>)\n    at promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:40:10)\n    at Mongoose._promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:1290:10)\n    at Mongoose.connect (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:413:20)\n    at connectWithRetry (file:///C:/solana-memecoin-exchange/backend/src/app.js:85:22)"}
+2025-05-22 14:47:53 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 14:47:53 info: Connected to Redis 
+2025-05-22 14:47:59 error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/ {"reason":{"type":"ReplicaSetNoPrimary","servers":{},"stale":false,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"setName":"atlas-sgbxf8-shard-0","maxElectionId":null,"maxSetVersion":null,"commonWireVersion":0,"logicalSessionTimeoutMinutes":null},"stack":"MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at Connection.openUri (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\connection.js:825:32)\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:414:10\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:41:5\n    at new Promise (<anonymous>)\n    at promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:40:10)\n    at Mongoose._promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:1290:10)\n    at Mongoose.connect (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:413:20)\n    at connectWithRetry (file:///C:/solana-memecoin-exchange/backend/src/app.js:85:22)\n    at file:///C:/solana-memecoin-exchange/backend/src/app.js:106:1\n    at ModuleJob.run (node:internal/modules/esm/module_job:274:25)"}
+2025-05-22 14:48:09 error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/ {"reason":{"type":"ReplicaSetNoPrimary","servers":{},"stale":false,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"setName":"atlas-sgbxf8-shard-0","maxElectionId":null,"maxSetVersion":null,"commonWireVersion":0,"logicalSessionTimeoutMinutes":null},"stack":"MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at Connection.openUri (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\connection.js:825:32)\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:414:10\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:41:5\n    at new Promise (<anonymous>)\n    at promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:40:10)\n    at Mongoose._promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:1290:10)\n    at Mongoose.connect (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:413:20)\n    at connectWithRetry (file:///C:/solana-memecoin-exchange/backend/src/app.js:85:22)"}
+2025-05-22 14:48:19 error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/ {"reason":{"type":"ReplicaSetNoPrimary","servers":{},"stale":false,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"setName":"atlas-sgbxf8-shard-0","maxElectionId":null,"maxSetVersion":null,"commonWireVersion":0,"logicalSessionTimeoutMinutes":null},"stack":"MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at Connection.openUri (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\connection.js:825:32)\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:414:10\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:41:5\n    at new Promise (<anonymous>)\n    at promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:40:10)\n    at Mongoose._promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:1290:10)\n    at Mongoose.connect (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:413:20)\n    at connectWithRetry (file:///C:/solana-memecoin-exchange/backend/src/app.js:85:22)"}
+2025-05-22 14:48:29 error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/ {"reason":{"type":"ReplicaSetNoPrimary","servers":{},"stale":false,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"setName":"atlas-sgbxf8-shard-0","maxElectionId":null,"maxSetVersion":null,"commonWireVersion":0,"logicalSessionTimeoutMinutes":null},"stack":"MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at Connection.openUri (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\connection.js:825:32)\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:414:10\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:41:5\n    at new Promise (<anonymous>)\n    at promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:40:10)\n    at Mongoose._promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:1290:10)\n    at Mongoose.connect (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:413:20)\n    at connectWithRetry (file:///C:/solana-memecoin-exchange/backend/src/app.js:85:22)"}
+2025-05-22 14:48:39 error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/ {"reason":{"type":"ReplicaSetNoPrimary","servers":{},"stale":false,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"setName":"atlas-sgbxf8-shard-0","maxElectionId":null,"maxSetVersion":null,"commonWireVersion":0,"logicalSessionTimeoutMinutes":null},"stack":"MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at Connection.openUri (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\connection.js:825:32)\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:414:10\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:41:5\n    at new Promise (<anonymous>)\n    at promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:40:10)\n    at Mongoose._promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:1290:10)\n    at Mongoose.connect (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:413:20)\n    at connectWithRetry (file:///C:/solana-memecoin-exchange/backend/src/app.js:85:22)"}
+2025-05-22 14:49:08 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 14:49:08 info: Connected to Redis 
+2025-05-22 14:49:39 error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/ {"reason":{"type":"ReplicaSetNoPrimary","servers":{},"stale":false,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"setName":"atlas-sgbxf8-shard-0","maxElectionId":null,"maxSetVersion":null,"commonWireVersion":0,"logicalSessionTimeoutMinutes":null},"stack":"MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at Connection.openUri (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\connection.js:825:32)\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:414:10\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:41:5\n    at new Promise (<anonymous>)\n    at promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:40:10)\n    at Mongoose._promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:1290:10)\n    at Mongoose.connect (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:413:20)\n    at file:///C:/solana-memecoin-exchange/backend/src/app.js:83:10\n    at ModuleJob.run (node:internal/modules/esm/module_job:274:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)"}
+2025-05-22 14:52:24 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 14:52:24 info: Connected to Redis 
+2025-05-22 14:52:54 error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/ {"reason":{"type":"ReplicaSetNoPrimary","servers":{},"stale":false,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"setName":"atlas-sgbxf8-shard-0","maxElectionId":null,"maxSetVersion":null,"commonWireVersion":0,"logicalSessionTimeoutMinutes":null},"stack":"MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at Connection.openUri (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\connection.js:825:32)\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:414:10\n    at C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:41:5\n    at new Promise (<anonymous>)\n    at promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\helpers\\promiseOrCallback.js:40:10)\n    at Mongoose._promiseOrCallback (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:1290:10)\n    at Mongoose.connect (C:\\solana-memecoin-exchange\\backend\\node_modules\\mongoose\\lib\\index.js:413:20)\n    at file:///C:/solana-memecoin-exchange/backend/src/app.js:83:10\n    at ModuleJob.run (node:internal/modules/esm/module_job:274:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)"}
+2025-05-22 15:05:05 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 15:05:05 info: Connected to Redis 
+2025-05-22 15:05:08 info: Connected to MongoDB 
+2025-05-22 15:05:08 info: Server running on port 5000 
+2025-05-22 15:15:01 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 15:15:01 info: Connected to Redis 
+2025-05-22 15:15:05 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 15:15:05 info: Connected to Redis 
+2025-05-22 15:15:07 info: Connected to MongoDB 
+2025-05-22 15:15:07 info: Server running on port 5000 
+2025-05-22 17:34:25 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 17:34:25 info: Connected to Redis 
+2025-05-22 17:34:25 error: MongoDB connection error: querySrv ECONNREFUSED _mongodb._tcp.cluster0.vklwu.mongodb.net {"code":"ECONNREFUSED","syscall":"querySrv","hostname":"_mongodb._tcp.cluster0.vklwu.mongodb.net","stack":"Error: querySrv ECONNREFUSED _mongodb._tcp.cluster0.vklwu.mongodb.net\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:294:17)"}
+2025-05-22 18:01:07 warn: Solana fee payer not configured. Some operations will fail. 
+2025-05-22 18:01:08 info: Connected to Redis 
+2025-05-22 18:01:11 info: Connected to MongoDB 
+2025-05-22 18:01:11 info: Server running on port 5000 
+2025-06-04 16:33:49 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-04 16:33:50 error: Redis error: Redis connection to localhost:6379 failed - connect ECONNREFUSED 127.0.0.1:6379 {"errno":-4078,"code":"ECONNREFUSED","syscall":"connect","address":"127.0.0.1","port":6379,"stack":"Error: connect ECONNREFUSED 127.0.0.1:6379\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1636:16)"}
+2025-06-04 16:33:51 error: Redis error: Redis connection to localhost:6379 failed - connect ECONNREFUSED 127.0.0.1:6379 {"errno":-4078,"code":"ECONNREFUSED","syscall":"connect","address":"127.0.0.1","port":6379,"stack":"Error: connect ECONNREFUSED 127.0.0.1:6379\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1636:16)"}
+2025-06-04 16:33:51 error: Redis error: Redis connection to localhost:6379 failed - connect ECONNREFUSED 127.0.0.1:6379 {"errno":-4078,"code":"ECONNREFUSED","syscall":"connect","address":"127.0.0.1","port":6379,"stack":"Error: connect ECONNREFUSED 127.0.0.1:6379\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1636:16)"}
+2025-06-04 16:33:52 error: Redis error: Redis connection to localhost:6379 failed - connect ECONNREFUSED 127.0.0.1:6379 {"errno":-4078,"code":"ECONNREFUSED","syscall":"connect","address":"127.0.0.1","port":6379,"stack":"Error: connect ECONNREFUSED 127.0.0.1:6379\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1636:16)"}
+2025-06-04 16:33:53 info: Connected to MongoDB 
+2025-06-04 16:33:53 info: Server running on port 5000 
+2025-06-04 16:33:53 error: Redis error: Redis connection to localhost:6379 failed - connect ECONNREFUSED 127.0.0.1:6379 {"errno":-4078,"code":"ECONNREFUSED","syscall":"connect","address":"127.0.0.1","port":6379,"stack":"Error: connect ECONNREFUSED 127.0.0.1:6379\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1636:16)"}
+2025-06-04 16:33:54 error: Redis error: Redis connection to localhost:6379 failed - connect ECONNREFUSED 127.0.0.1:6379 {"errno":-4078,"code":"ECONNREFUSED","syscall":"connect","address":"127.0.0.1","port":6379,"stack":"Error: connect ECONNREFUSED 127.0.0.1:6379\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1636:16)"}
+2025-06-04 16:33:57 info: Connected to Redis 
+2025-06-04 17:01:37 error: 401 - You are not logged in. Please log in to get access - /api/users/me - GET - ::1 
+2025-06-04 17:01:37 error: Error: You are not logged in. Please log in to get access
+    at protect (file:///C:/solana-memecoin-exchange/backend/src/middleware/auth.middleware.js:15:19)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:328:13)
+    at C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:328:13) 
+2025-06-04 17:03:30 error: 401 - Incorrect email or password - /api/auth/login - POST - ::1 
+2025-06-04 17:03:30 error: Error: Incorrect email or password
+    at file:///C:/solana-memecoin-exchange/backend/src/controllers/auth.controller.js:95:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) 
+2025-06-04 17:03:44 warn: Email not sent (missing config): Verify Your Email - Solana Memecoin Exchange to test@example.com 
+2025-06-04 17:06:42 error: 401 - You are not logged in. Please log in to get access - /api/market - GET - ::1 
+2025-06-04 17:06:42 error: Error: You are not logged in. Please log in to get access
+    at protect (file:///C:/solana-memecoin-exchange/backend/src/middleware/auth.middleware.js:15:19)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:328:13)
+    at C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:328:13) 
+2025-06-04 17:09:03 error: 401 - You are not logged in. Please log in to get access - /api/market - GET - ::1 
+2025-06-04 17:09:03 error: Error: You are not logged in. Please log in to get access
+    at protect (file:///C:/solana-memecoin-exchange/backend/src/middleware/auth.middleware.js:15:19)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:328:13)
+    at C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:328:13) 
+2025-06-04 17:13:08 error: 401 - Invalid token. Please log in again - /api/market - GET - ::1 
+2025-06-04 17:13:08 error: Error: Invalid token. Please log in again
+    at protect (file:///C:/solana-memecoin-exchange/backend/src/middleware/auth.middleware.js:32:19)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:328:13)
+    at C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:328:13) 
+2025-06-04 17:13:31 error: 401 - Invalid token. Please log in again - /api/market - GET - ::1 
+2025-06-04 17:13:31 error: Error: Invalid token. Please log in again
+    at protect (file:///C:/solana-memecoin-exchange/backend/src/middleware/auth.middleware.js:32:19)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:328:13)
+    at C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:328:13) 
+2025-06-04 17:14:48 error: 401 - Invalid token. Please log in again - /api/market - GET - ::1 
+2025-06-04 17:14:48 error: Error: Invalid token. Please log in again
+    at protect (file:///C:/solana-memecoin-exchange/backend/src/middleware/auth.middleware.js:32:19)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:328:13)
+    at C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:328:13) 
+2025-06-04 17:14:55 error: 401 - Invalid token. Please log in again - /api/market - GET - ::1 
+2025-06-04 17:14:55 error: Error: Invalid token. Please log in again
+    at protect (file:///C:/solana-memecoin-exchange/backend/src/middleware/auth.middleware.js:32:19)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:328:13)
+    at C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:328:13) 
+2025-06-04 17:15:33 error: 401 - Invalid token. Please log in again - /api/market - GET - ::1 
+2025-06-04 17:15:33 error: Error: Invalid token. Please log in again
+    at protect (file:///C:/solana-memecoin-exchange/backend/src/middleware/auth.middleware.js:32:19)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:328:13)
+    at C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:328:13) 
+2025-06-04 17:16:46 error: 401 - You are not logged in. Please log in to get access - /api/orders - GET - ::1 
+2025-06-04 17:16:46 error: Error: You are not logged in. Please log in to get access
+    at protect (file:///C:/solana-memecoin-exchange/backend/src/middleware/auth.middleware.js:15:19)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:328:13)
+    at C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:328:13) 
+2025-06-04 17:20:01 error: 403 - You do not have permission to perform this action - /api/users/:userId - GET - ::1 
+2025-06-04 17:20:01 error: Error: You do not have permission to perform this action
+    at file:///C:/solana-memecoin-exchange/backend/src/middleware/auth.middleware.js:44:19
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:284:15
+    at param (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:365:14)
+    at param (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:376:14)
+    at Function.process_params (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:421:3)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:280:10) 
+2025-06-04 17:21:09 error: 401 - You are not logged in. Please log in to get access - /api/users/me - PUT - ::1 
+2025-06-04 17:21:09 error: Error: You are not logged in. Please log in to get access
+    at protect (file:///C:/solana-memecoin-exchange/backend/src/middleware/auth.middleware.js:15:19)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:328:13)
+    at C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:328:13) 
+2025-06-04 17:22:46 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-04 17:22:46 info: Connected to Redis 
+2025-06-04 17:22:49 info: Connected to MongoDB 
+2025-06-04 17:22:49 info: Server running on port 5000 
+2025-06-04 17:22:59 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-04 17:22:59 info: Connected to Redis 
+2025-06-04 17:23:01 info: Connected to MongoDB 
+2025-06-04 17:23:01 info: Server running on port 5000 
+2025-06-04 17:23:56 error: 400 - Validation Error - /api/users/:userId - GET - ::1 
+2025-06-04 17:23:56 error: Error: Validation Error
+    at validate (file:///C:/solana-memecoin-exchange/backend/src/middleware/validate.middleware.js:12:17)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\route.js:149:13)
+    at middleware (C:\solana-memecoin-exchange\backend\node_modules\express-validator\src\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) 
+2025-06-04 17:26:27 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-04 17:26:27 info: Connected to Redis 
+2025-06-04 17:26:29 info: Connected to MongoDB 
+2025-06-04 17:26:29 info: Server running on port 5000 
+2025-06-04 17:26:44 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-04 17:26:44 info: Connected to Redis 
+2025-06-04 17:26:46 info: Connected to MongoDB 
+2025-06-04 17:26:46 info: Server running on port 5000 
+2025-06-04 17:26:50 error: 400 - Validation Error - /api/users/:userId - GET - ::1 
+2025-06-04 17:26:50 error: Error: Validation Error
+    at validate (file:///C:/solana-memecoin-exchange/backend/src/middleware/validate.middleware.js:12:17)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\route.js:149:13)
+    at middleware (C:\solana-memecoin-exchange\backend\node_modules\express-validator\src\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) 
+2025-06-04 17:28:42 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-04 17:28:42 info: Connected to Redis 
+2025-06-04 17:28:45 info: Connected to MongoDB 
+2025-06-04 17:28:45 info: Server running on port 5000 
+2025-06-04 17:28:49 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-04 17:28:50 info: Connected to Redis 
+2025-06-04 17:28:52 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-04 17:28:52 info: Connected to Redis 
+2025-06-04 17:28:54 info: Connected to MongoDB 
+2025-06-04 17:28:54 info: Server running on port 5000 
+2025-06-04 17:29:13 error: 400 - Validation Error - /api/users/:userId - GET - ::1 
+2025-06-04 17:29:13 error: Error: Validation Error
+    at validate (file:///C:/solana-memecoin-exchange/backend/src/middleware/validate.middleware.js:12:17)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\route.js:149:13)
+    at middleware (C:\solana-memecoin-exchange\backend\node_modules\express-validator\src\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) 
+2025-06-04 17:29:47 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-04 17:29:47 info: Connected to Redis 
+2025-06-04 17:29:49 info: Connected to MongoDB 
+2025-06-04 17:29:49 info: Server running on port 5000 
+2025-06-04 17:29:57 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-04 17:29:57 info: Connected to Redis 
+2025-06-04 17:29:59 info: Connected to MongoDB 
+2025-06-04 17:29:59 info: Server running on port 5000 
+2025-06-04 17:30:03 error: 403 - You do not have permission to perform this action - /api/users/:userId - GET - ::1 
+2025-06-04 17:30:03 error: Error: You do not have permission to perform this action
+    at file:///C:/solana-memecoin-exchange/backend/src/middleware/auth.middleware.js:44:19
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:284:15
+    at param (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:365:14)
+    at param (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:376:14)
+    at Function.process_params (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:421:3)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:280:10) 
+2025-06-04 17:31:02 warn: Email not sent (missing config): Verify Your Email - Solana Memecoin Exchange to admin@admin.com 
+2025-06-04 17:34:49 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-04 17:34:49 info: Connected to Redis 
+2025-06-04 17:34:51 info: Connected to MongoDB 
+2025-06-04 17:34:51 info: Server running on port 5000 
+2025-06-04 17:35:00 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-04 17:35:00 info: Connected to Redis 
+2025-06-04 17:35:02 info: Connected to MongoDB 
+2025-06-04 17:35:02 info: Server running on port 5000 
+2025-06-04 17:35:10 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-04 17:35:11 info: Connected to Redis 
+2025-06-04 17:35:12 info: Connected to MongoDB 
+2025-06-04 17:35:12 info: Server running on port 5000 
+2025-06-04 17:35:18 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-04 17:35:18 info: Connected to Redis 
+2025-06-04 17:35:20 info: Connected to MongoDB 
+2025-06-04 17:35:20 info: Server running on port 5000 
+2025-06-04 17:35:30 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-04 17:35:30 info: Connected to Redis 
+2025-06-04 17:35:32 info: Connected to MongoDB 
+2025-06-04 17:35:32 info: Server running on port 5000 
+2025-06-04 17:35:48 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-04 17:35:49 info: Connected to Redis 
+2025-06-04 17:35:50 info: Connected to MongoDB 
+2025-06-04 17:35:50 info: Server running on port 5000 
+2025-06-04 17:35:55 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-04 17:35:55 info: Connected to Redis 
+2025-06-04 17:35:57 info: Connected to MongoDB 
+2025-06-04 17:35:57 info: Server running on port 5000 
+2025-06-04 17:36:02 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-04 17:36:02 info: Connected to Redis 
+2025-06-04 17:36:04 info: Connected to MongoDB 
+2025-06-04 17:36:04 info: Server running on port 5000 
+2025-06-04 17:36:10 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-04 17:36:10 info: Connected to Redis 
+2025-06-04 17:36:14 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-04 17:36:15 info: Connected to Redis 
+2025-06-04 17:36:16 info: Connected to MongoDB 
+2025-06-04 17:36:16 info: Server running on port 5000 
+2025-06-04 17:36:23 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-04 17:36:23 info: Connected to Redis 
+2025-06-04 17:36:47 error: MongoDB connection error: querySrv ETIMEOUT _mongodb._tcp.cluster0.vklwu.mongodb.net {"code":"ETIMEOUT","syscall":"querySrv","hostname":"_mongodb._tcp.cluster0.vklwu.mongodb.net","stack":"Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.vklwu.mongodb.net\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:294:17)"}
+2025-06-04 18:17:06 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-04 18:17:06 info: Connected to Redis 
+2025-06-04 18:17:09 info: Connected to MongoDB 
+2025-06-04 18:17:09 info: Server running on port 5000 
+2025-06-04 18:19:49 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-04 18:19:49 info: Connected to Redis 
+2025-06-04 18:19:51 info: Connected to MongoDB 
+2025-06-04 18:19:51 info: Server running on port 5000 
+2025-06-04 18:19:57 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-04 18:19:58 info: Connected to Redis 
+2025-06-04 18:19:59 info: Connected to MongoDB 
+2025-06-04 18:19:59 info: Server running on port 5000 
+2025-06-04 18:20:02 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-04 18:20:03 info: Connected to Redis 
+2025-06-04 18:20:07 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-04 18:20:07 info: Connected to Redis 
+2025-06-04 18:20:09 info: Connected to MongoDB 
+2025-06-04 18:20:09 info: Server running on port 5000 
+2025-06-04 18:20:43 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-04 18:20:44 info: Connected to Redis 
+2025-06-04 18:20:46 info: Connected to MongoDB 
+2025-06-04 18:20:46 info: Server running on port 5000 
+2025-06-04 18:38:20 error: 400 - Validation Error - /api/auth/register - POST - ::1 
+2025-06-04 18:38:20 error: Error: Validation Error
+    at validate (file:///C:/solana-memecoin-exchange/backend/src/middleware/validate.middleware.js:12:17)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\route.js:149:13)
+    at middleware (C:\solana-memecoin-exchange\backend\node_modules\express-validator\src\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) 
+2025-06-04 18:38:42 error: 400 - Validation Error - /api/auth/register - POST - ::1 
+2025-06-04 18:38:42 error: Error: Validation Error
+    at validate (file:///C:/solana-memecoin-exchange/backend/src/middleware/validate.middleware.js:12:17)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\route.js:149:13)
+    at middleware (C:\solana-memecoin-exchange\backend\node_modules\express-validator\src\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) 
+2025-06-04 18:38:56 error: 400 - Validation Error - /api/auth/register - POST - ::1 
+2025-06-04 18:38:56 error: Error: Validation Error
+    at validate (file:///C:/solana-memecoin-exchange/backend/src/middleware/validate.middleware.js:12:17)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\route.js:149:13)
+    at middleware (C:\solana-memecoin-exchange\backend\node_modules\express-validator\src\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) 
+2025-06-04 18:44:12 error: 400 - Validation Error - /api/auth/register - POST - ::1 
+2025-06-04 18:44:12 error: Error: Validation Error
+    at validate (file:///C:/solana-memecoin-exchange/backend/src/middleware/validate.middleware.js:12:17)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\route.js:149:13)
+    at middleware (C:\solana-memecoin-exchange\backend\node_modules\express-validator\src\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) 
+2025-06-04 18:49:11 error: 400 - Validation Error - /api/auth/register - POST - ::1 
+2025-06-04 18:49:11 error: Error: Validation Error
+    at validate (file:///C:/solana-memecoin-exchange/backend/src/middleware/validate.middleware.js:12:17)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\route.js:149:13)
+    at middleware (C:\solana-memecoin-exchange\backend\node_modules\express-validator\src\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) 
+2025-06-04 18:55:21 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-04 18:55:21 info: Connected to Redis 
+2025-06-04 18:55:23 info: Connected to MongoDB 
+2025-06-04 18:55:23 info: Server running on port 5000 
+2025-06-04 18:55:57 error: 400 - Validation Error - /api/auth/register - POST - ::1 
+2025-06-04 18:55:57 error: Error: Validation Error
+    at validate (file:///C:/solana-memecoin-exchange/backend/src/middleware/validate.middleware.js:12:17)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\route.js:149:13)
+    at middleware (C:\solana-memecoin-exchange\backend\node_modules\express-validator\src\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) 
+2025-06-04 18:56:25 warn: Email not sent (missing config): Verify Your Email - Solana Memecoin Exchange to sallu@gmail.com 
+2025-06-04 19:00:15 error: 401 - You are not logged in. Please log in to get access - /api/market/:walletId - GET - ::1 
+2025-06-04 19:00:15 error: Error: You are not logged in. Please log in to get access
+    at protect (file:///C:/solana-memecoin-exchange/backend/src/middleware/auth.middleware.js:15:19)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:328:13)
+    at C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:328:13) 
+2025-06-04 19:00:41 error: 400 - Validation Error - /api/market/:walletId - GET - ::1 
+2025-06-04 19:00:41 error: Error: Validation Error
+    at validate (file:///C:/solana-memecoin-exchange/backend/src/middleware/validate.middleware.js:12:17)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\route.js:149:13)
+    at middleware (C:\solana-memecoin-exchange\backend\node_modules\express-validator\src\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) 
+2025-06-04 19:02:18 error: 401 - You are not logged in. Please log in to get access - /api/wallets - GET - ::1 
+2025-06-04 19:02:18 error: Error: You are not logged in. Please log in to get access
+    at protect (file:///C:/solana-memecoin-exchange/backend/src/middleware/auth.middleware.js:15:19)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:328:13)
+    at C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:328:13) 
+2025-06-04 19:04:38 error: 400 - Validation Error - /api/orders/:orderId - GET - ::1 
+2025-06-04 19:04:38 error: Error: Validation Error
+    at validate (file:///C:/solana-memecoin-exchange/backend/src/middleware/validate.middleware.js:12:17)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\route.js:149:13)
+    at middleware (C:\solana-memecoin-exchange\backend\node_modules\express-validator\src\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) 
+2025-06-04 19:04:59 error: 400 - Validation Error - /api/orders/321 - GET - ::1 
+2025-06-04 19:04:59 error: Error: Validation Error
+    at validate (file:///C:/solana-memecoin-exchange/backend/src/middleware/validate.middleware.js:12:17)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\route.js:149:13)
+    at middleware (C:\solana-memecoin-exchange\backend\node_modules\express-validator\src\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) 
+2025-06-04 19:05:18 error: 400 - Validation Error - /api/orders/:orderId - GET - ::1 
+2025-06-04 19:05:18 error: Error: Validation Error
+    at validate (file:///C:/solana-memecoin-exchange/backend/src/middleware/validate.middleware.js:12:17)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\route.js:149:13)
+    at middleware (C:\solana-memecoin-exchange\backend\node_modules\express-validator\src\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) 
+2025-06-04 19:12:10 error: 401 - You are not logged in. Please log in to get access - /api/orders/ - POST - ::1 
+2025-06-04 19:12:10 error: Error: You are not logged in. Please log in to get access
+    at protect (file:///C:/solana-memecoin-exchange/backend/src/middleware/auth.middleware.js:15:19)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:328:13)
+    at C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:328:13) 
+2025-06-04 19:12:45 error: 400 - Validation Error - /api/orders/ - POST - ::1 
+2025-06-04 19:12:45 error: Error: Validation Error
+    at validate (file:///C:/solana-memecoin-exchange/backend/src/middleware/validate.middleware.js:12:17)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\route.js:149:13)
+    at middleware (C:\solana-memecoin-exchange\backend\node_modules\express-validator\src\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) 
+2025-06-04 19:13:25 error: 400 - Validation Error - /api/orders/ - POST - ::1 
+2025-06-04 19:13:25 error: Error: Validation Error
+    at validate (file:///C:/solana-memecoin-exchange/backend/src/middleware/validate.middleware.js:12:17)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\route.js:149:13)
+    at middleware (C:\solana-memecoin-exchange\backend\node_modules\express-validator\src\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) 
+2025-06-04 19:13:34 error: 500 - Cast to ObjectId failed for value "orc/sol" (type string) at path "_id" for model "TradingPair" - /api/orders/ - POST - ::1 
+2025-06-04 19:13:34 error: CastError: Cast to ObjectId failed for value "orc/sol" (type string) at path "_id" for model "TradingPair"
+    at model.Query.exec (C:\solana-memecoin-exchange\backend\node_modules\mongoose\lib\query.js:4921:21)
+    at Query.then (C:\solana-memecoin-exchange\backend\node_modules\mongoose\lib\query.js:5020:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) 
+2025-06-04 19:14:21 error: 500 - Cast to ObjectId failed for value "ORC/SOL" (type string) at path "_id" for model "TradingPair" - /api/orders/ - POST - ::1 
+2025-06-04 19:14:21 error: CastError: Cast to ObjectId failed for value "ORC/SOL" (type string) at path "_id" for model "TradingPair"
+    at model.Query.exec (C:\solana-memecoin-exchange\backend\node_modules\mongoose\lib\query.js:4921:21)
+    at Query.then (C:\solana-memecoin-exchange\backend\node_modules\mongoose\lib\query.js:5020:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) 

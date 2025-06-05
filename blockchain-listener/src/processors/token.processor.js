@@ -2,7 +2,7 @@ import { Connection, PublicKey } from '@solana/web3.js';
 import { Token } from '@solana/spl-token';
 import axios from 'axios';
 import mongoose from 'mongoose';
-import config from '../config.js';
+import config from '../config/index.js';
 import logger from '../utils/logger.js';
 
 // Initialize Solana connection
@@ -101,13 +101,19 @@ const TokenSchema = new mongoose.Schema({
   timestamps: true
 });
 
-const Token = mongoose.model('Token', TokenSchema);
+const TokenModel = mongoose.model('Token', TokenSchema);
 
 class TokenProcessor {
+  constructor(redisClient) {
+    this.redisClient = redisClient;
+    this._lastProcessedSignature = null;
+    this._processingTokens = new Set();
+  }
+
   // Check if token exists in database
   async checkTokenExists(address) {
-    const token = await Token.findOne({ address });
-    return !!token;
+    const savedToken = await TokenModel.findOne({ address });
+    return !!savedToken;
   }
 
   // Get token information from Solana
@@ -165,7 +171,7 @@ class TokenProcessor {
       }
       
       // Create token in database
-      const token = new Token({
+      const newToken = new Token({
         address: tokenInfo.address,
         name: tokenInfo.name,
         symbol: tokenInfo.symbol,
@@ -179,7 +185,7 @@ class TokenProcessor {
         launchDate: new Date()
       });
       
-      await token.save();
+      await newToken.save();
       
       logger.info(`Saved new memecoin: ${tokenInfo.symbol} (${address})`);
       
@@ -223,8 +229,8 @@ class TokenProcessor {
   // Enrich token with additional information
   async enrichTokenInfo(address) {
     try {
-      const token = await Token.findOne({ address });
-      if (!token) {
+      const savedToken = await TokenModel.findOne({ address });
+      if (!savedToken) {
         return;
       }
       
@@ -245,6 +251,118 @@ class TokenProcessor {
       logger.error(`Error enriching token info for ${address}:`, error);
     }
   }
+
+  // Extract token addresses from a liquidity pool (stub for Raydium/Orca/Serum, etc.)
+  async extractTokensFromLiquidityPool(platform, poolAddress, accountData) {
+    // This is a stub. In a real implementation, you would decode the accountData
+    // according to the platform's pool layout to extract the token mint addresses.
+    // For now, return an empty array or mock addresses for testing.
+    // Example: return [tokenMintA, tokenMintB];
+    return [];
+  }
+
+  // Parse token metadata from account data (stub for Metaplex, etc.)
+  async parseMetadata(address, accountData) {
+    // This is a stub. In a real implementation, you would decode the accountData
+    // according to the Metaplex metadata layout to extract metadata fields.
+    // For now, return a mock result for testing.
+    return {
+      tokenAddress: address,
+      metadata: {
+        name: 'Mock Token',
+        symbol: 'MOCK',
+        uri: '',
+        description: 'Mock metadata for testing.'
+      }
+    };
+  }
+
+  // Update token metadata (stub for metadata.listener)
+  async updateTokenMetadata(address, metadata) {
+    // This is a stub. In a real implementation, update the token in the DB with new metadata.
+    logger.info(`Stub: updateTokenMetadata called for ${address} with metadata:`, metadata);
+    return true;
+  }
+
+  // --- Signature/Slot Tracking Methods for TokenListener ---
+  // These use Redis if available, otherwise fallback to in-memory
+
+  _getRedisClient() {
+    return this.redisClient || null;
+  }
+
+  // Get the last processed signature/slot (returns string or null)
+  async getLastProcessedSignature() {
+    const redis = this._getRedisClient();
+    if (redis) {
+      try {
+        const value = await redis.get('lastProcessedSignature');
+        return value || null;
+      } catch (err) {
+        logger.error('Error getting lastProcessedSignature from Redis:', err);
+        return null;
+      }
+    }
+    return this._lastProcessedSignature || null;
+  }
+
+  // Set the last processed signature/slot
+  async setLastProcessedSignature(signature) {
+    const redis = this._getRedisClient();
+    if (redis) {
+      try {
+        await redis.set('lastProcessedSignature', signature);
+      } catch (err) {
+        logger.error('Error setting lastProcessedSignature in Redis:', err);
+      }
+    } else {
+      this._lastProcessedSignature = signature;
+    }
+  }
+
+  // Mark a token as being processed (address: string)
+  async markTokenProcessing(address) {
+    const redis = this._getRedisClient();
+    if (redis) {
+      try {
+        await redis.sAdd('processingTokens', address);
+      } catch (err) {
+        logger.error('Error marking token as processing in Redis:', err);
+      }
+    } else {
+      this._processingTokens.add(address);
+    }
+  }
+
+  // Unmark a token as being processed (address: string)
+  async unmarkTokenProcessing(address) {
+    const redis = this._getRedisClient();
+    if (redis) {
+      try {
+        await redis.sRem('processingTokens', address);
+      } catch (err) {
+        logger.error('Error unmarking token as processing in Redis:', err);
+      }
+    } else {
+      this._processingTokens.delete(address);
+    }
+  }
+
+  // Check if a token is being processed (address: string)
+  async isTokenBeingProcessed(address) {
+    const redis = this._getRedisClient();
+    if (redis) {
+      try {
+        return await redis.sIsMember('processingTokens', address);
+      } catch (err) {
+        logger.error('Error checking if token is being processed in Redis:', err);
+        return false;
+      }
+    } else {
+      return this._processingTokens.has(address);
+    }
+  }
+  // --- END Signature/Slot Tracking Methods ---
 }
 
 export default TokenProcessor;

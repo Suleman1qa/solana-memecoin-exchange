@@ -2,6 +2,9 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+// Add debug log to confirm index.js execution
+console.log('Executing config/index.js');
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -21,7 +24,7 @@ const config = {
     : ['http://localhost:3000', 'http://localhost:8081'],
   
   mongodb: {
-    uri: process.env.MONGODB_URI || 'mongodb+srv://sulemanshujah:1qam416V1q@cluster0.bz8kevx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
+    uri: process.env.MONGODB_URI || 'mongodb+srv://kingsuleman772:1qam416V1qa@cluster0.vklwu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
     options: {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -29,7 +32,7 @@ const config = {
   },
   
   jwt: {
-    secret: process.env.JWT_SECRET || 'your-secret-key',
+    secret: process.env.JWT_SECRET || '5801b54c3a62a2ba58c2ba5fc095b11d6c4374d9f46245429ecb50941fccf66d',
     expiresIn: process.env.JWT_EXPIRES_IN || '7d',
     refreshExpiresIn: process.env.JWT_REFRESH_EXPIRES_IN || '30d'
   },

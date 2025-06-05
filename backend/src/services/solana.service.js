@@ -1,24 +1,25 @@
 import { Connection, Keypair, PublicKey, Transaction, SystemProgram } from '@solana/web3.js';
 import { Token, TOKEN_PROGRAM_ID, ASSOCIATED_TOKEN_PROGRAM_ID } from '@solana/spl-token';
-import { decode, encode } from 'bs58';
+import bs58 from 'bs58';
+const { decode, encode } = bs58;
 import { scryptSync, randomBytes, createCipheriv, createDecipheriv } from 'crypto';
-import { solana, jwt } from '../config';
-import AppError from '../utils/appError';
-import { warn, error as _error } from '../utils/logger';
+import config from '../config/index.js';
+import AppError from '../utils/appError.js';
+import logger from '../utils/logger.js';
 
 // Initialize Solana connection
 const connection = new Connection(
-  solana.clusterEndpoint,
-  solana.commitment
+  config.solana.clusterEndpoint,
+  config.solana.commitment
 );
 
 // Initialize fee payer
 let feePayer;
-if (solana.feePayer) {
-  const secretKey = decode(solana.feePayer);
+if (config.solana.feePayer) {
+  const secretKey = decode(config.solana.feePayer);
   feePayer = Keypair.fromSecretKey(secretKey);
 } else {
-  warn('Solana fee payer not configured. Some operations will fail.');
+  logger.warn('Solana fee payer not configured. Some operations will fail.');
 }
 
 // Generate a new Solana keypair
@@ -27,7 +28,7 @@ export async function generateKeypair() {
   const keypair = Keypair.generate();
   
   // Encrypt private key with server-side encryption key
-  const encryptionKey = scryptSync(jwt.secret, 'salt', 32);
+  const encryptionKey = scryptSync(config.jwt.secret, 'salt', 32);
   const iv = randomBytes(16);
   
   const cipher = createCipheriv('aes-256-cbc', encryptionKey, iv);
@@ -50,7 +51,7 @@ export async function generateKeypair() {
 const decryptPrivateKey = (encryptedPrivateKey) => {
   const [ivHex, encryptedHex] = encryptedPrivateKey.split(':');
   
-  const encryptionKey = scryptSync(jwt.secret, 'salt', 32);
+  const encryptionKey = scryptSync(config.jwt.secret, 'salt', 32);
   const iv = Buffer.from(ivHex, 'hex');
   
   const decipher = createDecipheriv('aes-256-cbc', encryptionKey, iv);
@@ -175,7 +176,7 @@ export async function sendTokens(wallet, tokenAddress, destinationAddress, amoun
     
     return signature;
   } catch (error) {
-    _error('Error sending tokens:', error);
+    logger.error('Error sending tokens:', error);
     throw new AppError(`Failed to send tokens: ${error.message}`, 500);
   }
 }
