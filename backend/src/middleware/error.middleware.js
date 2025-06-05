@@ -1,4 +1,4 @@
-import { logger } from '../utils/logger.js';
+import logger from '../utils/logger.js';
 
 const errorMiddleware = (err, req, res, next) => {
   const statusCode = err.statusCode || 500;
@@ -11,12 +11,13 @@ const errorMiddleware = (err, req, res, next) => {
   }
   
   res.status(statusCode).json({
-    success: false,
-    error: {
-      message,
-      ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
-    }
-  });
+  success: false,
+  error: {
+    message,
+    ...(err.errors && { details: err.errors }), // ✅ Add this line
+    ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
+  }
+});
 };
 
-export { errorMiddleware };
+export default errorMiddleware;

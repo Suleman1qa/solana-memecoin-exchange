@@ -1,6 +1,6 @@
 import redis from 'redis';
 import { promisify } from 'util';
-import config from '../config.js';
+import config from '../config/index.js';
 import logger from '../utils/logger.js';
 
 // Create Redis client

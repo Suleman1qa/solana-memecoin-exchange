@@ -1,6 +1,5 @@
 import { PublicKey } from '@solana/web3.js';
 import logger from '../utils/logger.js';
-import config from '../config.js';
 import { 
   RAYDIUM_LIQUIDITY_PROGRAM_ID,
   ORCA_SWAP_PROGRAM_ID

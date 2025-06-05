@@ -1,6 +1,6 @@
 import axios from 'axios';
 import crypto from 'crypto';
-import config from '../config.js';
+import config from '../config/index.js';
 import Token from '../models/token.model.js';
 import PriceHistory from '../models/priceHistory.model.js';
 import logger from '../utils/logger.js';

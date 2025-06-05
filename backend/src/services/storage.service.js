@@ -4,7 +4,11 @@ import crypto from 'crypto';
 import { promisify } from 'util';
 import cloudinary from 'cloudinary';
 import AppError from '../utils/appError.js';
-import config from '../config.js';
+import config from '../config/index.js';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const cloudinaryV2 = cloudinary.v2;
 

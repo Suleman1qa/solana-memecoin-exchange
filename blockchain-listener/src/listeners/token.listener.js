@@ -1,8 +1,8 @@
 import { TOKEN_PROGRAM_ID, ASSOCIATED_TOKEN_PROGRAM_ID } from '@solana/spl-token';
 import { PublicKey } from '@solana/web3.js';
 import logger from '../utils/logger.js';
-import config from '../config.js';
-import TokenModel from '../models/token.model.js';
+import config from '../config/index.js';
+import TokenModel from '../../../backend/src/models/token.model.js';
 
 class TokenListener {
   constructor(connection, tokenProcessor) {

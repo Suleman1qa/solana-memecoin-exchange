@@ -1,4 +1,4 @@
-
+import LoginScreen from '../screens/auth/LoginScreen.js';
 import RegisterScreen from '../screens/auth/RegisterScreen';
 import ForgotPasswordScreen from '../screens/auth/ForgotPasswordScreen';
 import ResetPasswordScreen from '../screens/auth/ResetPasswordScreen';

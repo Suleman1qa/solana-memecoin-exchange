@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import config from '../config.js';
+import config from '../config/index.js';
 import User from '../models/user.model.js';
 import AppError from '../utils/appError.js';
 

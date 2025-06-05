@@ -12,7 +12,7 @@ export const getCurrentUser = catchAsync(async (req, res, next) => {
 });
 
 export const updateCurrentUser = catchAsync(async (req, res, next) => {
-  const { username, fullName, email } = req.body;
+  const { username, fullName, email, role } = req.body;
 
   // Check if username is already taken by another user
   if (username) {
@@ -44,7 +44,8 @@ export const updateCurrentUser = catchAsync(async (req, res, next) => {
     { 
       username: username || req.user.username,
       fullName: fullName || req.user.fullName,
-      email: email || req.user.email
+      email: email || req.user.email,
+      role: role || req.user.role
     },
     { 
       new: true, 
