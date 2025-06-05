@@ -58,6 +58,13 @@ const config = {
     intervalMs: parseInt(process.env.HEALTH_CHECK_INTERVAL_MS || '60000', 10) // 1 minute
   },
   
+   healthMonitor: {
+    checkInterval: parseInt(process.env.HEALTH_CHECK_INTERVAL, 10) || 30000,
+    maxMemoryUsage: parseInt(process.env.MAX_MEMORY_USAGE, 10) || 500 * 1024 * 1024,
+    maxResponseTime: parseInt(process.env.MAX_RESPONSE_TIME, 10) || 5000,
+    maxErrorRate: parseFloat(process.env.MAX_ERROR_RATE) || 0.1
+  },
+  
   metrics: {
     enabled: process.env.ENABLE_METRICS === 'true',
     port: parseInt(process.env.METRICS_PORT || '9464', 10)
