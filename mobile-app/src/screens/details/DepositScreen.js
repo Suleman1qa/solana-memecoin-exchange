@@ -3,8 +3,8 @@ import { StyleSheet, View, ScrollView, TouchableOpacity, Clipboard, Linking, Ima
 import { Text, Card, Title, Button, Divider, Snackbar, ActivityIndicator, Menu } from 'react-native-paper';
 import QRCode from 'react-native-qrcode-svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchWalletDetails } from '../../store/slices/walletSlice';
-import { theme } from '../../theme';
+import { fetchWalletDetails } from '../../store/slices/walletSlice.js';
+import { theme } from '../../theme.js';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const DepositScreen = ({ route, navigation }) => {

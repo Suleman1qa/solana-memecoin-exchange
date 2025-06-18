@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
 import { WEBSOCKET_URL } from '@env';
-import { store } from '../store';
+import { store } from '../store/index.js';
 import { updateOrderBook, updateRecentTrades } from '../store/slices/marketSlice';
 import { fetchWalletDetails } from '../store/slices/walletSlice';
 

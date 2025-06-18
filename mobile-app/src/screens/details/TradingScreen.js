@@ -3,10 +3,10 @@ import { StyleSheet, View, ScrollView, TouchableOpacity, Dimensions, KeyboardAvo
 import { Text, Card, Title, TextInput, Button, Divider, ActivityIndicator, Snackbar, IconButton, Menu } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { LineChart } from 'react-native-chart-kit';
-import { fetchTokenDetails, fetchTokenPriceHistory } from '../../store/slices/tokenSlice';
-import { fetchWallets } from '../../store/slices/walletSlice';
-import { fetchOrderBook, fetchRecentTrades, placeOrder, resetOrderPlaced, fetchUserOrders } from '../../store/slices/marketSlice';
-import { theme } from '../../theme';
+import { fetchTokenDetails, fetchTokenPriceHistory } from '../../store/slices/tokenSlice.js';
+import { fetchWallets } from '../../store/slices/walletSlice.js';
+import { fetchOrderBook, fetchRecentTrades, placeOrder, resetOrderPlaced, fetchUserOrders } from '../../store/slices/marketSlice.js';
+import { theme } from '../../theme.js';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const screenWidth = Dimensions.get('window').width;
@@ -120,6 +120,7 @@ const TradingScreen = ({ route, navigation }) => {
   };
   
   const handlePlaceOrder = () => {
+    console.log('Order side:', side); // Debug: log the side
     if (!pairId || !amount) {
       setSnackbarMessage('Please enter an amount');
       setSnackbarVisible(true);
@@ -534,6 +535,7 @@ const TradingScreen = ({ route, navigation }) => {
             </View>
             
             <View style={styles.orderSideRow}>
+              {/* --- BUY BUTTON START --- */}
               <TouchableOpacity
                 style={[
                   styles.sideButton,
@@ -545,10 +547,13 @@ const TradingScreen = ({ route, navigation }) => {
                 <Text style={[
                   styles.sideButtonText,
                   side === 'BUY' && styles.activeSideButtonText,
+                  { color: side === 'BUY' ? '#fff' : undefined },
                 ]}>
                   Buy
                 </Text>
               </TouchableOpacity>
+              {/* --- BUY BUTTON END --- */}
+              {/* --- SELL BUTTON START --- */}
               <TouchableOpacity
                 style={[
                   styles.sideButton,
@@ -560,10 +565,12 @@ const TradingScreen = ({ route, navigation }) => {
                 <Text style={[
                   styles.sideButtonText,
                   side === 'SELL' && styles.activeSideButtonText,
+                  { color: side === 'SELL' ? '#fff' : undefined },
                 ]}>
                   Sell
                 </Text>
               </TouchableOpacity>
+              {/* --- SELL BUTTON END --- */}
             </View>
             
             {orderType !== 'MARKET' && (

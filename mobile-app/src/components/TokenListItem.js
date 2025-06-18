@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { Text, Avatar } from 'react-native-paper';
-import { theme } from '../theme';
+import { theme } from '../theme.js';
 
 const TokenListItem = ({ token, onPress }) => {
   const priceChangeColor = parseFloat(token.priceChange24h) >= 0

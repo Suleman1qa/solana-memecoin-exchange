@@ -22,6 +22,7 @@ import OrderHistoryScreen from '../screens/details/OrderHistoryScreen';
 import TransactionHistoryScreen from '../screens/details/TransactionHistoryScreen';
 import SettingsScreen from '../screens/details/SettingsScreen';
 import HelpScreen from '../screens/details/HelpScreen';
+import { theme } from '../theme.js';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();

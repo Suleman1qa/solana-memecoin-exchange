@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, ScrollView, TouchableOpacity, Keyboard, KeyboardAvoidingView, Platform } from 'react-native';
 import { Text, Card, Title, TextInput, Button, Divider, ActivityIndicator, Snackbar, Menu } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchWalletDetails, withdrawFunds, clearError, clearSuccess } from '../../store/slices/walletSlice';
-import { theme } from '../../theme';
+import { fetchWalletDetails, withdrawFunds, clearError, clearSuccess } from '../../store/slices/walletSlice.js';
+import { theme } from '../../theme.js';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const WithdrawScreen = ({ route, navigation }) => {

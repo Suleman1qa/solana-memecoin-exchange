@@ -1,4 +1,4 @@
-import apiClient from './apiClient';
+import apiClient from './apiClient.js';
 
 const authService = {
   login: async (email, password) => {
@@ -24,13 +24,6 @@ const authService = {
     return response.data;
   },
   
-  refreshToken: async (refreshToken) => {
-    const response = await apiClient.post('/auth/refresh-token', {
-      refreshToken,
-    });
-    return response.data.data;
-  },
-  
   forgotPassword: async (email) => {
     const response = await apiClient.post('/auth/forgot-password', {
       email,
@@ -52,13 +45,12 @@ const authService = {
     });
     return response.data;
   },
-  
-  changePassword: async (currentPassword, newPassword) => {
-    const response = await apiClient.post('/auth/change-password', {
-      currentPassword,
-      newPassword,
+
+  resendVerificationEmail: async (email) => {
+    const response = await apiClient.post('/auth/resend-verification-email', {
+      email,
     });
-    return response.data.data;
+    return response.data;
   },
 };
 

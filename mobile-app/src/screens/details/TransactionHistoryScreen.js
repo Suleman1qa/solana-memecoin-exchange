@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, FlatList, TouchableOpacity, RefreshControl } from 'react-native';
 import { Text, Card, Title, Chip, ActivityIndicator, Divider, Menu, IconButton } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchTransactionHistory } from '../../store/slices/walletSlice';
-import { theme } from '../../theme';
+import { fetchTransactionHistory } from '../../store/slices/walletSlice.js';
+import { theme } from '../../theme.js';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { format } from 'date-fns';
 
