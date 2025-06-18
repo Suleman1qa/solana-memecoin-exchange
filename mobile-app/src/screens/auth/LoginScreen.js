@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, TouchableOpacity, Image, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { Text, TextInput, Button, ActivityIndicator, Snackbar } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
-import { login, clearError } from '../../store/slices/authSlice';
-import { theme } from '../../theme';
+import { login, clearError } from '../../store/slices/authSlice.js';
+import { theme } from '../../theme.js';
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');

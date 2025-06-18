@@ -4,8 +4,8 @@ import { Text, Card, Title, Button, Chip, ActivityIndicator, IconButton, Divider
 import { useDispatch, useSelector } from 'react-redux';
 import { LineChart } from 'react-native-chart-kit';
 import { Dimensions } from 'react-native';
-import { fetchTokenDetails, fetchTokenPriceHistory } from '../../store/slices/tokenSlice';
-import { theme } from '../../theme';
+import { fetchTokenDetails, fetchTokenPriceHistory } from '../../store/slices/tokenSlice.js';
+import { theme } from '../../theme.js';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const screenWidth = Dimensions.get('window').width;

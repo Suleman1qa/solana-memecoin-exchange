@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, ScrollView, RefreshControl, TouchableOpacity, FlatList } from 'react-native';
-import { Text, Card, Title, Paragraph, Chip, Avatar, Divider, ActivityIndicator } from 'react-native-paper';
+import { Text, Card, Chip, Avatar, Divider, ActivityIndicator } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchTrendingTokens, fetchNewListings, fetchGraduatingTokens, fetchGraduatedTokens } from '../../store/slices/tokenSlice';
-import { theme } from '../../theme';
-import TokenCard from '../../components/TokenCard';
-import SectionHeader from '../../components/SectionHeader';
+import { fetchTrendingTokens, fetchNewListings, fetchGraduatingTokens, fetchGraduatedTokens } from '../../store/slices/tokenSlice.js';
+import { theme } from '../../theme.js';
+import TokenCard from '../../components/TokenCard.js';
+import SectionHeader from '../../components/SectionHeader.js';
+
+const Title = (props) => <Text variant="titleLarge" {...props} />;
+const Paragraph = (props) => <Text variant="bodyMedium" {...props} />;
 
 const HomeScreen = ({ navigation }) => {
   const [refreshing, setRefreshing] = useState(false);

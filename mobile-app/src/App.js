@@ -8,7 +8,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { StatusBar } from 'react-native';
 import { store, persistor } from './store';
 import AppNavigator from './navigation/AppNavigator';
-import { theme } from './theme';
+import { theme } from './theme.js';
 import socketService from './services/socketService';
 
 // Socket connection component

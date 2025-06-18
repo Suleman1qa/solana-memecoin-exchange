@@ -2,8 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { StyleSheet, View, FlatList, RefreshControl, TouchableOpacity } from 'react-native';
 import { Text, Card, Title, Button, FAB, ActivityIndicator, Divider, IconButton, Menu, Portal, Dialog, TextInput } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchWallets, fetchWalletDetails, createWallet, setCurrentWallet, clearError } from '../../store/slices/walletSlice';
-import { theme } from '../../theme';
+import { fetchWallets, fetchWalletDetails, createWallet, setCurrentWallet, clearError } from '../../store/slices/walletSlice.js';
+import { theme } from '../../theme.js';
 import { useFocusEffect } from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 

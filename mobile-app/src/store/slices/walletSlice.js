@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import walletService from '../../services/walletService';
+import walletService from '../../services/walletService.js';
 
 // Async thunks
 export const fetchWallets = createAsyncThunk(
@@ -101,10 +101,10 @@ export const swapTokens = createAsyncThunk(
   }
 );
 
-// Update initial state to include transactions
+// Update initial state to include blockchain field for multi-chain support
 const initialState = {
-  wallets: [],
-  currentWallet: null,
+  wallets: [], // Each wallet: { _id, address, label, blockchain, ... }
+  currentWallet: null, // { ...wallet, blockchain }
   transactions: [],
   transactionsPagination: {
     total: 0,
@@ -115,6 +115,11 @@ const initialState = {
   isLoading: false,
   error: null,
   operationSuccess: false,
+  // Only Solana is supported for now, but can support USDT (as a token on Solana) and Solana memecoins
+  supportedBlockchains: [
+    { key: 'solana', label: 'Solana', icon: 'currency-solana' }
+  ],
+  selectedBlockchain: 'solana',
 };
 
 const walletSlice = createSlice({
@@ -129,6 +134,9 @@ const walletSlice = createSlice({
     },
     setCurrentWallet: (state, action) => {
       state.currentWallet = action.payload;
+    },
+    setSelectedBlockchain: (state, action) => {
+      state.selectedBlockchain = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -265,5 +273,5 @@ const walletSlice = createSlice({
   },
 });
 
-export const { clearError, clearSuccess, setCurrentWallet } = walletSlice.actions;
+export const { clearError, clearSuccess, setCurrentWallet, setSelectedBlockchain } = walletSlice.actions;
 export default walletSlice.reducer;

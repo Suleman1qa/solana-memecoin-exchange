@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, FlatList, TouchableOpacity, RefreshControl } from 'react-native';
+import { StyleSheet, View, FlatList, TouchableOpacity, RefreshControl, ScrollView } from 'react-native';
 import { Text, Searchbar, Chip, ActivityIndicator, Divider } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchTokens } from '../../store/slices/tokenSlice';
-import { theme } from '../../theme';
-import TokenListItem from '../../components/TokenListItem';
+import { fetchTokens } from '../../store/slices/tokenSlice.js';
+import { theme } from '../../theme.js';
+import TokenListItem from '../../components/TokenListItem.js';
 
 const categories = [
   { id: 'all', label: 'All' },

@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import marketService from '../../services/marketService';
+import marketService from '../../services/marketService.js';
 
 // Async thunks
 export const fetchTradingPairs = createAsyncThunk(

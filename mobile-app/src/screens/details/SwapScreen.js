@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, TouchableOpacity, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import { Text, TextInput, Button, Card, Title, Divider, IconButton, ActivityIndicator, Snackbar, Menu } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchWalletDetails, swapTokens, clearError, clearSuccess } from '../../store/slices/walletSlice';
-import { fetchTokens } from '../../store/slices/tokenSlice';
-import { theme } from '../../theme';
+import { fetchWalletDetails, swapTokens, clearError, clearSuccess } from '../../store/slices/walletSlice.js';
+import { fetchTokens } from '../../store/slices/tokenSlice.js';
+import { theme } from '../../theme.js';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 

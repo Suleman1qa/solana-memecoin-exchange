@@ -1,4 +1,4 @@
-import apiClient from './apiClient';
+import apiClient from './apiClient.js';
 
 const tokenService = {
   getTokens: async (page = 1, limit = 20, category, status, sort, search) => {

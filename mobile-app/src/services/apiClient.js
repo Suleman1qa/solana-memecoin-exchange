@@ -1,8 +1,8 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { API_BASE_URL } from '@env';
-import { store } from '../store';
-import { refreshToken, logout } from '../store/slices/authSlice';
+import { store } from '../store/index.js';
+import { refreshToken, logout } from '../store/slices/authSlice.js';
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL || 'http://localhost:5000/api',
