@@ -499,3 +499,19 @@
     at model.Query.exec (C:\solana-memecoin-exchange\backend\node_modules\mongoose\lib\query.js:4921:21)
     at Query.then (C:\solana-memecoin-exchange\backend\node_modules\mongoose\lib\query.js:5020:15)
     at process.processTicksAndRejections (node:internal/process/task_queues:105:5) 
+2025-06-17 11:16:35 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-17 11:16:36 info: Connected to Redis 
+2025-06-17 11:16:38 info: Connected to MongoDB 
+2025-06-17 11:16:38 info: Server running on port 5000 
+2025-06-17 11:18:57 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-17 11:18:58 info: Connected to Redis 
+2025-06-17 11:18:59 info: Connected to MongoDB 
+2025-06-17 11:18:59 info: Server running on port 5000 
+2025-06-17 11:20:32 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-17 11:20:33 info: Connected to Redis 
+2025-06-17 11:20:35 info: Connected to MongoDB 
+2025-06-17 11:20:35 info: Server running on port 5000 
+2025-06-17 11:59:55 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-17 11:59:55 info: Connected to Redis 
+2025-06-17 11:59:57 info: Connected to MongoDB 
+2025-06-17 11:59:57 info: Server running on port 5000 
