@@ -1,4 +1,9 @@
 {
-  "name": "mobile-app",
-  "displayName": "Mobile App"
+  "expo": {
+    "name": "SolMemeEx",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    }
+  }
 }
