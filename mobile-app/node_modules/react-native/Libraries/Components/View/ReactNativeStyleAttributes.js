@@ -10,7 +10,11 @@
 
 import type {AnyAttributeType} from '../../Renderer/shims/ReactNativeTypes';
 
+import * as ReactNativeFeatureFlags from '../../../src/private/featureflags/ReactNativeFeatureFlags';
+import NativeReactNativeFeatureFlags from '../../../src/private/featureflags/specs/NativeReactNativeFeatureFlags';
 import processAspectRatio from '../../StyleSheet/processAspectRatio';
+import processBackgroundImage from '../../StyleSheet/processBackgroundImage';
+import processBoxShadow from '../../StyleSheet/processBoxShadow';
 import processColor from '../../StyleSheet/processColor';
 import processFilter from '../../StyleSheet/processFilter';
 import processFontVariant from '../../StyleSheet/processFontVariant';
@@ -34,6 +38,7 @@ const ReactNativeStyleAttributes: {[string]: AnyAttributeType, ...} = {
   borderRightWidth: true,
   borderStartWidth: true,
   borderTopWidth: true,
+  boxSizing: true,
   columnGap: true,
   borderWidth: true,
   bottom: true,
@@ -118,7 +123,39 @@ const ReactNativeStyleAttributes: {[string]: AnyAttributeType, ...} = {
   /**
    * Filter
    */
-  experimental_filter: {process: processFilter},
+  filter:
+    NativeReactNativeFeatureFlags != null &&
+    ReactNativeFeatureFlags.enableNativeCSSParsing()
+      ? true
+      : {
+          process: processFilter,
+        },
+
+  /**
+   * MixBlendMode
+   */
+  mixBlendMode: true,
+
+  /**
+   * Isolation
+   */
+  isolation: true,
+
+  /*
+   * BoxShadow
+   */
+  boxShadow:
+    NativeReactNativeFeatureFlags != null &&
+    ReactNativeFeatureFlags.enableNativeCSSParsing()
+      ? true
+      : {
+          process: processBoxShadow,
+        },
+
+  /**
+   * Linear Gradient
+   */
+  experimental_backgroundImage: {process: processBackgroundImage},
 
   /**
    * View
@@ -152,6 +189,10 @@ const ReactNativeStyleAttributes: {[string]: AnyAttributeType, ...} = {
   borderTopStartRadius: true,
   cursor: true,
   opacity: true,
+  outlineColor: colorAttributes,
+  outlineOffset: true,
+  outlineStyle: true,
+  outlineWidth: true,
   pointerEvents: true,
 
   /**
@@ -188,4 +229,4 @@ const ReactNativeStyleAttributes: {[string]: AnyAttributeType, ...} = {
   objectFit: true,
 };
 
-module.exports = ReactNativeStyleAttributes;
+export default ReactNativeStyleAttributes;

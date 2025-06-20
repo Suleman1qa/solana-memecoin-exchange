@@ -1,20 +1,13 @@
-import { fileURLToPath } from 'url';
-import path from 'path';
-import { createRequire } from 'module';
-import { getDefaultConfig, mergeConfig } from '@react-native/metro-config';
+const path = require('path');
+const { createRequire } = require('module');
+const { getDefaultConfig } = require('@expo/metro-config');
 
-const require = createRequire(import.meta.url);
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const requireFunc = createRequire(__filename);
+const config = getDefaultConfig(__dirname);
 
-const defaultConfig = getDefaultConfig(__dirname);
+// SVG support
+config.transformer.babelTransformerPath = requireFunc.resolve('react-native-svg-transformer');
+config.resolver.assetExts = config.resolver.assetExts.filter((ext) => ext !== 'svg');
+config.resolver.sourceExts.push('svg');
 
-export default mergeConfig(defaultConfig, {
-  transformer: {
-    babelTransformerPath: require.resolve('react-native-svg-transformer'),
-  },
-  resolver: {
-    assetExts: defaultConfig.resolver.assetExts.filter((ext) => ext !== 'svg'),
-    sourceExts: [...defaultConfig.resolver.sourceExts, 'svg'],
-  },
-});
+module.exports = config;

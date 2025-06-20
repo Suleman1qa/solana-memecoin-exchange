@@ -1,5 +1,12 @@
-import { AppRegistry } from 'react-native';
+import { registerRootComponent } from 'expo';
 import App from './src/App.js';
-import { name as appName } from './app.json';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Provider as PaperProvider } from 'react-native-paper';
 
-AppRegistry.registerComponent(appName, () => App);
+registerRootComponent(
+  <SafeAreaProvider>
+    <PaperProvider>
+      <App />
+    </PaperProvider>
+  </SafeAreaProvider>
+);

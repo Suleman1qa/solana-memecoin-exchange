@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, View, ScrollView, TouchableOpacity, Dimensions, KeyboardAvoidingView, Platform } from 'react-native';
 import { Text, Card, Title, TextInput, Button, Divider, ActivityIndicator, Snackbar, IconButton, Menu } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
-import { LineChart } from 'react-native-chart-kit';
+import { LineChart } from 'react-native-gifted-charts';
 import { fetchTokenDetails, fetchTokenPriceHistory } from '../../store/slices/tokenSlice.js';
 import { fetchWallets } from '../../store/slices/walletSlice.js';
 import { fetchOrderBook, fetchRecentTrades, placeOrder, resetOrderPlaced, fetchUserOrders } from '../../store/slices/marketSlice.js';
@@ -378,25 +378,34 @@ const TradingScreen = ({ route, navigation }) => {
       style={styles.container}
     >
       <ScrollView style={styles.scrollContainer}>
+        {/* --- Token Info Header --- */}
+        <View style={styles.tokenHeader}>
+          <View>
+            <Title style={styles.tokenSymbol}>{currentToken?.symbol}</Title>
+            <Text style={styles.price}>
+              ${parseFloat(currentToken?.priceUSD || 0).toFixed(8)}
+              <Text style={[
+                styles.priceChange,
+                parseFloat(currentToken?.priceChange24h) >= 0 ? styles.positiveChange : styles.negativeChange
+              ]}>
+                {parseFloat(currentToken?.priceChange24h) >= 0 ? ' ▲ ' : ' ▼ '}
+                {parseFloat(currentToken?.priceChange24h || 0).toFixed(2)}%
+              </Text>
+            </Text>
+            <Text style={styles.tokenName}>{currentToken?.name}</Text>
+          </View>
+          <View style={styles.tokenPrice}>
+            <Text style={styles.priceLabel}>Market Cap</Text>
+            <Text style={styles.statValue}>${numberWithCommas(parseFloat(currentToken?.marketCapUSD || 0).toFixed(2))}</Text>
+            <Text style={styles.priceLabel}>Volume (24h)</Text>
+            <Text style={styles.statValue}>${numberWithCommas(parseFloat(currentToken?.volume24h || 0).toFixed(2))}</Text>
+          </View>
+        </View>
+        <Divider style={{ marginVertical: 8 }} />
+        {/* --- Chart Section --- */}
         <Card style={styles.card}>
           <Card.Content>
-            <View style={styles.tokenHeader}>
-              <Title style={styles.tokenSymbol}>{currentToken.symbol}/SOL</Title>
-              <View style={styles.tokenPrice}>
-                <Text style={styles.price}>${parseFloat(currentToken.priceUSD).toFixed(8)}</Text>
-                <Text style={[
-                  styles.priceChange,
-                  parseFloat(currentToken.priceChange24h) >= 0 ? 
-                    styles.positiveChange : 
-                    styles.negativeChange
-                ]}>
-                  {parseFloat(currentToken.priceChange24h) >= 0 ? '+' : ''}
-                  {currentToken.priceChange24h}%
-                </Text>
-              </View>
-            </View>
-            
-   <View style={styles.timeframeSelector}>
+            <View style={styles.timeframeSelector}>
               {['1h', '24h', '7d', '30d', 'all'].map((timeframe) => (
                 <TouchableOpacity
                   key={timeframe}
@@ -417,7 +426,6 @@ const TradingScreen = ({ route, navigation }) => {
                 </TouchableOpacity>
               ))}
             </View>
-
             {tokenLoading ? (
               <View style={styles.chartLoadingContainer}>
                 <ActivityIndicator size="small" color={theme.colors.primary} />
@@ -427,34 +435,43 @@ const TradingScreen = ({ route, navigation }) => {
                 data={renderChartData()}
                 width={screenWidth - 32}
                 height={220}
-                chartConfig={{
-                  backgroundColor: theme.colors.surface,
-                  backgroundGradientFrom: theme.colors.surface,
-                  backgroundGradientTo: theme.colors.surface,
-                  decimalPlaces: 8,
-                  color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                  labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                  style: {
-                    borderRadius: 16,
-                  },
-                  propsForDots: {
-                    r: '2',
-                    strokeWidth: '1',
-                    stroke: theme.colors.primary,
-                  },
-                }}
-                bezier
-                style={styles.chart}
-                withDots={false}
-                withInnerLines={false}
-                withOuterLines={true}
-                withVerticalLines={false}
-                withHorizontalLines={true}
-                yAxisInterval={20}
+                color1={side === 'BUY' ? theme.colors.positive : theme.colors.negative}
+                areaChart
+                yAxisColor={theme.colors.primary}
+                xAxisColor={theme.colors.primary}
+                thickness={3}
+                startFillColor={side === 'BUY' ? '#14f195' : '#ff5555'}
+                endFillColor={side === 'BUY' ? '#14f19533' : '#ff555533'}
+                startOpacity={0.8}
+                endOpacity={0.1}
+                hideDataPoints={false}
+                dataPointsColor={theme.colors.primary}
+                showVerticalLines
+                verticalLinesColor="#444"
+                showXAxisIndices
+                xAxisIndicesHeight={4}
+                xAxisIndicesWidth={2}
+                xAxisIndicesColor={theme.colors.primary}
+                yAxisTextStyle={{ color: '#888', fontSize: 10 }}
+                xAxisLabelTextStyle={{ color: '#888', fontSize: 10 }}
+                showYAxisIndices
+                yAxisIndicesColor={theme.colors.primary}
+                showReferenceLine1
+                referenceLine1Position={Math.max(...(renderChartData().datasets?.[0]?.data || [0]))}
+                referenceLine1Color="#FFD700"
+                referenceLine1Label="ATH"
+                showReferenceLine2
+                referenceLine2Position={Math.min(...(renderChartData().datasets?.[0]?.data || [0]))}
+                referenceLine2Color="#00BFFF"
+                referenceLine2Label="ATL"
+                curved
+                isAnimated
+                animationDuration={1200}
               />
             )}
           </Card.Content>
         </Card>
+        <Divider style={{ marginVertical: 8 }} />
         
         <Card style={styles.orderBookCard}>
           <Card.Content>

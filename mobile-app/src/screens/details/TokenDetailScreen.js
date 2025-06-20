@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, ScrollView, RefreshControl, TouchableOpacity, Linking } from 'react-native';
 import { Text, Card, Title, Button, Chip, ActivityIndicator, IconButton, Divider } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
-import { LineChart } from 'react-native-chart-kit';
+import { LineChart } from 'react-native-gifted-charts';
 import { Dimensions } from 'react-native';
 import { fetchTokenDetails, fetchTokenPriceHistory } from '../../store/slices/tokenSlice.js';
 import { theme } from '../../theme.js';
@@ -211,6 +211,7 @@ const TokenDetailScreen = ({ route, navigation }) => {
         />
       }
     >
+      {/* Token Info Card */}
       <Card style={styles.card}>
         <Card.Content>
           <View style={styles.tokenHeader}>
@@ -252,6 +253,7 @@ const TokenDetailScreen = ({ route, navigation }) => {
           </View>
         </Card.Content>
       </Card>
+      {/* Chart Card */}
       <Card style={styles.chartCard}>
         <Card.Content>
           <View style={styles.timeframeSelector}>
@@ -285,161 +287,244 @@ const TokenDetailScreen = ({ route, navigation }) => {
               data={renderChartData()}
               width={screenWidth - 32}
               height={220}
-              chartConfig={{
-                backgroundColor: theme.colors.surface,
-                backgroundGradientFrom: theme.colors.surface,
-                backgroundGradientTo: theme.colors.surface,
-                decimalPlaces: 8,
-                color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                style: {
-                  borderRadius: 16,
-                },
-                propsForDots: {
-                  r: '2',
-                  strokeWidth: '1',
-                  stroke: theme.colors.primary,
-                },
-              }}
-              bezier
-              style={styles.chart}
-              withDots={false}
-              withInnerLines={false}
-              withOuterLines={true}
-              withVerticalLines={false}
-              withHorizontalLines={true} 
-              yAxisInterval={20} 
+              color1={theme.colors.primary}
+              areaChart
+              yAxisColor={theme.colors.primary}
+              xAxisColor={theme.colors.primary}
+              // ...otherProps
             />
           )}
         </Card.Content>
       </Card>
+      {/* Market Stats Card */}
+      <Card style={styles.card}>
         <Card.Content>
-          <View style={styles.timeframeSelector}>
-            {['1h', '24h', '7d', '30d', 'all'].map((timeframe) => (
-              <TouchableOpacity
-                key={timeframe}
-                style={[
-                  styles.timeframeButton,
-                  selectedTimeframe === timeframe && styles.selectedTimeframeButton,
-                ]}
-                onPress={() => setSelectedTimeframe(timeframe)}
+          <Title style={styles.sectionTitle}>Market Stats</Title>
+          <Divider style={styles.divider} />
+          <View style={styles.statsContainer}>
+            <View style={styles.statRow}>
+              <Text style={styles.statLabel}>Market Cap</Text>
+              <Text style={styles.statValue}>
+                ${numberWithCommas(parseFloat(currentToken.marketCapUSD || 0).toFixed(2))}
+              </Text>
+            </View>
+            <View style={styles.statRow}>
+              <Text style={styles.statLabel}>Volume (24h)</Text>
+              <Text style={styles.statValue}>
+                ${numberWithCommas(parseFloat(currentToken.volume24h || 0).toFixed(2))}
+              </Text>
+            </View>
+            <View style={styles.statRow}>
+              <Text style={styles.statLabel}>Liquidity</Text>
+              <Text style={styles.statValue}>
+                ${numberWithCommas(parseFloat(currentToken.liquidityUSD || 0).toFixed(2))}
+              </Text>
+            </View>
+            <View style={styles.statRow}>
+              <Text style={styles.statLabel}>Total Supply</Text>
+              <Text style={styles.statValue}>
+                {numberWithCommas(parseFloat(currentToken.totalSupply || 0).toFixed(0))}
+              </Text>
+            </View>
+            <View style={styles.statRow}>
+              <Text style={styles.statLabel}>Launch Date</Text>
+              <Text style={styles.statValue}>
+                {new Date(currentToken.launchDate).toLocaleDateString()}
+              </Text>
+            </View>
+            <View style={styles.statRow}>
+              <Text style={styles.statLabel}>Contract Address</Text>
+              <TouchableOpacity 
+                onPress={() => Linking.openURL(`https://explorer.solana.com/address/${currentToken.address}`)}
               >
-                <Text
-                  style={[
-                    styles.timeframeText,
-                    selectedTimeframe === timeframe && styles.selectedTimeframeText,
-                  ]}
-                >
-                  {timeframe.toUpperCase()}
+                <Text style={styles.addressValue}>
+                  {`${currentToken.address.substr(0, 6)}...${currentToken.address.substr(-4)}`}
                 </Text>
               </TouchableOpacity>
-            ))}
-          </View>
-
-          {isLoading && !refreshing ? (
-            <View style={styles.chartLoadingContainer}>
-              <ActivityIndicator size="small" color={theme.colors.primary} />
             </View>
-          ) : (
-            <LineChart
-              data={renderChartData()}
-              width={screenWidth - 32}
-              height={220}
-              chartConfig={{
-                backgroundColor: theme.colors.surface,
-                backgroundGradientFrom: theme.colors.surface,
-                backgroundGradientTo: theme.colors.surface,
-                decimalPlaces: 8,
-                color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                style: {
-                  borderRadius: 16,
-                },
-                propsForDots: {
-                  r: '2',
-                  strokeWidth: '1',
-                  stroke: theme.colors.primary,
-                },
-              }}
-              bezier
-              style={styles.chart}
-              withDots={false}
-              withInnerLines={false}
-              withOuterLines={true}
-              withVerticalLines={false}
-              withHorizontalLines={true} 
-              yAxisInterval={20} /> )} </Card.Content>
+          </View>
+        </Card.Content>
+      </Card>
+      {/* About Card */}
+      {currentToken.description && (
+        <Card style={styles.card}>
+          <Card.Content>
+            <Title style={styles.sectionTitle}>About</Title>
+            <Divider style={styles.divider} />
+            <Text style={styles.description}>{currentToken.description}</Text>
+          </Card.Content>
+        </Card>
+      )}
+    </ScrollView>
+  );
+};
 
-  <Card style={styles.card}>
-    <Card.Content>
-      <Title style={styles.sectionTitle}>Market Stats</Title>
-      <Divider style={styles.divider} />
-      
-      <View style={styles.statsContainer}>
-        <View style={styles.statRow}>
-          <Text style={styles.statLabel}>Market Cap</Text>
-          <Text style={styles.statValue}>
-            ${numberWithCommas(parseFloat(currentToken.marketCapUSD || 0).toFixed(2))}
-          </Text>
-        </View>
-        
-        <View style={styles.statRow}>
-          <Text style={styles.statLabel}>Volume (24h)</Text>
-          <Text style={styles.statValue}>
-            ${numberWithCommas(parseFloat(currentToken.volume24h || 0).toFixed(2))}
-          </Text>
-        </View>
+// Helper function to format numbers with commas
+const numberWithCommas = (x) => {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
 
-        <View style={styles.statRow}>
-          <Text style={styles.statLabel}>Liquidity</Text>
-          <Text style={styles.statValue}>
-            ${numberWithCommas(parseFloat(currentToken.liquidityUSD || 0).toFixed(2))}
-          </Text>
-        </View>
-
-        <View style={styles.statRow}>
-          <Text style={styles.statLabel}>Total Supply</Text>
-          <Text style={styles.statValue}>
-            {numberWithCommas(parseFloat(currentToken.totalSupply || 0).toFixed(0))}
-          </Text>
-        </View>
-        
-        <View style={styles.statRow}>
-          <Text style={styles.statLabel}>Launch Date</Text>
-          <Text style={styles.statValue}>
-            {new Date(currentToken.launchDate).toLocaleDateString()}
-          </Text>
-        </View>
-
-        <View style={styles.statRow}>
-          <Text style={styles.statLabel}>Contract Address</Text>
-          <TouchableOpacity 
-            onPress={() => Linking.openURL(`https://explorer.solana.com/address/${currentToken.address}`)}
-          >
-            <Text style={styles.addressValue}>
-              {`${currentToken.address.substr(0, 6)}...${currentToken.address.substr(-4)}`}
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </Card.Content>
-  </Card>
-
-  {currentToken.description && (
-    <Card style={styles.card}>
-      <Card.Content>
-        <Title style={styles.sectionTitle}>About</Title>
-        <Divider style={styles.divider} />
-        <Text style={styles.description}>{currentToken.description}</Text>
-      </Card.Content>
-    </Card>
-  )}
-</ScrollView>
-); };
-
-// Helper function to format numbers with commas const numberWithCommas = (x) => { return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); };
-
-const styles = StyleSheet.create({ container: { flex: 1, backgroundColor: theme.colors.background, }, loadingContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: theme.colors.background, }, errorText: { color: theme.colors.error, fontSize: 16, }, card: { margin: 16, marginBottom: 8, backgroundColor: theme.colors.surface, borderRadius: 12, }, chartCard: { margin: 16, marginTop: 8, marginBottom: 8, backgroundColor: theme.colors.surface, borderRadius: 12, paddingBottom: 16, }, tokenHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', }, tokenInfo: { flex: 1, }, nameContainer: { flexDirection: 'row', alignItems: 'center', }, tokenSymbol: { fontSize: 24, fontWeight: 'bold', color: theme.colors.text, marginRight: 8, }, tokenName: { fontSize: 16, color: '#888', marginTop: 2, }, statusChip: { height: 26, }, newChip: { backgroundColor: '#FF9800', }, graduatingChip: { backgroundColor: theme.colors.primary, }, graduatedChip: { backgroundColor: theme.colors.positive, }, socialLinks: { flexDirection: 'row', alignItems: 'center', }, socialIcon: { margin: 0, }, priceSection: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 16, }, priceLabel: { fontSize: 14, color: '#888', }, price: { fontSize: 24, fontWeight: 'bold', color: theme.colors.text, marginVertical: 4, }, priceChange: { fontSize: 16, fontWeight: 'bold', }, tradeButton: { backgroundColor: theme.colors.primary, borderRadius: 8, }, timeframeSelector: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 16, }, timeframeButton: { paddingVertical: 6, paddingHorizontal: 12, borderRadius: 8, }, selectedTimeframeButton: { backgroundColor: theme.colors.primary, }, timeframeText: { color: '#888', fontWeight: 'bold', }, selectedTimeframeText: { color: theme.colors.text, }, chartLoadingContainer: { height: 220, justifyContent: 'center', alignItems: 'center', }, chart: { marginVertical: 8, borderRadius: 16, }, sectionTitle: { fontSize: 18, fontWeight: 'bold', color: theme.colors.text, }, divider: { backgroundColor: theme.colors.border, marginVertical: 12, }, statsContainer: { marginTop: 8, }, statRow: { flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 8, }, statLabel: { fontSize: 14, color: '#888', }, statValue: { fontSize: 14, color: theme.colors.text, fontWeight: '500', }, addressValue: { fontSize: 14, color: theme.colors.primary, fontWeight: '500', }, description: { fontSize: 14, color: theme.colors.text, lineHeight: 20, }, });
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: theme.colors.background,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: theme.colors.background,
+  },
+  errorText: {
+    color: theme.colors.error,
+    fontSize: 16,
+  },
+  card: {
+    margin: 16,
+    marginBottom: 8,
+    backgroundColor: theme.colors.surface,
+    borderRadius: 12,
+  },
+  chartCard: {
+    margin: 16,
+    marginTop: 8,
+    marginBottom: 8,
+    backgroundColor: theme.colors.surface,
+    borderRadius: 12,
+    paddingBottom: 16,
+  },
+  tokenHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+  },
+  tokenInfo: {
+    flex: 1,
+  },
+  nameContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  tokenSymbol: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: theme.colors.text,
+    marginRight: 8,
+  },
+  tokenName: {
+    fontSize: 16,
+    color: '#888',
+    marginTop: 2,
+  },
+  statusChip: {
+    height: 26,
+  },
+  newChip: {
+    backgroundColor: '#FF9800',
+  },
+  graduatingChip: {
+    backgroundColor: theme.colors.primary,
+  },
+  graduatedChip: {
+    backgroundColor: theme.colors.positive,
+  },
+  socialLinks: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  socialIcon: {
+    margin: 0,
+  },
+  priceSection: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 16,
+  },
+  priceLabel: {
+    fontSize: 14,
+    color: '#888',
+  },
+  price: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: theme.colors.text,
+    marginVertical: 4,
+  },
+  priceChange: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  tradeButton: {
+    backgroundColor: theme.colors.primary,
+    borderRadius: 8,
+  },
+  timeframeSelector: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 16,
+  },
+  timeframeButton: {
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+  },
+  selectedTimeframeButton: {
+    backgroundColor: theme.colors.primary,
+  },
+  timeframeText: {
+    color: '#888',
+    fontWeight: 'bold',
+  },
+  selectedTimeframeText: {
+    color: theme.colors.text,
+  },
+  chartLoadingContainer: {
+    height: 220,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  chart: {
+    marginVertical: 8,
+    borderRadius: 16,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: theme.colors.text,
+  },
+  divider: {
+    backgroundColor: theme.colors.border,
+    marginVertical: 12,
+  },
+  statsContainer: {
+    marginTop: 8,
+  },
+  statRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 8,
+  },
+  statLabel: {
+    fontSize: 14,
+    color: '#888',
+  },
+  statValue: {
+    fontSize: 14,
+    color: theme.colors.text,
+    fontWeight: '500',
+  },
+  addressValue: {
+    fontSize: 14,
+    color: theme.colors.primary,
+    fontWeight: '500',
+  },
+  description: {
+    fontSize: 14,
+    color: theme.colors.text,
+    lineHeight: 20,
+  },
+});
 
 export default TokenDetailScreen;
 

@@ -3,13 +3,12 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { Provider as StoreProvider, useSelector, useDispatch } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
-import SplashScreen from 'react-native-splash-screen';
 import { PersistGate } from 'redux-persist/integration/react';
 import { StatusBar } from 'react-native';
-import { store, persistor } from './store';
-import AppNavigator from './navigation/AppNavigator';
+import { store, persistor } from './store/index.js';
+import AppNavigator from './navigation/AppNavigator.js';
 import { theme } from './theme.js';
-import socketService from './services/socketService';
+import socketService from './services/socketService.js';
 
 // Socket connection component
 const SocketManager = () => {
@@ -35,8 +34,7 @@ const SocketManager = () => {
 
 const AppContent = () => {
   useEffect(() => {
-    // Hide splash screen on app load
-    SplashScreen.hide();
+    // Hide splash screen on app load (removed react-native-splash-screen for Expo compatibility)
   }, []);
 
   return (
