@@ -1,6 +1,6 @@
 // Services index file
 
-import tokenService from './token.service.js';
+import tokenService from '.services/token.service.js';
 
 const services = {
   // Export services here, e.g.,
