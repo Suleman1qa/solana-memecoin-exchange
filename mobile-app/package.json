@@ -45,8 +45,8 @@
     "react-redux": "^9.2.0",
     "redux-persist": "^6.0.0",
     "socket.io-client": "^4.8.1",
-    "undefined": "\\",
-    "use": "^3.1.1"
+    "use": "^3.1.1",
+    "expo-linear-gradient": "~14.1.5"
   },
   "devDependencies": {
     "@babel/core": "^7.27.4",
