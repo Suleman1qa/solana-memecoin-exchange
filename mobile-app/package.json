@@ -45,6 +45,7 @@
     "react-redux": "^9.2.0",
     "redux-persist": "^6.0.0",
     "socket.io-client": "^4.8.1",
+    "undefined": "\\",
     "use": "^3.1.1"
   },
   "devDependencies": {
