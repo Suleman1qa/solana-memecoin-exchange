@@ -1,6 +1,4 @@
 import { Connection, PublicKey } from '@solana/web3.js';
-import { Token } from '@solana/spl-token';
-import axios from 'axios';
 import mongoose from 'mongoose';
 import config from '../config/index.js';
 import logger from '../utils/logger.js';
@@ -171,7 +169,8 @@ class TokenProcessor {
       }
       
       // Create token in database
-      const newToken = new Token({
+      // Use the MongoDB model to create a new token record
+      const newToken = new TokenModel({
         address: tokenInfo.address,
         name: tokenInfo.name,
         symbol: tokenInfo.symbol,
@@ -238,15 +237,16 @@ class TokenProcessor {
       // This is simplified; a real implementation would use the Metaplex protocol
       
       // Generate some mock data for demo purposes
-      token.website = Math.random() > 0.3 ? `https://${token.symbol.toLowerCase()}.io` : '';
-      token.twitter = Math.random() > 0.3 ? `https://twitter.com/${token.symbol.toLowerCase()}` : '';
-      token.telegram = Math.random() > 0.3 ? `https://t.me/${token.symbol.toLowerCase()}` : '';
-      token.discord = Math.random() > 0.4 ? `https://discord.gg/${token.symbol.toLowerCase()}` : '';
-      token.description = `${token.name} is a community-driven memecoin on the Solana blockchain.`;
-      
-      await token.save();
-      
-      logger.info(`Enriched token info for ${token.symbol} (${address})`);
+      // Populate some mock metadata for demonstration
+      savedToken.website = Math.random() > 0.3 ? `https://${savedToken.symbol.toLowerCase()}.io` : '';
+      savedToken.twitter = Math.random() > 0.3 ? `https://twitter.com/${savedToken.symbol.toLowerCase()}` : '';
+      savedToken.telegram = Math.random() > 0.3 ? `https://t.me/${savedToken.symbol.toLowerCase()}` : '';
+      savedToken.discord = Math.random() > 0.4 ? `https://discord.gg/${savedToken.symbol.toLowerCase()}` : '';
+      savedToken.description = `${savedToken.name} is a community-driven memecoin on the Solana blockchain.`;
+
+      await savedToken.save();
+
+      logger.info(`Enriched token info for ${savedToken.symbol} (${address})`);
     } catch (error) {
       logger.error(`Error enriching token info for ${address}:`, error);
     }
