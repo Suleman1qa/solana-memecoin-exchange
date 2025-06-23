@@ -1,9 +1,14 @@
 {
   "expo": {
     "name": "SolMemeEx",
+    "scheme": "solmemeex",
     "splash": {
+      "image": "./src/assets/memecoinEx-logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
+    },
+    "android": {
+      "package": "com.anonymous.solmemeex"
     }
   }
 }

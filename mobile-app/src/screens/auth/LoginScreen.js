@@ -41,7 +41,7 @@ const LoginScreen = ({ navigation }) => {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.logoContainer}>
           <Image
-            source={require('../../assets/logo.png')}
+            source={require('../../assets/memecoinEx-logo.png')}
             style={styles.logo}
             resizeMode="contain"
           />
