@@ -515,3 +515,31 @@
 2025-06-17 11:59:55 info: Connected to Redis 
 2025-06-17 11:59:57 info: Connected to MongoDB 
 2025-06-17 11:59:57 info: Server running on port 5000 
+2025-06-24 15:05:00 warn: Solana fee payer not configured. Some operations will fail. 
+2025-06-24 15:05:01 info: Connected to Redis 
+2025-06-24 15:05:04 info: Connected to MongoDB 
+2025-06-24 15:05:04 info: Server running on port 5000 
+2025-06-24 15:21:35 error: 401 - You are not logged in. Please log in to get access - /api/market - GET - ::1 
+2025-06-24 15:21:35 error: Error: You are not logged in. Please log in to get access
+    at protect (file:///C:/solana-memecoin-exchange/backend/src/middleware/auth.middleware.js:15:19)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:328:13)
+    at C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:328:13) 
+2025-06-24 15:27:53 error: 401 - You are not logged in. Please log in to get access - /api/market - GET - ::1 
+2025-06-24 15:27:53 error: Error: You are not logged in. Please log in to get access
+    at protect (file:///C:/solana-memecoin-exchange/backend/src/middleware/auth.middleware.js:15:19)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:328:13)
+    at C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\solana-memecoin-exchange\backend\node_modules\express\lib\router\index.js:328:13) 
