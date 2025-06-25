@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, ScrollView, TouchableOpacity, Clipboard, Linking, Image } from 'react-native';
+import { StyleSheet, View, ScrollView, TouchableOpacity, Linking, Image } from 'react-native';
+import * as Clipboard from 'expo-clipboard';
 import { Text, Card, Title, Button, Divider, Snackbar, ActivityIndicator, Menu } from 'react-native-paper';
 import QRCode from 'react-native-qrcode-svg';
 import { useDispatch, useSelector } from 'react-redux';
@@ -40,7 +41,7 @@ const DepositScreen = ({ route, navigation }) => {
   
   const copyAddressToClipboard = () => {
     if (currentWallet && currentWallet.address) {
-      Clipboard.setString(currentWallet.address);
+      Clipboard.setStringAsync(currentWallet.address);
       setSnackbarMessage('Address copied to clipboard');
       setSnackbarVisible(true);
     }

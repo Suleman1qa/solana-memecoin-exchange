@@ -6,7 +6,7 @@ import { fetchWalletDetails, updateWallet, clearError, clearSuccess } from '../.
 import { theme } from '../../theme.js';
 import { useFocusEffect } from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Clipboard from '@react-native-clipboard/clipboard';
+import * as Clipboard from 'expo-clipboard';
 
 const WalletDetailScreen = ({ route, navigation }) => {
   const { walletId } = route.params;
@@ -55,7 +55,7 @@ const WalletDetailScreen = ({ route, navigation }) => {
 
   const copyAddressToClipboard = () => {
     if (currentWallet?.address) {
-      Clipboard.setString(currentWallet.address);
+      Clipboard.setStringAsync(currentWallet.address);
       setSnackbarMessage('Address copied to clipboard');
       setSnackbarVisible(true);
     }
