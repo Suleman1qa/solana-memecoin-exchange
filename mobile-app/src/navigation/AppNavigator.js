@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+=======
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useSelector } from 'react-redux';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
+// auth Screens
+>>>>>>> 4935994f15bb2f0ac41aae445393eba6e99356c1
 import LoginScreen from '../screens/auth/LoginScreen.js';
 import RegisterScreen from '../screens/auth/RegisterScreen';
 import ForgotPasswordScreen from '../screens/auth/ForgotPasswordScreen';

@@ -101,7 +101,7 @@ const MarketScreen = ({ navigation }) => {
   const renderTokenItem = ({ item }) => (
     <TokenListItem token={item} onPress={() => navigateToTokenDetail(item.address)} />
   );
-
+ 
   const renderFooter = () => {
     if (!isLoading) return null;
     

@@ -1,22 +1,36 @@
 import apiClient from './apiClient.js';
+<<<<<<< HEAD
+=======
+import { logApiError } from './logApiError.js';
+>>>>>>> 4935994f15bb2f0ac41aae445393eba6e99356c1
 
 const authService = {
   login: async (email, password) => {
-    const response = await apiClient.post('/auth/login', {
-      email,
-      password,
-    });
-    return response.data.data;
+    try {
+      const response = await apiClient.post('/auth/login', {
+        email,
+        password,
+      });
+      return response.data.data;
+    } catch (error) {
+      logApiError(error);
+      throw error;
+    }
   },
   
   register: async (email, password, username, fullName) => {
-    const response = await apiClient.post('/auth/register', {
+    try{
+      const response = await apiClient.post('/auth/register', {
       email,
       password,
       username,
       fullName,
     });
     return response.data.data;
+    } catch (error) {
+      logApiError(error);
+      throw error;
+    }
   },
   
   logout: async () => {

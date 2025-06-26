@@ -13,12 +13,19 @@
   "license": "ISC",
   "dependencies": {
     "@react-native-async-storage/async-storage": "2.1.2",
+<<<<<<< HEAD
     "@react-native-clipboard/clipboard": "^1.16.2",
+=======
+>>>>>>> 4935994f15bb2f0ac41aae445393eba6e99356c1
     "@react-native-community/netinfo": "11.4.1",
     "@react-native/gradle-plugin": "^0.80.0",
     "@react-navigation/bottom-tabs": "^7.3.15",
     "@react-navigation/native": "^7.1.11",
+<<<<<<< HEAD
     "@react-navigation/stack": "^7.3.4",
+=======
+    "@react-navigation/stack": "^7.4.2",
+>>>>>>> 4935994f15bb2f0ac41aae445393eba6e99356c1
     "@reduxjs/toolkit": "^2.8.2",
     "@solana-mobile/mobile-wallet-adapter-protocol-web3js": "^2.2.2",
     "@solana-mobile/wallet-adapter-mobile": "^2.2.2",
@@ -28,6 +35,11 @@
     "bignumber.js": "^9.3.0",
     "date-fns": "^4.1.0",
     "expo": "^53.0.12",
+<<<<<<< HEAD
+=======
+    "expo-clipboard": "~7.1.4",
+    "expo-linear-gradient": "~14.1.5",
+>>>>>>> 4935994f15bb2f0ac41aae445393eba6e99356c1
     "moment": "^2.30.1",
     "react": "19.0.0",
     "react-native": "0.79.4",
@@ -49,6 +61,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.27.4",
+<<<<<<< HEAD
+=======
+    "@babel/plugin-transform-private-methods": "^7.27.1",
+>>>>>>> 4935994f15bb2f0ac41aae445393eba6e99356c1
     "@babel/runtime": "^7.27.6",
     "@react-native-community/cli": "^18.0.0",
     "@react-native-community/eslint-config": "^3.2.0",

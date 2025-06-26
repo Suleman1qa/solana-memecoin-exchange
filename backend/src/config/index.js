@@ -24,7 +24,11 @@ const config = {
     : ['http://localhost:3000', 'http://localhost:8081'],
   
   mongodb: {
+<<<<<<< HEAD
     uri: process.env.MONGODB_URI || 'mongodb+srv://kingsuleman772:1qam416V1qa@cluster0.vklwu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
+=======
+    uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/solana-memecoin-exchange',
+>>>>>>> 4935994f15bb2f0ac41aae445393eba6e99356c1
     options: {
       useNewUrlParser: true,
       useUnifiedTopology: true,

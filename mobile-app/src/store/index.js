@@ -7,6 +7,11 @@ import walletReducer from './slices/walletSlice.js';
 import marketReducer from './slices/marketSlice.js';
 import tokenReducer from './slices/tokenSlice.js';
 import stakingReducer from './slices/stakingSlice.js';
+<<<<<<< HEAD
+=======
+import apiClient, { setupApiClient } from '../services/apiClient.js';
+import { refreshToken, logout } from './slices/authSlice.js';
+>>>>>>> 4935994f15bb2f0ac41aae445393eba6e99356c1
 
 
 const persistConfig = {
@@ -32,5 +37,8 @@ export const store = configureStore({
       serializableCheck: false,
     }),
 });
+
+// Setup apiClient interceptors after store is created
+setupApiClient(store, { refreshToken, logout });
 
 export const persistor = persistStore(store);
