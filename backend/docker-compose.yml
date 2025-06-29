@@ -1,0 +1,56 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=development
+      - PORT=5000
+      - MONGODB_URI=mongodb://mongodb:27017/solana-memecoin-exchange
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - CORS_ORIGINS=http://localhost:3000,http://localhost:8081,http://192.168.0.191:*,capacitor://localhost,http://localhost
+    depends_on:
+      - mongodb
+      - redis
+    networks:
+      - memecoin-network
+
+  blockchain-listener:
+    build:
+      context: ../blockchain-listener
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5001"
+    environment:
+      - NODE_ENV=development
+      - MONGODB_URI=mongodb://mongodb:27017/solana-memecoin-exchange
+      - REDIS_URL=redis://redis:6379
+      - HEALTH_CHECK_PORT=5001
+    depends_on:
+      - mongodb
+      - redis
+    networks:
+      - memecoin-network
+
+  mongodb:
+    image: mongo:6
+    ports:
+      - "27017:27017"
+    networks:
+      - memecoin-network
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - memecoin-network
+
+networks:
+  memecoin-network:
+    driver: bridge

@@ -1,20 +1,35 @@
 {
   "expo": {
     "name": "SolMemeEx",
-<<<<<<< HEAD
-    "splash": {
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-=======
     "scheme": "solmemeex",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./src/assets/memecoinEx-logo.png",
+    "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./src/assets/memecoinEx-logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.solmemeex",
+      "jsEngine": "hermes"
+    },
     "android": {
-      "package": "com.anonymous.solmemeex"
->>>>>>> 4935994f15bb2f0ac41aae445393eba6e99356c1
+      "package": "com.anonymous.solmemeex",
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/memecoinEx-logo.png",
+        "backgroundColor": "#ffffff"
+      },
+      "jsEngine": "hermes"
+    },
+    "plugins": ["expo-secure-store"],
+    "extra": {
+      "eas": {
+        "projectId": "your-project-id"
+      }
     }
   }
 }

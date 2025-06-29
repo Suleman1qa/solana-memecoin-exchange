@@ -1,28 +1,51 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { StyleSheet, View, ScrollView, TouchableOpacity, RefreshControl, Alert, Linking } from 'react-native';
-import { Text, Card, Title, Button, Divider, ActivityIndicator, IconButton, Menu, Portal, Dialog, TextInput } from 'react-native-paper';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchWalletDetails, updateWallet, clearError, clearSuccess } from '../../store/slices/walletSlice.js';
-import { theme } from '../../theme.js';
-import { useFocusEffect } from '@react-navigation/native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-<<<<<<< HEAD
-import Clipboard from '@react-native-clipboard/clipboard';
-=======
-import * as Clipboard from 'expo-clipboard';
->>>>>>> 4935994f15bb2f0ac41aae445393eba6e99356c1
+import React, { useState, useEffect, useCallback } from "react";
+import {
+  StyleSheet,
+  View,
+  ScrollView,
+  TouchableOpacity,
+  RefreshControl,
+  Alert,
+  Linking,
+} from "react-native";
+import {
+  Text,
+  Card,
+  Title,
+  Button,
+  Divider,
+  ActivityIndicator,
+  IconButton,
+  Menu,
+  Portal,
+  Dialog,
+  TextInput,
+} from "react-native-paper";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchWalletDetails,
+  updateWallet,
+  clearError,
+  clearSuccess,
+} from "../../store/slices/walletSlice.js";
+import { theme } from "../../theme.js";
+import { useFocusEffect } from "@react-navigation/native";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import * as Clipboard from "expo-clipboard";
 
 const WalletDetailScreen = ({ route, navigation }) => {
   const { walletId } = route.params;
   const [refreshing, setRefreshing] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
   const [editDialogVisible, setEditDialogVisible] = useState(false);
-  const [newLabel, setNewLabel] = useState('');
+  const [newLabel, setNewLabel] = useState("");
   const [snackbarVisible, setSnackbarVisible] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState('');
-  
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+
   const dispatch = useDispatch();
-  const { currentWallet, isLoading, error, operationSuccess } = useSelector(state => state.wallet);
+  const { currentWallet, isLoading, error, operationSuccess } = useSelector(
+    (state) => state.wallet
+  );
 
   useFocusEffect(
     useCallback(() => {
@@ -40,7 +63,7 @@ const WalletDetailScreen = ({ route, navigation }) => {
 
   useEffect(() => {
     if (operationSuccess) {
-      setSnackbarMessage('Wallet updated successfully');
+      setSnackbarMessage("Wallet updated successfully");
       setSnackbarVisible(true);
       dispatch(clearSuccess());
       setEditDialogVisible(false);
@@ -59,24 +82,22 @@ const WalletDetailScreen = ({ route, navigation }) => {
 
   const copyAddressToClipboard = () => {
     if (currentWallet?.address) {
-<<<<<<< HEAD
-      Clipboard.setString(currentWallet.address);
-=======
       Clipboard.setStringAsync(currentWallet.address);
->>>>>>> 4935994f15bb2f0ac41aae445393eba6e99356c1
-      setSnackbarMessage('Address copied to clipboard');
+      setSnackbarMessage("Address copied to clipboard");
       setSnackbarVisible(true);
     }
   };
 
   const openInExplorer = () => {
     if (currentWallet?.address) {
-      Linking.openURL(`https://explorer.solana.com/address/${currentWallet.address}`);
+      Linking.openURL(
+        `https://explorer.solana.com/address/${currentWallet.address}`
+      );
     }
   };
 
   const handleEditWallet = () => {
-    setNewLabel(currentWallet?.label || '');
+    setNewLabel(currentWallet?.label || "");
     setEditDialogVisible(true);
     setMenuVisible(false);
   };
@@ -89,16 +110,16 @@ const WalletDetailScreen = ({ route, navigation }) => {
 
   const getTotalBalance = () => {
     if (!currentWallet || !currentWallet.balances) {
-      return '0.00';
+      return "0.00";
     }
-    
+
     let total = 0;
-    currentWallet.balances.forEach(balance => {
+    currentWallet.balances.forEach((balance) => {
       const tokenPrice = parseFloat(balance.token?.priceUSD || 0);
       const amount = parseFloat(balance.amount);
       total += amount * tokenPrice;
     });
-    
+
     return total.toFixed(2);
   };
 
@@ -106,17 +127,26 @@ const WalletDetailScreen = ({ route, navigation }) => {
     <TouchableOpacity
       key={balance.token._id}
       style={styles.tokenItem}
-      onPress={() => navigation.navigate('TokenDetail', { tokenAddress: balance.token.address })}
+      onPress={() =>
+        navigation.navigate("TokenDetail", {
+          tokenAddress: balance.token.address,
+        })
+      }
     >
       <View style={styles.tokenInfo}>
         <Text style={styles.tokenSymbol}>{balance.token.symbol}</Text>
         <Text style={styles.tokenName}>{balance.token.name}</Text>
       </View>
-      
+
       <View style={styles.tokenAmount}>
-        <Text style={styles.balanceAmount}>{parseFloat(balance.amount).toFixed(6)}</Text>
+        <Text style={styles.balanceAmount}>
+          {parseFloat(balance.amount).toFixed(6)}
+        </Text>
         <Text style={styles.balanceValue}>
-          ${(parseFloat(balance.amount) * parseFloat(balance.token.priceUSD || 0)).toFixed(2)}
+          $
+          {(
+            parseFloat(balance.amount) * parseFloat(balance.token.priceUSD || 0)
+          ).toFixed(2)}
         </Text>
         {parseFloat(balance.locked) > 0 && (
           <Text style={styles.lockedAmount}>
@@ -162,9 +192,11 @@ const WalletDetailScreen = ({ route, navigation }) => {
             <View style={styles.walletHeader}>
               <View style={styles.walletInfo}>
                 <Title style={styles.walletLabel}>{currentWallet.label}</Title>
-                <Text style={styles.walletType}>{currentWallet.type} Wallet</Text>
+                <Text style={styles.walletType}>
+                  {currentWallet.type} Wallet
+                </Text>
               </View>
-              
+
               <Menu
                 visible={menuVisible}
                 onDismiss={() => setMenuVisible(false)}
@@ -180,68 +212,85 @@ const WalletDetailScreen = ({ route, navigation }) => {
                 <Menu.Item onPress={openInExplorer} title="View in Explorer" />
               </Menu>
             </View>
-            
+
             <View style={styles.addressSection}>
               <Text style={styles.addressLabel}>Wallet Address</Text>
-              <TouchableOpacity style={styles.addressContainer} onPress={copyAddressToClipboard}>
+              <TouchableOpacity
+                style={styles.addressContainer}
+                onPress={copyAddressToClipboard}
+              >
                 <Text style={styles.addressText}>{currentWallet.address}</Text>
-                <MaterialCommunityIcons name="content-copy" size={20} color={theme.colors.primary} />
+                <MaterialCommunityIcons
+                  name="content-copy"
+                  size={20}
+                  color={theme.colors.primary}
+                />
               </TouchableOpacity>
             </View>
-            
+
             <View style={styles.balanceSection}>
               <Text style={styles.totalBalanceLabel}>Total Balance</Text>
-              <Text style={styles.totalBalanceAmount}>${getTotalBalance()}</Text>
+              <Text style={styles.totalBalanceAmount}>
+                ${getTotalBalance()}
+              </Text>
             </View>
-            
+
             <View style={styles.actionsRow}>
               <Button
                 mode="contained"
                 style={styles.actionButton}
-                onPress={() => navigation.navigate('Deposit', { walletId })}
+                onPress={() => navigation.navigate("Deposit", { walletId })}
               >
                 Deposit
               </Button>
               <Button
                 mode="outlined"
                 style={styles.actionButton}
-                onPress={() => navigation.navigate('Withdraw', { walletId })}
+                onPress={() => navigation.navigate("Withdraw", { walletId })}
               >
                 Withdraw
               </Button>
               <Button
                 mode="outlined"
                 style={styles.actionButton}
-                onPress={() => navigation.navigate('Transfer', { walletId })}
+                onPress={() => navigation.navigate("Transfer", { walletId })}
               >
                 Transfer
               </Button>
             </View>
           </Card.Content>
         </Card>
-        
+
         <Card style={styles.assetsCard}>
           <Card.Content>
             <View style={styles.assetsHeader}>
               <Title style={styles.assetsTitle}>Assets</Title>
-              <TouchableOpacity onPress={() => navigation.navigate('TransactionHistory', { walletId })}>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("TransactionHistory", { walletId })
+                }
+              >
                 <Text style={styles.historyLink}>View History</Text>
               </TouchableOpacity>
             </View>
-            
+
             <Divider style={styles.divider} />
-            
+
             {currentWallet.balances && currentWallet.balances.length > 0 ? (
               currentWallet.balances
-                .filter(balance => parseFloat(balance.amount) > 0)
+                .filter((balance) => parseFloat(balance.amount) > 0)
                 .map(renderTokenBalance)
             ) : (
               <View style={styles.emptyAssets}>
-                <MaterialCommunityIcons name="wallet-outline" size={64} color="#555" />
+                <MaterialCommunityIcons
+                  name="wallet-outline"
+                  size={64}
+                  color="#555"
+                />
                 <Text style={styles.emptyText}>No assets in this wallet</Text>
                 <Button
                   mode="outlined"
-                  onPress={() => navigation.navigate('Deposit', { walletId })}
+                  onPress={() => navigation.navigate("Deposit", { walletId })}
                   style={styles.depositButton}
                 >
                   Deposit Funds
@@ -251,14 +300,16 @@ const WalletDetailScreen = ({ route, navigation }) => {
           </Card.Content>
         </Card>
       </ScrollView>
-      
+
       <Portal>
         <Dialog
           visible={editDialogVisible}
           onDismiss={() => setEditDialogVisible(false)}
           style={styles.dialog}
         >
-          <Dialog.Title style={styles.dialogTitle}>Edit Wallet Label</Dialog.Title>
+          <Dialog.Title style={styles.dialogTitle}>
+            Edit Wallet Label
+          </Dialog.Title>
           <Dialog.Content>
             <TextInput
               label="Wallet Label"
@@ -271,7 +322,9 @@ const WalletDetailScreen = ({ route, navigation }) => {
           </Dialog.Content>
           <Dialog.Actions>
             <Button onPress={() => setEditDialogVisible(false)}>Cancel</Button>
-            <Button onPress={saveWalletLabel} disabled={!newLabel.trim()}>Save</Button>
+            <Button onPress={saveWalletLabel} disabled={!newLabel.trim()}>
+              Save
+            </Button>
           </Dialog.Actions>
         </Dialog>
       </Portal>
@@ -289,13 +342,13 @@ const styles = StyleSheet.create({
   },
   loadingContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   errorContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     padding: 20,
   },
   errorText: {
@@ -309,9 +362,9 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   walletHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
     marginBottom: 16,
   },
   walletInfo: {
@@ -319,12 +372,12 @@ const styles = StyleSheet.create({
   },
   walletLabel: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: theme.colors.text,
   },
   walletType: {
     fontSize: 14,
-    color: '#888',
+    color: "#888",
     marginTop: 4,
   },
   addressSection: {
@@ -332,14 +385,14 @@ const styles = StyleSheet.create({
   },
   addressLabel: {
     fontSize: 14,
-    color: '#888',
+    color: "#888",
     marginBottom: 8,
   },
   addressContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: '#333',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    backgroundColor: "#333",
     padding: 12,
     borderRadius: 8,
   },
@@ -347,26 +400,26 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 14,
     color: theme.colors.text,
-    fontFamily: 'monospace',
+    fontFamily: "monospace",
     marginRight: 8,
   },
   balanceSection: {
-    alignItems: 'center',
+    alignItems: "center",
     marginBottom: 20,
   },
   totalBalanceLabel: {
     fontSize: 14,
-    color: '#888',
+    color: "#888",
     marginBottom: 4,
   },
   totalBalanceAmount: {
     fontSize: 28,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: theme.colors.text,
   },
   actionsRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   actionButton: {
     flex: 1,
@@ -379,14 +432,14 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   assetsHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginBottom: 8,
   },
   assetsTitle: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: theme.colors.text,
   },
   historyLink: {
@@ -398,9 +451,9 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   tokenItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     paddingVertical: 12,
     borderBottomWidth: 1,
     borderBottomColor: theme.colors.border,
@@ -410,39 +463,39 @@ const styles = StyleSheet.create({
   },
   tokenSymbol: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: theme.colors.text,
     marginBottom: 4,
   },
   tokenName: {
     fontSize: 12,
-    color: '#888',
+    color: "#888",
   },
   tokenAmount: {
-    alignItems: 'flex-end',
+    alignItems: "flex-end",
   },
   balanceAmount: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: theme.colors.text,
     marginBottom: 4,
   },
   balanceValue: {
     fontSize: 14,
-    color: '#888',
+    color: "#888",
   },
   lockedAmount: {
     fontSize: 12,
-    color: '#FF9800',
+    color: "#FF9800",
     marginTop: 2,
   },
   emptyAssets: {
-    alignItems: 'center',
+    alignItems: "center",
     padding: 40,
   },
   emptyText: {
     fontSize: 16,
-    color: '#888',
+    color: "#888",
     marginTop: 16,
     marginBottom: 20,
   },
@@ -456,7 +509,7 @@ const styles = StyleSheet.create({
     color: theme.colors.text,
   },
   dialogInput: {
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
   },
 });
 

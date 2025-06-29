@@ -1,37 +1,35 @@
-<<<<<<< HEAD
-=======
-import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useSelector } from 'react-redux';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { useSelector } from "react-redux";
+import Icon from "react-native-vector-icons/MaterialIcons";
+import { useEffect } from "react";
 
 // auth Screens
->>>>>>> 4935994f15bb2f0ac41aae445393eba6e99356c1
-import LoginScreen from '../screens/auth/LoginScreen.js';
-import RegisterScreen from '../screens/auth/RegisterScreen';
-import ForgotPasswordScreen from '../screens/auth/ForgotPasswordScreen';
-import ResetPasswordScreen from '../screens/auth/ResetPasswordScreen';
-import VerifyEmailScreen from '../screens/auth/VerifyEmailScreen';
+import LoginScreen from "../screens/auth/LoginScreen.js";
+import RegisterScreen from "../screens/auth/RegisterScreen";
+import ForgotPasswordScreen from "../screens/auth/ForgotPasswordScreen";
+import ResetPasswordScreen from "../screens/auth/ResetPasswordScreen";
+import VerifyEmailScreen from "../screens/auth/VerifyEmailScreen";
 
 // Main Screens
-import HomeScreen from '../screens/main/HomeScreen';
-import MarketScreen from '../screens/main/MarketScreen';
-import WalletScreen from '../screens/main/WalletScreen';
-import ProfileScreen from '../screens/main/ProfileScreen';
+import HomeScreen from "../screens/main/HomeScreen";
+import MarketScreen from "../screens/main/MarketScreen";
+import WalletScreen from "../screens/main/WalletScreen";
+import ProfileScreen from "../screens/main/ProfileScreen";
 
 // Detail Screens
-import TokenDetailScreen from '../screens/details/TokenDetailScreen';
-import TradingScreen from '../screens/details/TradingScreen';
-import WalletDetailScreen from '../screens/details/WalletDetailScreen';
-import SwapScreen from '../screens/details/SwapScreen';
-import DepositScreen from '../screens/details/DepositScreen';
-import WithdrawScreen from '../screens/details/WithdrawScreen';
-import TransferScreen from '../screens/details/TransferScreen';
-import OrderHistoryScreen from '../screens/details/OrderHistoryScreen';
-import TransactionHistoryScreen from '../screens/details/TransactionHistoryScreen';
-import SettingsScreen from '../screens/details/SettingsScreen';
-import HelpScreen from '../screens/details/HelpScreen';
-import { theme } from '../theme.js';
+import TokenDetailScreen from "../screens/details/TokenDetailScreen";
+import TradingScreen from "../screens/details/TradingScreen";
+import WalletDetailScreen from "../screens/details/WalletDetailScreen";
+import SwapScreen from "../screens/details/SwapScreen";
+import DepositScreen from "../screens/details/DepositScreen";
+import WithdrawScreen from "../screens/details/WithdrawScreen";
+import TransferScreen from "../screens/details/TransferScreen";
+import OrderHistoryScreen from "../screens/details/OrderHistoryScreen";
+import TransactionHistoryScreen from "../screens/details/TransactionHistoryScreen";
+import SettingsScreen from "../screens/details/SettingsScreen";
+import HelpScreen from "../screens/details/HelpScreen";
+import { theme } from "../theme.js";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -50,8 +48,16 @@ const AuthNavigator = () => (
       cardStyle: { backgroundColor: theme.colors.background },
     }}
   >
-    <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
-    <Stack.Screen name="Register" component={RegisterScreen} options={{ headerShown: false }} />
+    <Stack.Screen
+      name="Login"
+      component={LoginScreen}
+      options={{ headerShown: false }}
+    />
+    <Stack.Screen
+      name="Register"
+      component={RegisterScreen}
+      options={{ headerShown: false }}
+    />
     <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
     <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
     <Stack.Screen name="VerifyEmail" component={VerifyEmailScreen} />
@@ -63,7 +69,7 @@ const TabNavigator = () => (
   <Tab.Navigator
     screenOptions={{
       tabBarActiveTintColor: theme.colors.primary,
-      tabBarInactiveTintColor: '#888',
+      tabBarInactiveTintColor: "#888",
       tabBarStyle: {
         backgroundColor: theme.colors.surface,
         borderTopColor: theme.colors.border,
@@ -100,7 +106,12 @@ const TabNavigator = () => (
       component={WalletScreen}
       options={{
         tabBarIcon: ({ color, size }) => (
-          <Icon name="account-balance-wallet" type="material" color={color} size={size} />
+          <Icon
+            name="account-balance-wallet"
+            type="material"
+            color={color}
+            size={size}
+          />
         ),
       }}
     />
@@ -135,15 +146,31 @@ const MainNavigator = () => (
       component={TabNavigator}
       options={{ headerShown: false }}
     />
-    <Stack.Screen name="TokenDetail" component={TokenDetailScreen} options={{ title: 'Token Details' }} />
+    <Stack.Screen
+      name="TokenDetail"
+      component={TokenDetailScreen}
+      options={{ title: "Token Details" }}
+    />
     <Stack.Screen name="Trading" component={TradingScreen} />
-    <Stack.Screen name="WalletDetail" component={WalletDetailScreen} options={{ title: 'Wallet Details' }} />
+    <Stack.Screen
+      name="WalletDetail"
+      component={WalletDetailScreen}
+      options={{ title: "Wallet Details" }}
+    />
     <Stack.Screen name="Swap" component={SwapScreen} />
     <Stack.Screen name="Deposit" component={DepositScreen} />
     <Stack.Screen name="Withdraw" component={WithdrawScreen} />
     <Stack.Screen name="Transfer" component={TransferScreen} />
-    <Stack.Screen name="OrderHistory" component={OrderHistoryScreen} options={{ title: 'Order History' }} />
-    <Stack.Screen name="TransactionHistory" component={TransactionHistoryScreen} options={{ title: 'Transaction History' }} />
+    <Stack.Screen
+      name="OrderHistory"
+      component={OrderHistoryScreen}
+      options={{ title: "Order History" }}
+    />
+    <Stack.Screen
+      name="TransactionHistory"
+      component={TransactionHistoryScreen}
+      options={{ title: "Transaction History" }}
+    />
     <Stack.Screen name="Settings" component={SettingsScreen} />
     <Stack.Screen name="Help" component={HelpScreen} />
   </Stack.Navigator>
@@ -151,14 +178,34 @@ const MainNavigator = () => (
 
 // Root Navigator
 const AppNavigator = () => {
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    console.log("Navigation state changed:", { isAuthenticated, user });
+  }, [isAuthenticated, user]);
 
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {isAuthenticated ? (
-        <Stack.Screen name="Main" component={MainNavigator} />
+        <Stack.Screen
+          name="Main"
+          component={MainNavigator}
+          listeners={{
+            focus: () => {
+              console.log("Main navigator focused");
+            },
+          }}
+        />
       ) : (
-        <Stack.Screen name="Auth" component={AuthNavigator} />
+        <Stack.Screen
+          name="Auth"
+          component={AuthNavigator}
+          listeners={{
+            focus: () => {
+              console.log("Auth navigator focused");
+            },
+          }}
+        />
       )}
     </Stack.Navigator>
   );

@@ -1,23 +1,42 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { persistStore, persistReducer } from 'redux-persist';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { combineReducers } from 'redux';
-import authReducer from './slices/authSlice.js';
-import walletReducer from './slices/walletSlice.js';
-import marketReducer from './slices/marketSlice.js';
-import tokenReducer from './slices/tokenSlice.js';
-import stakingReducer from './slices/stakingSlice.js';
-<<<<<<< HEAD
-=======
-import apiClient, { setupApiClient } from '../services/apiClient.js';
-import { refreshToken, logout } from './slices/authSlice.js';
->>>>>>> 4935994f15bb2f0ac41aae445393eba6e99356c1
+import { configureStore } from "@reduxjs/toolkit";
+import { persistStore, persistReducer } from "redux-persist";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { combineReducers } from "redux";
+import authReducer from "./slices/authSlice.js";
+import walletReducer from "./slices/walletSlice.js";
+import marketReducer from "./slices/marketSlice.js";
+import tokenReducer from "./slices/tokenSlice.js";
+import stakingReducer from "./slices/stakingSlice.js";
+import { rehydrateComplete } from "./slices/authSlice.js";
+import apiClient, { setupApiClient } from "../services/apiClient.js";
 
+console.log("🏗️ Initializing Redux store");
 
 const persistConfig = {
-  key: 'root',
+  key: "root",
   storage: AsyncStorage,
-  whitelist: ['auth'], // only auth will be persisted
+  whitelist: ["auth"],
+  debug: __DEV__,
+  // Blacklist specific fields from being persisted
+  transforms: [
+    {
+      in: (state, key) => {
+        if (key === "auth") {
+          // Don't persist loading state
+          const { isLoading, ...persistedState } = state;
+          return persistedState;
+        }
+        return state;
+      },
+      out: (state, key) => {
+        if (key === "auth") {
+          // Ensure loading is false when rehydrating
+          return { ...state, isLoading: false };
+        }
+        return state;
+      },
+    },
+  ],
 };
 
 const rootReducer = combineReducers({
@@ -30,15 +49,28 @@ const rootReducer = combineReducers({
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
+// Simple logging middleware
+const loggingMiddleware = () => (next) => (action) => {
+  console.log("📊 Action:", action.type);
+  return next(action);
+};
+
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: false,
-    }),
+      serializableCheck: {
+        ignoredActions: ["persist/PERSIST", "persist/REHYDRATE"],
+      },
+    }).concat(loggingMiddleware),
+  devTools: __DEV__,
 });
 
-// Setup apiClient interceptors after store is created
-setupApiClient(store, { refreshToken, logout });
+// Setup API client
+setupApiClient(store);
 
-export const persistor = persistStore(store);
+export const persistor = persistStore(store, null, () => {
+  console.log("📦 Redux persist rehydration complete");
+  // Ensure loading state is false after rehydration
+  store.dispatch(rehydrateComplete());
+});

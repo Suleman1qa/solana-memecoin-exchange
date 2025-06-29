@@ -1,75 +1,67 @@
-import axios from 'axios';
-import { API_BASE_URL } from '@env';
-<<<<<<< HEAD
-import { store } from '../store/index.js';
-import { refreshToken, logout } from '../store/slices/authSlice.js';
-=======
->>>>>>> 4935994f15bb2f0ac41aae445393eba6e99356c1
+import axios from "axios";
+import { API_BASE_URL } from "@env";
+
+console.log("STARTUP: Initializing API Client");
+console.log(
+  "STARTUP: API Base URL =",
+  API_BASE_URL || "http://192.168.0.191:5000/api"
+);
 
 const apiClient = axios.create({
-  baseURL: API_BASE_URL || 'http://localhost:5000/api',
+  baseURL: API_BASE_URL || "http://192.168.0.191:5000/api",
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
+  timeout: 30000,
 });
 
-// Function to setup interceptors with access to the store and actions
-export function setupApiClient(store, { refreshToken, logout }) {
-  // Request interceptor to add auth token
-  apiClient.interceptors.request.use(
-    async (config) => {
-      const state = store.getState();
-      const token = state.auth.token;
-      
-      if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
-      }
-      
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
-    }
-  );
+// Basic request interceptor
+apiClient.interceptors.request.use(
+  (config) => {
+    console.log("🚀 Making request:", {
+      url: config.url,
+      method: config.method,
+      data: config.data,
+    });
+    return config;
+  },
+  (error) => {
+    console.log("❌ Request error:", error.message);
+    return Promise.reject(error);
+  }
+);
 
-  // Response interceptor to handle token refresh
-  apiClient.interceptors.response.use(
-    (response) => {
-      return response;
-    },
-    async (error) => {
-      const originalRequest = error.config;
-      
-      // If error is 401 and we haven't tried to refresh token yet
-      if (error.response && error.response.status === 401 && !originalRequest._retry) {
-        originalRequest._retry = true;
-        
-        try {
-          // Try to refresh token
-          await store.dispatch(refreshToken());
-          const state = store.getState();
-          
-          // If token was refreshed successfully
-          if (state.auth.token) {
-            // Update token in the original request
-            originalRequest.headers.Authorization = `Bearer ${state.auth.token}`;
-            // Retry the original request
-            return apiClient(originalRequest);
-          } else {
-            // If token refresh failed, logout
-            store.dispatch(logout());
-            return Promise.reject(error);
-          }
-        } catch (refreshError) {
-          // If token refresh failed, logout
-          store.dispatch(logout());
-          return Promise.reject(error);
-        }
-      }
-      
-      return Promise.reject(error);
+// Basic response interceptor
+apiClient.interceptors.response.use(
+  (response) => {
+    console.log("✅ Response received:", {
+      status: response.status,
+      data: response.data,
+    });
+    return response;
+  },
+  (error) => {
+    console.log("❌ Response error:", {
+      message: error.message,
+      response: error.response?.data,
+      status: error.response?.status,
+    });
+    return Promise.reject(error);
+  }
+);
+
+export function setupApiClient(store) {
+  console.log("SETUP: Configuring API Client with store");
+
+  // Add auth token to requests
+  apiClient.interceptors.request.use((config) => {
+    const token = store.getState().auth.token;
+    if (token) {
+      console.log("🔑 Adding auth token to request");
+      config.headers.Authorization = `Bearer ${token}`;
     }
-  );
+    return config;
+  });
 }
 
 export default apiClient;

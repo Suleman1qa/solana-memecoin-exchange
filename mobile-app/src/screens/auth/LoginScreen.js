@@ -1,27 +1,106 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, TouchableOpacity, Image, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
-import { Text, TextInput, Button, ActivityIndicator, Snackbar } from 'react-native-paper';
-import { useDispatch, useSelector } from 'react-redux';
-import { login, clearError } from '../../store/slices/authSlice.js';
-import { theme } from '../../theme.js';
+import React, { useState, useEffect } from "react";
+import {
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  Image,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  Alert,
+} from "react-native";
+import {
+  Text,
+  TextInput,
+  Button,
+  ActivityIndicator,
+  Snackbar,
+} from "react-native-paper";
+import { useDispatch, useSelector } from "react-redux";
+import { login, clearError } from "../../store/slices/authSlice.js";
+import { theme } from "../../theme.js";
+import * as Updates from "expo-updates";
+
+// Helper function for logging
+const log = (message, data) => {
+  const logMessage = `[${Updates.channel || "development"}] ${message}`;
+  if (data) {
+    console.log(logMessage, JSON.stringify(data, null, 2));
+  } else {
+    console.log(logMessage);
+  }
+};
 
 const LoginScreen = ({ navigation }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  log("🎭 LoginScreen rendered");
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [secureTextEntry, setSecureTextEntry] = useState(true);
   const [snackbarVisible, setSnackbarVisible] = useState(false);
 
   const dispatch = useDispatch();
-  const { isLoading, error } = useSelector((state) => state.auth);
+  const { isLoading, error, isAuthenticated } = useSelector((state) => {
+    log("🔄 Auth state in selector", state.auth);
+    return state.auth;
+  });
 
   useEffect(() => {
+    log("🎬 LoginScreen mounted");
+    return () => {
+      log("🔚 LoginScreen unmounted");
+      dispatch(clearError());
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
+    log("📊 Auth state changed", {
+      isLoading,
+      hasError: !!error,
+      isAuthenticated,
+    });
+
     if (error) {
+      log("❌ Error state", { error });
       setSnackbarVisible(true);
     }
-  }, [error]);
 
-  const handleLogin = () => {
-    dispatch(login({ email, password }));
+    if (isAuthenticated) {
+      log("✅ User authenticated");
+    }
+  }, [isLoading, error, isAuthenticated]);
+
+  const handleLogin = async () => {
+    try {
+      console.warn("=== LOGIN START ===");
+      console.warn("Attempting login with:", { email });
+
+      const resultAction = await dispatch(login({ email, password }));
+      console.warn("Dispatch result:", {
+        type: resultAction.type,
+        isSuccess: login.fulfilled.match(resultAction),
+        isError: login.rejected.match(resultAction),
+      });
+
+      if (login.fulfilled.match(resultAction)) {
+        console.warn("Login Success:", {
+          hasUser: !!resultAction.payload?.user,
+          hasToken: !!resultAction.payload?.token,
+        });
+      } else if (login.rejected.match(resultAction)) {
+        console.warn("Login Rejected:", resultAction.error);
+        Alert.alert(
+          "Login Failed",
+          resultAction.error?.message ||
+            "Please check your credentials and try again"
+        );
+      }
+    } catch (error) {
+      console.warn("Login Error:", error);
+      Alert.alert("Error", error.message || "An unexpected error occurred");
+    } finally {
+      console.warn("=== LOGIN END ===");
+    }
   };
 
   const toggleSecureEntry = () => {
@@ -35,13 +114,13 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : null}
+      behavior={Platform.OS === "ios" ? "padding" : null}
       style={styles.container}
     >
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.logoContainer}>
           <Image
-            source={require('../../assets/memecoinEx-logo.png')}
+            source={require("../../assets/memecoinEx-logo.png")}
             style={styles.logo}
             resizeMode="contain"
           />
@@ -52,25 +131,35 @@ const LoginScreen = ({ navigation }) => {
           <TextInput
             label="Email"
             value={email}
-            onChangeText={setEmail}
+            onChangeText={(text) => {
+              log("📝 Email input changed");
+              setEmail(text);
+            }}
             mode="outlined"
             autoCapitalize="none"
             keyboardType="email-address"
             style={styles.input}
             theme={{ colors: { primary: theme.colors.primary } }}
+            disabled={isLoading}
+            error={!!error}
           />
 
           <TextInput
             label="Password"
             value={password}
-            onChangeText={setPassword}
+            onChangeText={(text) => {
+              log("📝 Password input changed");
+              setPassword(text);
+            }}
             mode="outlined"
             secureTextEntry={secureTextEntry}
             style={styles.input}
             theme={{ colors: { primary: theme.colors.primary } }}
+            disabled={isLoading}
+            error={!!error}
             right={
               <TextInput.Icon
-                name={secureTextEntry ? 'eye' : 'eye-off'}
+                name={secureTextEntry ? "eye" : "eye-off"}
                 onPress={toggleSecureEntry}
                 color={theme.colors.primary}
               />
@@ -78,8 +167,9 @@ const LoginScreen = ({ navigation }) => {
           />
 
           <TouchableOpacity
-            onPress={() => navigation.navigate('ForgotPassword')}
+            onPress={() => navigation.navigate("ForgotPassword")}
             style={styles.forgotPassword}
+            disabled={isLoading}
           >
             <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
           </TouchableOpacity>
@@ -89,18 +179,21 @@ const LoginScreen = ({ navigation }) => {
             onPress={handleLogin}
             style={styles.button}
             labelStyle={styles.buttonLabel}
-            disabled={isLoading}
+            disabled={isLoading || !email || !password}
           >
             {isLoading ? (
               <ActivityIndicator color={theme.colors.text} size="small" />
             ) : (
-              'Log In'
+              "Log In"
             )}
           </Button>
 
           <View style={styles.registerContainer}>
             <Text style={styles.registerText}>Don't have an account? </Text>
-            <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Register")}
+              disabled={isLoading}
+            >
               <Text style={styles.registerLink}>Sign Up</Text>
             </TouchableOpacity>
           </View>
@@ -110,11 +203,11 @@ const LoginScreen = ({ navigation }) => {
           visible={snackbarVisible}
           onDismiss={dismissSnackbar}
           action={{
-            label: 'Dismiss',
+            label: "Dismiss",
             onPress: dismissSnackbar,
           }}
           duration={3000}
-          style={styles.snackbar}
+          style={[styles.snackbar, { backgroundColor: theme.colors.error }]}
         >
           {error}
         </Snackbar>
@@ -135,7 +228,7 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
   },
   logoContainer: {
-    alignItems: 'center',
+    alignItems: "center",
     marginBottom: 40,
   },
   logo: {
@@ -144,19 +237,19 @@ const styles = StyleSheet.create({
   },
   appName: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: theme.colors.primary,
     marginTop: 10,
   },
   formContainer: {
-    width: '100%',
+    width: "100%",
   },
   input: {
     marginBottom: 15,
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
   },
   forgotPassword: {
-    alignSelf: 'flex-end',
+    alignSelf: "flex-end",
     marginBottom: 20,
   },
   forgotPasswordText: {
@@ -168,11 +261,11 @@ const styles = StyleSheet.create({
   },
   buttonLabel: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   registerContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
     marginTop: 20,
   },
   registerText: {
@@ -180,7 +273,7 @@ const styles = StyleSheet.create({
   },
   registerLink: {
     color: theme.colors.primary,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   snackbar: {
     backgroundColor: theme.colors.error,
