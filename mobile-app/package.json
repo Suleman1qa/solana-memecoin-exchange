@@ -27,7 +27,7 @@
     "axios": "^1.10.0",
     "bignumber.js": "^9.3.0",
     "date-fns": "^4.1.0",
-    "expo": "^53.0.12",
+    "expo": "^53.0.13",
     "expo-clipboard": "~7.1.4",
     "expo-linear-gradient": "~14.1.5",
     "expo-secure-store": "~14.2.3",
