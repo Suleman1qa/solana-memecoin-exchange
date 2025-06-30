@@ -13,7 +13,7 @@ services:
       - MONGODB_URI=mongodb://mongodb:27017/solana-memecoin-exchange
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-      - CORS_ORIGINS=http://localhost:3000,http://localhost:8081,http://192.168.0.191:*,capacitor://localhost,http://localhost
+      - CORS_ORIGINS=http://localhost:3000,http://localhost:8081,http://192.168.18.36:*,capacitor://localhost,http://localhost
     depends_on:
       - mongodb
       - redis
