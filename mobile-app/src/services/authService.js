@@ -3,7 +3,7 @@ import { logApiError } from "./logApiError.js";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Updates from "expo-updates";
 
-const BASE_URL = "http://192.168.18.36:5000/api";
+const BASE_URL = "http://192.168.18.36:5000/api,http://192.168.103.75:5000/api,http://localhost:5000/api";
 
 // Helper function for logging
 const log = (message, data) => {
