@@ -6,7 +6,7 @@ import { Card, Text, Button, List } from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { RootState } from "../../store";
 import { Colors } from "../../constants/Colors";
-import { routes } from "../navigation/routes";
+import { routes } from "../../src/navigation/routes";
 
 export default function WalletScreen() {
   const router = useRouter();

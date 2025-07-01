@@ -4,11 +4,11 @@ import { API_BASE_URL } from "@env";
 console.log("STARTUP: Initializing API Client");
 console.log(
   "STARTUP: API Base URL =",
-  API_BASE_URL || "http://192.168.0.191:5000/api"
+  API_BASE_URL || "http://192.168.18.36:5000/api,http://192.168.103.75:5000/api,http://localhost:5000/api"
 );
 
 const apiClient = axios.create({
-  baseURL: API_BASE_URL || "http://192.168.0.191:5000/api",
+  baseURL: API_BASE_URL || "http://192.168.18.36:5000/api,http://192.168.103.75:5000/api,http://localhost:5000/api",
   headers: {
     "Content-Type": "application/json",
   },

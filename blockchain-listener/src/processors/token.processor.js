@@ -108,7 +108,7 @@ const TokenSchema = new mongoose.Schema(
   }
 );
 
-const TokenModel = mongoose.model("Token", TokenSchema);
+const TokenModel = mongoose.models.Token || mongoose.model("Token", TokenSchema);
 
 class TokenProcessor {
   constructor(redisClient) {

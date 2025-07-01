@@ -27,6 +27,26 @@ export const logout = createAsyncThunk(
   }
 );
 
+export const register = createAsyncThunk(
+  "auth/register",
+  async ({ email, password, username, fullName }, { rejectWithValue }) => {
+    try {
+      console.log("📝 Register thunk start");
+      const response = await authService.register(
+        email,
+        password,
+        username,
+        fullName
+      );
+      console.log("✅ Register thunk success");
+      return response;
+    } catch (error) {
+      console.log("❌ Register thunk error:", error.message);
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 const initialState = {
   user: null,
   token: null,
@@ -68,6 +88,27 @@ const authSlice = createSlice({
       })
       .addCase(login.rejected, (state, action) => {
         console.log("💥 Login rejected");
+        state.isLoading = false;
+        state.isAuthenticated = false;
+        state.error = action.payload;
+      })
+      // Register cases
+      .addCase(register.pending, (state) => {
+        console.log("⏳ Register pending");
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(register.fulfilled, (state, action) => {
+        console.log("🎉 Register fulfilled");
+        state.isLoading = false;
+        state.isAuthenticated = true;
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.refreshToken = action.payload.refreshToken;
+        state.error = null;
+      })
+      .addCase(register.rejected, (state, action) => {
+        console.log("💥 Register rejected");
         state.isLoading = false;
         state.isAuthenticated = false;
         state.error = action.payload;
