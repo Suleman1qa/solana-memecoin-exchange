@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface TokenPrice {
   price: string;
@@ -14,15 +14,31 @@ interface MarketData {
 interface MarketState {
   marketData: MarketData;
   selectedToken: string | null;
-  loading: boolean;
+  isLoading: boolean;
   error: string | null;
+  userOrders: any[]; // Add userOrders to state
 }
+
+export const fetchUserOrders = createAsyncThunk(
+  "market/fetchUserOrders",
+  async (_, thunkAPI) => {
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    // Return mock orders
+    return [
+      { id: 1, status: "OPEN" },
+      { id: 2, status: "FILLED" },
+      { id: 3, status: "PARTIALLY_FILLED" },
+    ];
+  }
+);
 
 const initialState: MarketState = {
   marketData: {},
   selectedToken: null,
-  loading: false,
+  isLoading: false,
   error: null,
+  userOrders: [],
 };
 
 export const marketSlice = createSlice({
@@ -30,11 +46,11 @@ export const marketSlice = createSlice({
   initialState,
   reducers: {
     setMarketLoading: (state: MarketState, action: PayloadAction<boolean>) => {
-      state.loading = action.payload;
+      state.isLoading = action.payload;
       state.error = null;
     },
     setMarketError: (state: MarketState, action: PayloadAction<string>) => {
-      state.loading = false;
+      state.isLoading = false;
       state.error = action.payload;
     },
     updateMarketData: (
@@ -42,7 +58,7 @@ export const marketSlice = createSlice({
       action: PayloadAction<MarketData>
     ) => {
       state.marketData = action.payload;
-      state.loading = false;
+      state.isLoading = false;
       state.error = null;
     },
     updateTokenPrice: (
@@ -55,6 +71,21 @@ export const marketSlice = createSlice({
     setSelectedToken: (state: MarketState, action: PayloadAction<string>) => {
       state.selectedToken = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchUserOrders.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchUserOrders.fulfilled, (state, action) => {
+        state.userOrders = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(fetchUserOrders.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message || "Failed to fetch orders";
+      });
   },
 });
 

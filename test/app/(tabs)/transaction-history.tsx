@@ -39,90 +39,49 @@ const mockTransactions = [
 const getTransactionIcon = (type: string) => {
   switch (type) {
     case "send":
-      return "arrow-top-right";
+      return "arrow-up-bold";
     case "receive":
-      return "arrow-bottom-left";
+      return "arrow-down-bold";
     case "swap":
       return "swap-horizontal";
     default:
-      return "circle";
-  }
-};
-
-const getTransactionColor = (type: string) => {
-  switch (type) {
-    case "send":
-      return Colors.light.error;
-    case "receive":
-      return Colors.light.success;
-    case "swap":
-      return Colors.light.primary;
-    default:
-      return Colors.light.text;
+      return "help-circle-outline";
   }
 };
 
 export default function TransactionHistoryScreen() {
   return (
     <ScrollView style={styles.container}>
-      <Card style={styles.filtersCard}>
-        <Card.Content style={styles.filters}>
-          <Chip selected onPress={() => {}} style={styles.filterChip}>
-            All
-          </Chip>
-          <Chip onPress={() => {}} style={styles.filterChip}>
-            Send
-          </Chip>
-          <Chip onPress={() => {}} style={styles.filterChip}>
-            Receive
-          </Chip>
-          <Chip onPress={() => {}} style={styles.filterChip}>
-            Swap
-          </Chip>
-        </Card.Content>
-      </Card>
-
-      <Card style={styles.transactionsCard}>
+      <Card style={styles.card}>
+        <Card.Title title="Transaction History (Mock Data)" />
         <Card.Content>
-          {mockTransactions.map((tx) => (
-            <List.Item
-              key={tx.id}
-              title={tx.type.toUpperCase()}
-              description={new Date(tx.date).toLocaleString()}
-              left={(props) => (
-                <MaterialCommunityIcons
-                  {...props}
-                  name={getTransactionIcon(tx.type)}
-                  size={24}
-                  color={getTransactionColor(tx.type)}
-                />
-              )}
-              right={() => (
-                <View style={styles.amountContainer}>
-                  {tx.type === "swap" ? (
-                    <>
-                      <Text style={styles.amount}>
-                        -{tx.amountFrom} {tx.tokenFrom}
-                      </Text>
-                      <Text style={styles.amount}>
-                        +{tx.amountTo} {tx.tokenTo}
-                      </Text>
-                    </>
-                  ) : (
-                    <Text
-                      style={[
-                        styles.amount,
-                        { color: getTransactionColor(tx.type) },
-                      ]}
-                    >
-                      {tx.type === "send" ? "-" : "+"}
-                      {tx.amount} {tx.token}
-                    </Text>
-                  )}
-                </View>
-              )}
-            />
-          ))}
+          {mockTransactions.length === 0 ? (
+            <Text style={styles.placeholderText}>
+              No transaction history data available.
+            </Text>
+          ) : (
+            mockTransactions.map((tx) => (
+              <List.Item
+                key={tx.id}
+                title={
+                  tx.type === "swap"
+                    ? `Swap: ${tx.amountFrom} ${tx.tokenFrom} → ${tx.amountTo} ${tx.tokenTo}`
+                    : `${tx.type === "send" ? "Sent" : "Received"} ${tx.amount} ${tx.token}`
+                }
+                description={`Status: ${tx.status}  •  ${new Date(
+                  tx.date
+                ).toLocaleString()}`}
+                left={(props) => (
+                  <MaterialCommunityIcons
+                    {...props}
+                    name={getTransactionIcon(tx.type)}
+                    size={28}
+                    color={Colors.light.primary}
+                  />
+                )}
+              />
+            ))
+          )}
         </Card.Content>
       </Card>
     </ScrollView>
@@ -134,25 +93,15 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.light.background,
   },
-  filtersCard: {
+  card: {
     margin: 16,
-    marginBottom: 8,
+    borderRadius: 12,
+    backgroundColor: Colors.light.card,
   },
-  filters: {
-    flexDirection: "row",
-    gap: 8,
-  },
-  filterChip: {
-    backgroundColor: Colors.light.background,
-  },
-  transactionsCard: {
-    margin: 16,
-    marginTop: 8,
-  },
-  amountContainer: {
-    alignItems: "flex-end",
-  },
-  amount: {
-    fontWeight: "bold",
+  placeholderText: {
+    textAlign: "center",
+    color: Colors.light.text,
+    fontSize: 18,
+    padding: 32,
   },
 });

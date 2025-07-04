@@ -1,188 +1,261 @@
 import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
-import { useSelector } from "react-redux";
-import { Card, Text, TextInput, Button, IconButton } from "react-native-paper";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { RootState } from "../../store";
+import {
+  StyleSheet,
+  View,
+  ScrollView,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
+import {
+  Text,
+  TextInput,
+  Button,
+  Card,
+  Title,
+  Divider,
+  Snackbar,
+} from "react-native-paper";
 import { Colors } from "../../constants/Colors";
 
-export default function SwapScreen() {
-  const [fromAmount, setFromAmount] = useState("");
+// Dummy tokens for swap
+const tokens = [
+  { symbol: "MEME", name: "Memecoin", price: 0.000123 },
+  { symbol: "DOGE", name: "Dogecoin", price: 0.123456 },
+  { symbol: "USDT", name: "USD Token", price: 1.0 },
+];
+
+const SwapScreen = () => {
+  const [fromToken, setFromToken] = useState(tokens[0]);
+  const [toToken, setToToken] = useState(tokens[1]);
+  const [amount, setAmount] = useState("");
   const [toAmount, setToAmount] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [slippageTolerance, setSlippageTolerance] = useState("1");
+  const [snackbarVisible, setSnackbarVisible] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
 
-  const { connected } = useSelector((state: RootState) => state.wallet);
-  const tokens = useSelector((state: RootState) => state.token.tokens);
-
-  const handleSwap = async () => {
-    try {
-      setLoading(true);
-      // TODO: Implement swap functionality
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-    } catch (error) {
-      console.error("Swap failed:", error);
-    } finally {
-      setLoading(false);
-    }
+  const handleSwapTokens = () => {
+    setFromToken(toToken);
+    setToToken(fromToken);
+    setAmount("");
+    setToAmount("");
   };
 
-  if (!connected) {
-    return (
-      <View style={styles.container}>
-        <Card style={styles.connectCard}>
-          <Card.Content style={styles.connectCardContent}>
-            <MaterialCommunityIcons
-              name="wallet-outline"
-              size={60}
-              color={Colors.light.primary}
-            />
-            <Text style={styles.connectText}>
-              Connect your wallet to start swapping tokens
-            </Text>
-            <Button
-              mode="contained"
-              onPress={() => {
-                /* TODO: Implement wallet connect */
-              }}
-              style={styles.connectButton}
-            >
-              Connect Wallet
-            </Button>
-          </Card.Content>
-        </Card>
-      </View>
+  const handleSwap = () => {
+    if (!fromToken || !toToken || !amount || parseFloat(amount) <= 0) {
+      setSnackbarMessage("Please enter a valid amount and select tokens.");
+      setSnackbarVisible(true);
+      return;
+    }
+    setSnackbarMessage(
+      `Swapped ${amount} ${fromToken.symbol} to ${toToken.symbol}! (Simulated)`
     );
-  }
+    setSnackbarVisible(true);
+    setAmount("");
+    setToAmount("");
+  };
 
   return (
-    <View style={styles.container}>
-      <Card style={styles.swapCard}>
-        <Card.Content>
-          <Text variant="titleMedium" style={styles.sectionTitle}>
-            Swap Tokens
-          </Text>
-
-          <View style={styles.inputContainer}>
-            <Text>From</Text>
-            <View style={styles.inputWrapper}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : undefined}
+      style={styles.container}
+    >
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <Card style={styles.card}>
+          <Card.Content>
+            <Title style={styles.cardTitle}>Swap</Title>
+            <Text style={styles.cardSubtitle}>Trade tokens in an instant</Text>
+            <View style={styles.tokenRow}>
+              <Text style={styles.label}>From</Text>
+              <TouchableOpacity style={styles.tokenSelector}>
+                <Text style={styles.tokenSymbol}>{fromToken.symbol}</Text>
+              </TouchableOpacity>
               <TextInput
-                value={fromAmount}
-                onChangeText={setFromAmount}
-                keyboardType="decimal-pad"
-                style={styles.input}
+                value={amount}
+                onChangeText={setAmount}
+                keyboardType="numeric"
                 placeholder="0.0"
-              />
-              <Button
+                style={styles.amountInput}
                 mode="outlined"
-                onPress={() => {
-                  /* TODO: Open token selector */
-                }}
-                style={styles.tokenButton}
-              >
-                SOL
-                <MaterialCommunityIcons name="chevron-down" size={20} />
-              </Button>
+                theme={{ colors: { primary: Colors.light.primary } }}
+              />
             </View>
-          </View>
-
-          <IconButton
-            icon="swap-vertical"
-            size={24}
-            onPress={() => {
-              const temp = fromAmount;
-              setFromAmount(toAmount);
-              setToAmount(temp);
-            }}
-            style={styles.swapButton}
-          />
-
-          <View style={styles.inputContainer}>
-            <Text>To</Text>
-            <View style={styles.inputWrapper}>
+            <View style={styles.switchRow}>
+              <TouchableOpacity
+                onPress={handleSwapTokens}
+                style={styles.switchButton}
+              >
+                <Text style={styles.switchButtonText}>⇅</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.tokenRow}>
+              <Text style={styles.label}>To</Text>
+              <TouchableOpacity style={styles.tokenSelector}>
+                <Text style={styles.tokenSymbol}>{toToken.symbol}</Text>
+              </TouchableOpacity>
               <TextInput
                 value={toAmount}
                 onChangeText={setToAmount}
-                keyboardType="decimal-pad"
-                style={styles.input}
+                keyboardType="numeric"
                 placeholder="0.0"
-              />
-              <Button
+                style={styles.amountInput}
                 mode="outlined"
-                onPress={() => {
-                  /* TODO: Open token selector */
-                }}
-                style={styles.tokenButton}
-              >
-                Select Token
-                <MaterialCommunityIcons name="chevron-down" size={20} />
-              </Button>
+                theme={{ colors: { primary: Colors.light.primary } }}
+              />
             </View>
-          </View>
-
-          <Button
-            mode="contained"
-            onPress={handleSwap}
-            loading={loading}
-            disabled={loading || !fromAmount || !toAmount}
-            style={styles.swapActionButton}
-          >
-            Swap
-          </Button>
-        </Card.Content>
-      </Card>
-    </View>
+            <View style={styles.slippageContainer}>
+              <Text style={styles.slippageTitle}>Slippage Tolerance</Text>
+              <View style={styles.slippageButtons}>
+                {["0.5", "1", "2", "3"].map((value) => (
+                  <TouchableOpacity
+                    key={value}
+                    style={[
+                      styles.slippageButton,
+                      slippageTolerance === value && styles.activeSlippageButton,
+                    ]}
+                    onPress={() => setSlippageTolerance(value)}
+                  >
+                    <Text
+                      style={[
+                        styles.slippageButtonText,
+                        slippageTolerance === value && styles.activeSlippageButtonText,
+                      ]}
+                    >
+                      {value}%
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+            </View>
+            <Button
+              mode="contained"
+              onPress={handleSwap}
+              style={styles.swapActionButton}
+              disabled={!fromToken || !toToken || !amount || parseFloat(amount) <= 0}
+            >
+              Swap
+            </Button>
+          </Card.Content>
+        </Card>
+      </ScrollView>
+      <Snackbar
+        visible={snackbarVisible}
+        onDismiss={() => setSnackbarVisible(false)}
+        duration={3000}
+        style={[styles.snackbar, { backgroundColor: Colors.light.background }]}
+      >
+        <Text style={{ color: '#000', textAlign: 'center' }}>{snackbarMessage}</Text>
+      </Snackbar>
+    </KeyboardAvoidingView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.light.background,
+  },
+  scrollContent: {
+    flexGrow: 1,
     padding: 16,
   },
-  connectCard: {
-    marginTop: 16,
+  card: {
+    backgroundColor: Colors.light.background,
+    borderRadius: 12,
   },
-  connectCardContent: {
-    alignItems: "center",
-    padding: 20,
+  cardTitle: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 4,
+    color: Colors.light.primary,
   },
-  connectText: {
-    textAlign: "center",
-    marginVertical: 20,
+  cardSubtitle: {
+    fontSize: 14,
+    color: "#888",
+    marginBottom: 24,
   },
-  connectButton: {
-    marginTop: 10,
-    backgroundColor: Colors.light.primary,
-  },
-  swapCard: {
-    marginTop: 16,
-  },
-  sectionTitle: {
-    marginBottom: 16,
-  },
-  inputContainer: {
-    marginBottom: 16,
-  },
-  inputWrapper: {
+  tokenRow: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 8,
+    marginBottom: 16,
   },
-  input: {
-    flex: 1,
+  label: {
+    fontSize: 16,
+    color: Colors.light.primary,
     marginRight: 8,
-    backgroundColor: Colors.light.background,
+    width: 40,
   },
-  tokenButton: {
-    minWidth: 120,
+  tokenSelector: {
+    backgroundColor: Colors.light.primary,
+    borderRadius: 8,
+    padding: 8,
+    marginRight: 12,
   },
-  swapButton: {
-    alignSelf: "center",
-    margin: 8,
+  tokenSymbol: {
+    color: Colors.light.text,
+    fontWeight: "bold",
+    fontSize: 16,
   },
-  swapActionButton: {
-    marginTop: 16,
+  amountInput: {
+    flex: 1,
+    backgroundColor: "transparent",
+    height: 40,
+  },
+  slippageContainer: {
+    marginBottom: 24,
+  },
+  slippageTitle: {
+    fontSize: 14,
+    color: "#888",
+    marginBottom: 8,
+  },
+  slippageButtons: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  slippageButton: {
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+    backgroundColor: "#333",
+    minWidth: 60,
+    alignItems: "center",
+    marginRight: 8,
+  },
+  activeSlippageButton: {
     backgroundColor: Colors.light.primary,
   },
+  slippageButtonText: {
+    color: "#888",
+    fontWeight: "bold",
+  },
+  activeSlippageButtonText: {
+    color: Colors.light.text,
+  },
+  swapActionButton: {
+    backgroundColor: Colors.light.primary,
+    marginBottom: 16,
+  },
+  snackbar: {
+    backgroundColor: Colors.light.background,
+  },
+  switchRow: {
+    alignItems: "center",
+    marginBottom: 16,
+  },
+  switchButton: {
+    backgroundColor: Colors.light.primary,
+    borderRadius: 20,
+    padding: 8,
+    width: 40,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  switchButtonText: {
+    color: Colors.light.text,
+    fontSize: 20,
+    fontWeight: "bold",
+  },
 });
+
+export default SwapScreen;

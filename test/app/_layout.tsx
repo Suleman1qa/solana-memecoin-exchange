@@ -1,16 +1,27 @@
 import { useEffect } from "react";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-import { Provider as PaperProvider } from "react-native-paper";
+import { Provider as PaperProvider, MD3LightTheme } from "react-native-paper";
 import { Stack } from "expo-router";
 import { store, persistor } from "../store";
 import { Colors } from "../constants/Colors";
 
-// Create theme object
+// Create theme object that extends MD3LightTheme
 const theme = {
-  ...Colors.light, // We'll add dark mode support later
-  roundness: 4,
-  version: 3,
+  ...MD3LightTheme,
+  colors: {
+    ...MD3LightTheme.colors,
+    primary: Colors.light.primary,
+    secondary: Colors.light.secondary,
+    background: Colors.light.background,
+    surface: Colors.light.card,
+    onSurface: Colors.light.text,
+    outline: Colors.light.border,
+    notification: Colors.light.notification,
+    error: Colors.light.error,
+    success: Colors.light.success,
+  },
+  // The version is already set correctly in MD3LightTheme
 };
 
 export default function RootLayout() {
@@ -21,7 +32,7 @@ export default function RootLayout() {
           <Stack
             screenOptions={{
               headerStyle: {
-                backgroundColor: theme.primary,
+                backgroundColor: theme.colors.primary,
               },
               headerTintColor: "#fff",
               headerTitleStyle: {

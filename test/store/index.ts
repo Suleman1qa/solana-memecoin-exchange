@@ -2,8 +2,8 @@ import { configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { authSlice } from "./slices/authSlice";
-import { walletSlice } from "./slices/walletSlice";
-import { marketSlice } from "./slices/marketSlice";
+import { walletSlice, fetchWallets } from "./slices/walletSlice";
+import { marketSlice, fetchUserOrders } from "./slices/marketSlice";
 import { tokenSlice } from "./slices/tokenSlice";
 
 const persistConfig = {
@@ -33,3 +33,5 @@ export const persistor = persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
+export { fetchWallets, fetchUserOrders };

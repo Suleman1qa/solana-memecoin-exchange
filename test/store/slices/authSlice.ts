@@ -14,10 +14,20 @@ interface AuthState {
   error: string | null;
 }
 
+const getDefaultMockUser = () => ({
+  _id: "mock-user-id",
+  email: "",
+  username: "User",
+  fullName: "Hello User",
+  profilePicture: "",
+  createdAt: new Date().toISOString(),
+  isVerified: true,
+});
+
 const initialState: AuthState = {
-  user: null,
-  token: null,
-  isAuthenticated: false,
+  user: getDefaultMockUser(),
+  token: "mock-token",
+  isAuthenticated: true,
   loading: false,
   error: null,
 };
@@ -39,21 +49,34 @@ export const authSlice = createSlice({
       action: PayloadAction<{ user: User; token: string }>
     ) => {
       state.isAuthenticated = true;
-      state.user = action.payload.user;
+      state.user = action.payload.user || getDefaultMockUser();
       state.token = action.payload.token;
       state.loading = false;
       state.error = null;
     },
     logout: (state) => {
-      state.isAuthenticated = false;
-      state.user = null;
-      state.token = null;
+      state.isAuthenticated = true;
+      state.user = getDefaultMockUser();
+      state.token = "mock-token";
       state.loading = false;
       state.error = null;
     },
     updateUser: (state, action: PayloadAction<User>) => {
-      state.user = action.payload;
+      state.user = action.payload || getDefaultMockUser();
     },
+    // Defensive: always ensure user is never null
+    ensureUser: (state) => {
+      if (!state.user) {
+        state.user = getDefaultMockUser();
+      }
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addDefaultCase((state) => {
+      if (!state.user) {
+        state.user = getDefaultMockUser();
+      }
+    });
   },
 });
 
